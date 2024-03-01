@@ -45,6 +45,7 @@ jobs:
 
     - name: Build the ROS2 workspace
       run: |
+        source /opt/ros/humble/setup.bash
         cd ros_ws
         colcon build --symlink-install
         # Ensure the toolchain file is correctly pointing to your ARM toolchain. --cmake-args -DCMAKE_TOOLCHAIN_FILE=path/to/your/toolchainfile.cmake
