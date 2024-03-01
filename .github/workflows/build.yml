@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-22.04  # Specify the Ubuntu version here.
     steps:
     - name: Check out repository
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
 
     - name: Set up ROS environment
       run: |
