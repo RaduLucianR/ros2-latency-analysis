@@ -7,7 +7,7 @@ on:
 
 jobs:
   build:
-    runs-on: buildjet-2vcpu-ubuntu-2204-arm #run on ARM with Ubuntu 22
+    runs-on: buildjet-4vcpu-ubuntu-2204-arm #run on ARM with Ubuntu 22
     steps:
     - name: Setup Workspace
       run: |
@@ -55,6 +55,7 @@ jobs:
         
     - name: Build CARET
       run: |
+        cd ros2_caret_ws
         source /opt/ros/humble/setup.bash
         colcon build --symlink-install --cmake-args -DCMAKE_BUILD_TYPE=Release
         
