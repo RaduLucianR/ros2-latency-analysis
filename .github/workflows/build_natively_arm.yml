@@ -42,15 +42,24 @@ jobs:
       run: |
         sudo apt install python3-vcstool
 
-    - name: Install CARET
+    - name: Download CARET
       run: |
         git clone https://github.com/tier4/caret.git ros2_caret_ws
+        
+    - name: Execute setup_caret
+      run: |
         cd ros2_caret_ws
         mkdir src
         vcs import src < caret.repos
         ./setup_caret.sh
+        
+    - name: Build CARET
+      run: |
         source /opt/ros/humble/setup.bash
         colcon build --symlink-install --cmake-args -DCMAKE_BUILD_TYPE=Release
+        
+    - name: Check CARET
+      run: |
         source ~/ros2_caret_ws/install/local_setup.bash
         ros2 run tracetools status # return Tracing enabled
 
