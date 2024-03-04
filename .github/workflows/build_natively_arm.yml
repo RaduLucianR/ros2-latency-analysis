@@ -51,7 +51,7 @@ jobs:
         cd ros2_caret_ws
         mkdir src
         vcs import src < caret.repos
-        ./setup_caret.sh
+        yes | ./setup_caret.sh --no-interactive
         
     - name: Build CARET
       run: |
