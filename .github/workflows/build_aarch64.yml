@@ -16,7 +16,7 @@ jobs:
         with:
           arch: aarch64
           distro: ubuntu22.04
-          githubToken: ${{ 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 }}
+          githubToken: ${{ secrets.MY_GITHUB_TOKEN }}
 
           setup: |
             mkdir -p "${PWD}/artifacts"
