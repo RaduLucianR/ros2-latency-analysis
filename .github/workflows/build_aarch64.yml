@@ -38,7 +38,7 @@ jobs:
           run: |
             mkdir -p ros_ws/src
             cd ros_ws/src
-            git clone https://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@github.com/RaduLucianR/ros2-latency-analysis.git
+            git clone https://${{ secrets.MY_GITHUB_TOKEN }}@github.com/RaduLucianR/ros2-latency-analysis.git
             cd
             sudo rosdep init
             rosdep update
