@@ -26,7 +26,7 @@ jobs:
         sudo curl -s https://raw.githubusercontent.com/ros/rosdistro/master/ros.key -o /usr/share/keyrings/ros-archive-keyring.gpg
         echo "deb [signed-by=/usr/share/keyrings/ros-archive-keyring.gpg] http://packages.ros.org/ros2/ubuntu $(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/ros2.list > /dev/null
         sudo apt update
-        sudo apt install -y python3-colcon-common-extensions python3-rosdep python3-vcstool
+        sudo apt install -y python3-colcon-common-extensions python3-rosdep python3-vcstool 
 
     - name: Initialize rosdep
       run: |
@@ -41,6 +41,10 @@ jobs:
     - name: Install VCS
       run: |
         sudo apt install python3-vcstool
+
+    - name: Install CARET dependencies
+      run: |
+        sudo apt-get install -y lttng-tools liblttng-ust-dev python3-lttng python3-babeltrace babeltrace
 
     - name: Download CARET
       run: |
@@ -58,7 +62,6 @@ jobs:
         cd ros2_caret_ws
         source /opt/ros/humble/setup.bash
         colcon build --symlink-install --cmake-args -DCMAKE_BUILD_TYPE=Release
-        
         
     - name: Check CARET
       run: |
