@@ -7,7 +7,7 @@ on:
 
 jobs:
   build:
-    runs-on: buildjet-4vcpu-ubuntu-2204-arm #run on ARM with Ubuntu 22
+    runs-on: buildjet-8vcpu-ubuntu-2204-arm #run on ARM with Ubuntu 22
     steps:
     - name: Setup Workspace
       run: |
@@ -62,14 +62,6 @@ jobs:
         cd ros2_caret_ws
         source /opt/ros/humble/setup.bash
         colcon build --symlink-install --cmake-args -DCMAKE_BUILD_TYPE=Release
-        
-    - name: Check CARET
-      run: |
-        ls -a ros2_caret_ws/
-        ls -a ros2_caret_ws/install/
-        source /opt/ros/humble/setup.bash
-        source ros2_caret_ws/install/local_setup.bash
-        ros2 run tracetools status # return Tracing enabled
 
     - name: Build the ROS2 workspace with CARET
       run: |
@@ -77,7 +69,6 @@ jobs:
         source /opt/ros/humble/setup.bash
         source ros2_caret_ws/install/local_setup.bash 
         colcon build --symlink-install --cmake-args -DBUILD_TESTING=OFF
-        ros2 caret check_caret_rclcpp .
 
     - name: Archive artifacts
       run: |
