@@ -59,16 +59,19 @@ jobs:
         source /opt/ros/humble/setup.bash
         colcon build --symlink-install --cmake-args -DCMAKE_BUILD_TYPE=Release
         
+        
     - name: Check CARET
       run: |
-        source ~/ros2_caret_ws/install/local_setup.bash
+        ls -a ros2_caret_ws/
+        ls -a ros2_caret_ws/install/
+        source ros2_caret_ws/install/local_setup.bash
         ros2 run tracetools status # return Tracing enabled
 
     - name: Build the ROS2 workspace with CARET
       run: |
         cd ros_ws
         source /opt/ros/humble/setup.bash
-        source ~/ros2_caret_ws/install/local_setup.bash 
+        source ros2_caret_ws/install/local_setup.bash 
         colcon build --symlink-install --cmake-args -DBUILD_TESTING=OFF
         ros2 caret check_caret_rclcpp .
 
