@@ -65,9 +65,9 @@ jobs:
 
     - name: Build the ROS2 workspace with CARET
       run: |
-        cd ros_ws
         source /opt/ros/humble/setup.bash
         source ros2_caret_ws/install/local_setup.bash 
+        cd ros_ws
         colcon build --symlink-install --cmake-args -DBUILD_TESTING=OFF
 
     - name: Archive artifacts
