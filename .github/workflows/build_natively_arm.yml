@@ -64,6 +64,7 @@ jobs:
       run: |
         ls -a ros2_caret_ws/
         ls -a ros2_caret_ws/install/
+        source /opt/ros/humble/setup.bash
         source ros2_caret_ws/install/local_setup.bash
         ros2 run tracetools status # return Tracing enabled
 
