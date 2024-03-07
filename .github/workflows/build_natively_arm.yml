@@ -3,11 +3,11 @@ name: Build ROS2 Packages for Raspberry Pi 3 natively on ARM
 on:
   push:
     branches:
-      - main  # Trigger the workflow on push events to the main branch.
+      - deploy-rpi  # Trigger the workflow on push events to deploy-rpi branch
 
 jobs:
   build:
-    runs-on: buildjet-8vcpu-ubuntu-2204-arm #run on ARM with Ubuntu 22
+    runs-on: buildjet-2vcpu-ubuntu-2204-arm #run on ARM with Ubuntu 22
     steps:
     - name: Setup Workspace
       run: |
