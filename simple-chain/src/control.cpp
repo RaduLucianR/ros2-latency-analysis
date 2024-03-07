@@ -44,11 +44,3 @@ class Control : public rclcpp::Node
     rclcpp::Publisher<std_msgs::msg::String>::SharedPtr publisher_;
     size_t count_;
 };
-
-int main(int argc, char * argv[])
-{
-  rclcpp::init(argc, argv);
-  rclcpp::spin(std::make_shared<Control>());
-  rclcpp::shutdown();
-  return 0;
-}

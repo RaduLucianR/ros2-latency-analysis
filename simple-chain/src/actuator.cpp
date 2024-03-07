@@ -21,11 +21,3 @@ class Actuator : public rclcpp::Node
     }
     rclcpp::Subscription<std_msgs::msg::String>::SharedPtr subscription_;
 };
-
-int main(int argc, char * argv[])
-{
-  rclcpp::init(argc, argv);
-  rclcpp::spin(std::make_shared<Actuator>());
-  rclcpp::shutdown();
-  return 0;
-}
