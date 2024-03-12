@@ -1,0 +1,17 @@
+thread1:
+  core: 2
+
+thread2:
+  core: 3
+
+thread3:
+  core: 3
+
+thread4:
+  core: 3
+
+thread5:
+  core: 2
+
+thread6:
+  core: 2

@@ -8,6 +8,7 @@ endif()
 find_package(ament_cmake REQUIRED)
 find_package(rclcpp REQUIRED)
 find_package(std_msgs REQUIRED)
+find_package(yaml-cpp REQUIRED)
 
 include_directories(include)
 
@@ -41,8 +42,11 @@ add_executable(n-ste
                src/tasks/planning.cpp
                src/tasks/control.cpp
                src/tasks/actuator.cpp
+               src/utils/cpu_affinity_utils.cpp
 )
 ament_target_dependencies(n-ste rclcpp std_msgs)
+target_link_libraries(n-ste yaml-cpp)
+
 
 add_executable(n-mte-per-1-node
                src/n-mte-per-1-node.cpp

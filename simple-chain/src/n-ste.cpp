@@ -5,11 +5,19 @@
 #include "control.hpp"
 #include "actuator.hpp"
 #include "rclcpp/rclcpp.hpp"
-#include <thread>
+#include "cpu_affinity_utils.hpp"
 
 int main(int argc, char* argv[])
 {
     rclcpp::init(argc, argv);
+
+    if (!(argc > 1 && std::string(argv[1]).substr(std::string(argv[1]).length() - 5) == ".yaml")) {
+        std::cerr << "Please provide a .yaml file with CPU affinity mask.\n";
+        return 1;
+    }
+
+    std::string yaml_path = argv[1];
+    auto thread_affinities = load_thread_affinities(yaml_path);
     
     auto cameraNode = std::make_shared<Camera>();
     auto fusionNode = std::make_shared<Fusion>();
@@ -32,12 +40,42 @@ int main(int argc, char* argv[])
     executor_o.add_node(controlNode);
     executor_a.add_node(actuatorNode);
 
-    std::thread thread1([&executor_c]() { executor_c.spin(); });
-    std::thread thread2([&executor_f]() { executor_f.spin(); });
-    std::thread thread3([&executor_e]() { executor_e.spin(); });
-    std::thread thread4([&executor_l]() { executor_l.spin(); });
-    std::thread thread5([&executor_o]() { executor_o.spin(); });
-    std::thread thread6([&executor_a]() { executor_a.spin(); });
+    std::thread thread1([&executor_c, &thread_affinities]() { 
+        setThreadAffinity(thread_affinities.at("thread1"));
+        executor_c.spin(); 
+    });
+
+    std::thread thread2([&executor_f, &thread_affinities]() { 
+        setThreadAffinity(thread_affinities.at("thread2"));
+        executor_f.spin(); 
+    });
+
+    std::thread thread3([&executor_e, &thread_affinities]() { 
+        setThreadAffinity(thread_affinities.at("thread3"));
+        executor_e.spin(); 
+    });
+
+    std::thread thread4([&executor_l, &thread_affinities]() { 
+        setThreadAffinity(thread_affinities.at("thread4"));
+        executor_l.spin(); 
+    });
+
+    std::thread thread5([&executor_o, &thread_affinities]() { 
+        setThreadAffinity(thread_affinities.at("thread5"));
+        executor_o.spin(); 
+    });
+
+    std::thread thread6([&executor_a, &thread_affinities]() { 
+        setThreadAffinity(thread_affinities.at("thread6"));
+        executor_a.spin(); 
+    });
+
+    checkThreadAffinity(thread1.native_handle());
+    checkThreadAffinity(thread2.native_handle());
+    checkThreadAffinity(thread3.native_handle());
+    checkThreadAffinity(thread4.native_handle());
+    checkThreadAffinity(thread5.native_handle());
+    checkThreadAffinity(thread6.native_handle());
 
     thread1.join();
     thread2.join();
@@ -45,6 +83,13 @@ int main(int argc, char* argv[])
     thread4.join();
     thread5.join();
     thread6.join();
+
+    // std::thread thread1([&executor_c]() { executor_c.spin(); });
+    // std::thread thread2([&executor_f]() { executor_f.spin(); });
+    // std::thread thread3([&executor_e]() { executor_e.spin(); });
+    // std::thread thread4([&executor_l]() { executor_l.spin(); });
+    // std::thread thread5([&executor_o]() { executor_o.spin(); });
+    // std::thread thread6([&executor_a]() { executor_a.spin(); });
 
     rclcpp::shutdown();
 
