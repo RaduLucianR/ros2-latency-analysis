@@ -1,1 +1,11 @@
 __pycache__/
+*.png
+*.log
+*.xdot
+*.ipynb_checkpoints
+*.
+*.csv
+cl-*
+build/*
+install/*
+log/*
