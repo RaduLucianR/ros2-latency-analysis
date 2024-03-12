@@ -12,5 +12,5 @@ Actuator::Actuator()
 
 void Actuator::topic_callback(const std_msgs::msg::String & msg) const
 {
-  RCLCPP_INFO(this->get_logger(), "I apply force: '%s'", msg.data.c_str());
+  RCLCPP_INFO(this->get_logger(), "I apply force");
 }

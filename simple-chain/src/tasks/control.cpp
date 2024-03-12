@@ -9,6 +9,8 @@ using namespace std::chrono_literals;
 Control::Control()
 : Node("control"), count_(0)
 {
+    this->declare_parameter<std::string>("message_size", "128B");
+
     subscription_ = this->create_subscription<std_msgs::msg::String>(
     "destination", 10, std::bind(&Control::topic_callback, this, _1));
 
@@ -19,13 +21,16 @@ Control::Control()
 
 void Control::topic_callback(const std_msgs::msg::String & msg) const
 {
-    RCLCPP_INFO(this->get_logger(), "I use destination: '%s'", msg.data.c_str());
+    RCLCPP_INFO(this->get_logger(), "I use destination");
 }
 
 void Control::timer_callback()
-{
+{   
+    std::string size_param = this->get_parameter("message_size").get_value<std::string>();
     auto message = std_msgs::msg::String();
-    message.data = "Force " + std::to_string(count_++);
-    RCLCPP_INFO(this->get_logger(), "Publishing: '%s'", message.data.c_str());
+    auto print_msg = "Force " + std::to_string(count_++);
+    
+    message.data = getMsgOfSize(size_param);
+    RCLCPP_INFO(this->get_logger(), "Publishing: '%s'", print_msg);
     publisher_->publish(message);
 }
