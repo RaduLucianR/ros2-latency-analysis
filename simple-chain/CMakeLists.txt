@@ -34,7 +34,7 @@ add_executable(1-mte
 ament_target_dependencies(1-mte rclcpp std_msgs)
 
 add_executable(n-ste
-               src/tasks/n-ste.cpp
+               src/n-ste.cpp
                src/tasks/camera.cpp
                src/tasks/fusion.cpp
                src/tasks/perception.cpp
