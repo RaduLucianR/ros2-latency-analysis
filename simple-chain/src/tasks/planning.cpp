@@ -32,6 +32,6 @@ void Planning::timer_callback()
     auto print_msg = "Destination " + std::to_string(count_++);
     
     message = getMsgOfSize(size_param);
-    RCLCPP_INFO(this->get_logger(), "Publishing: '%s'", print_msg);
+    RCLCPP_INFO(this->get_logger(), "Publishing: '%s'", print_msg.c_str());
     publisher_->publish(message);
 }
