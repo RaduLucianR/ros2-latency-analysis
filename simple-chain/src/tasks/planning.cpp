@@ -1,4 +1,5 @@
 #include "planning.hpp"
+#include "msg_size.hpp"
 #include <chrono>
 #include <functional>
 #include <string>

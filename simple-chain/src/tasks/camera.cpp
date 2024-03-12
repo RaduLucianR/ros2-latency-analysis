@@ -1,6 +1,6 @@
 #include "camera.hpp"
 #include <string>
-#include <msg_size.hpp>
+#include "msg_size.hpp"
 
 using namespace std::chrono_literals;
 using std::placeholders::_1;
@@ -20,7 +20,7 @@ void Camera::timer_callback()
   std::string size_param = this->get_parameter("message_size").get_value<std::string>();
   auto message = std_msgs::msg::String();
   auto print_msg = "Image " + std::to_string(count_++);
-  
+
   message.data = getMsgOfSize(size_param);
   RCLCPP_INFO(this->get_logger(), "Publishing: '%s'", print_msg);
   publisher_->publish(message);
