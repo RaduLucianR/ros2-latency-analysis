@@ -5,6 +5,7 @@ default_source_folder="/home/pi/.ros/tracing"
 default_destination_folder="/home/${USER}/tracing"
 default_user="pi"
 default_password="raspberry"
+all_folders=false
 
 # Function to display usage
 usage() {
@@ -15,6 +16,7 @@ usage() {
     echo "  -d destination folder (optional): path as string, default is $default_destination_folder"
     echo "  -u user for the Raspberry Pi (optional), default is $default_user"
     echo "  -p password for the Raspberry Pi (optional), default is $default_password"
+    echo "  -a process all trace folders (optional)"
     exit 1
 }
 
@@ -24,7 +26,7 @@ if [ $# -eq 0 ]; then
 fi
 
 # Parse the command-line arguments
-while getopts ":i:s:d:u:p:" opt; do
+while getopts ":i:s:d:u:p:a" opt; do
   case $opt in
     i)
       IP=$OPTARG
@@ -40,6 +42,9 @@ while getopts ":i:s:d:u:p:" opt; do
       ;;
     p)
       password=$OPTARG
+      ;;
+    a)
+      all_folders=true
       ;;
     \?)
       echo "Invalid option: -$OPTARG" >&2
@@ -64,27 +69,34 @@ destination_folder=${destination_folder:-$default_destination_folder}
 user=${user:-$default_user}
 password=${password:-$default_password}
 
-# Find the latest created sub-folder under the source_folder
-latest_created_folder=$(sshpass -p "${password}" ssh "${user}"@"${IP}" "ls -lt ${source_folder} | grep ^d | head -n 1 | awk '{print \$9}'")
-
-# gzip the latest_created_folder
-sshpass -p "${password}" ssh "${user}"@"${IP}" "tar -czvf ${source_folder}/${latest_created_folder}.tar.gz -C ${source_folder} ${latest_created_folder}"
-
-# Copy the gzip locally
-sshpass -p "${password}" scp "${user}"@"${IP}":"${source_folder}/${latest_created_folder}.tar.gz" ${destination_folder}
-
-# Remove the gzip remotely
-sshpass -p "${password}" ssh "${user}"@"${IP}" "rm -rf ${source_folder}/${latest_created_folder}.tar.gz"
-
-# Unzip the gzip
-tar -xzvf ${destination_folder}/${latest_created_folder}.tar.gz -C ${destination_folder}
-
-# Remove gzip
-rm -rf ${destination_folder}/${latest_created_folder}.tar.gz
-
 # Source ROS2 and CARET
 source /opt/ros/humble/setup.bash
 source ~/ros2_caret_ws/install/local_setup.bash
 
-# Create CARET architecture file from traces
-ros2 caret create_architecture_file ${destination_folder}/${latest_created_folder} -o ${destination_folder}/archi-${latest_created_folder}.yaml
+if [ "$all_folders" = true ]; then
+  archive_name="traces_$(date +%Y%m%d_%H%M%S).tar.gz"
+  sshpass -p "${password}" ssh "${user}"@"${IP}" "tar -czvf ${source_folder}/${archive_name} -C ${source_folder} ."
+  sshpass -p "${password}" scp "${user}"@"${IP}":"${source_folder}/${archive_name}" ${destination_folder}
+  sshpass -p "${password}" ssh "${user}"@"${IP}" "rm -rf ${source_folder}/${archive_name}"
+  tar -xzvf ${destination_folder}/${archive_name} -C ${destination_folder}
+  rm -rf ${destination_folder}/${archive_name}
+
+  for subdir in "$destination_folder"/*; do
+    # Check if the item is a directory
+    if [ -d "$subdir" ]; then
+        echo "Processing trace folder: $subdir"
+        subdir_f="${subdir##*/}"
+        ros2 caret create_architecture_file ${subdir} -o ${destination_folder}/archi-${subdir_f}.yaml
+    fi
+  done
+else
+  # Retrieve the latest created sub-folder
+  latest_created_folder=$(sshpass -p "${password}" ssh "${user}"@"${IP}" "ls -lt ${source_folder} | grep ^d | head -n 1 | awk '{print \$9}'")
+  folder_name=$latest_created_folder
+  sshpass -p "${password}" ssh "${user}"@"${IP}" "tar -czvf ${source_folder}/${folder_name}.tar.gz -C ${source_folder} ${folder_name}"
+  sshpass -p "${password}" scp "${user}"@"${IP}":"${source_folder}/${folder_name}.tar.gz" ${destination_folder}
+  sshpass -p "${password}" ssh "${user}"@"${IP}" "rm -rf ${source_folder}/${folder_name}.tar.gz"
+  tar -xzvf ${destination_folder}/${folder_name}.tar.gz -C ${destination_folder}
+  rm -rf ${destination_folder}/${folder_name}.tar.gz
+  ros2 caret create_architecture_file ${destination_folder}/${folder_name} -o ${destination_folder}/archi-${folder_name}.yaml
+fi
