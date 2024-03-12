@@ -1,9 +1,9 @@
-#include "tasks/camera.cpp"
-#include "tasks/fusion.cpp"
-#include "tasks/perception.cpp"
-#include "tasks/planning.cpp"
-#include "tasks/control.cpp"
-#include "tasks/actuator.cpp"
+#include "camera.hpp"
+#include "fusion.hpp"
+#include "perception.hpp"
+#include "planning.hpp"
+#include "control.hpp"
+#include "actuator.hpp"
 #include "rclcpp/rclcpp.hpp"
 #include <thread>
 
