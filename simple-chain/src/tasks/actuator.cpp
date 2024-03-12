@@ -1,7 +1,6 @@
-#include <memory>
+#include "actuator.hpp"
+#include <string>
 
-#include "rclcpp/rclcpp.hpp"
-#include "std_msgs/msg/string.hpp"
 using std::placeholders::_1;
 
 class Actuator : public rclcpp::Node
@@ -19,5 +18,6 @@ class Actuator : public rclcpp::Node
     {
       RCLCPP_INFO(this->get_logger(), "I apply force: '%s'", msg.data.c_str());
     }
+    
     rclcpp::Subscription<std_msgs::msg::String>::SharedPtr subscription_;
 };
