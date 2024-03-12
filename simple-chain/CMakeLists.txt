@@ -13,56 +13,56 @@ include_directories(include)
 
 add_executable(1-ste
                src/1-ste.cpp
-               src/task/camera.cpp
-               src/task/fusion.cpp
-               src/task/perception.cpp
-               src/task/planning.cpp
-               src/task/control.cpp
-               src/task/actuator.cpp
+               src/tasks/camera.cpp
+               src/tasks/fusion.cpp
+               src/tasks/perception.cpp
+               src/tasks/planning.cpp
+               src/tasks/control.cpp
+               src/tasks/actuator.cpp
 )
 ament_target_dependencies(1-ste rclcpp std_msgs)
 
 add_executable(1-mte
                src/1-mte.cpp
-               src/task/camera.cpp
-               src/task/fusion.cpp
-               src/task/perception.cpp
-               src/task/planning.cpp
-               src/task/control.cpp
-               src/task/actuator.cpp
+               src/tasks/camera.cpp
+               src/tasks/fusion.cpp
+               src/tasks/perception.cpp
+               src/tasks/planning.cpp
+               src/tasks/control.cpp
+               src/tasks/actuator.cpp
 )
 ament_target_dependencies(1-mte rclcpp std_msgs)
 
 add_executable(n-ste
-               src/task/n-ste.cpp
-               src/task/camera.cpp
-               src/task/fusion.cpp
-               src/task/perception.cpp
-               src/task/planning.cpp
-               src/task/control.cpp
-               src/task/actuator.cpp
+               src/tasks/n-ste.cpp
+               src/tasks/camera.cpp
+               src/tasks/fusion.cpp
+               src/tasks/perception.cpp
+               src/tasks/planning.cpp
+               src/tasks/control.cpp
+               src/tasks/actuator.cpp
 )
 ament_target_dependencies(n-ste rclcpp std_msgs)
 
 add_executable(n-mte-per-1-node
                src/n-mte-per-1-node.cpp
-               src/task/camera.cpp
-               src/task/fusion.cpp
-               src/task/perception.cpp
-               src/task/planning.cpp
-               src/task/control.cpp
-               src/task/actuator.cpp
+               src/tasks/camera.cpp
+               src/tasks/fusion.cpp
+               src/tasks/perception.cpp
+               src/tasks/planning.cpp
+               src/tasks/control.cpp
+               src/tasks/actuator.cpp
 )
 ament_target_dependencies(n-mte-per-1-node rclcpp std_msgs)
 
 add_executable(n-mte-per-2-node
                src/n-mte-per-2-node.cpp
-               src/task/camera.cpp
-               src/task/fusion.cpp
-               src/task/perception.cpp
-               src/task/planning.cpp
-               src/task/control.cpp
-               src/task/actuator.cpp
+               src/tasks/camera.cpp
+               src/tasks/fusion.cpp
+               src/tasks/perception.cpp
+               src/tasks/planning.cpp
+               src/tasks/control.cpp
+               src/tasks/actuator.cpp
 )
 ament_target_dependencies(n-mte-per-2-node rclcpp std_msgs)
 
