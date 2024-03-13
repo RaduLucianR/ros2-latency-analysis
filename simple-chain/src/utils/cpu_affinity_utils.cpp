@@ -5,6 +5,7 @@
 #include <thread>
 #include <iostream>
 #include <unistd.h>
+#include "rcutils/logging_macros.h"
 
 std::map<std::string, int> load_thread_affinities(const std::string& file_path) {
     YAML::Node config = YAML::LoadFile(file_path);
@@ -23,7 +24,7 @@ void setThreadAffinity(int core_id) {
     int num_cores = sysconf(_SC_NPROCESSORS_ONLN);
 
     if (core_id < 0 || core_id >= num_cores)
-        std::cerr << "Affinity out of range!" << std::endl;
+        RCUTILS_LOG_ERROR("Affinity out of range!");
 
     cpu_set_t cpuset;
     CPU_ZERO(&cpuset);
@@ -33,7 +34,8 @@ void setThreadAffinity(int core_id) {
     int rc = pthread_setaffinity_np(current_thread, sizeof(cpu_set_t), &cpuset);
 
     if (rc != 0) {
-        std::cerr << "Error setting thread affinity: " << rc << std::endl;
+        // std::cerr << "Error setting thread affinity: " << rc << std::endl;
+        RCUTILS_LOG_ERROR("Error setting thread affinity!");
     }
 }
 
@@ -41,16 +43,18 @@ void checkThreadAffinity(pthread_t thread) {
     cpu_set_t cpuset;
     CPU_ZERO(&cpuset);
     int s = pthread_getaffinity_np(thread, sizeof(cpu_set_t), &cpuset);
+
     if (s != 0) {
-        std::cerr << "pthread_getaffinity_np failed" << std::endl;
+        RCUTILS_LOG_ERROR("pthread_getaffinity_np failed");
         return;
     }
 
-    std::cout << "Thread " << thread << " affinity is:";
+    // std::cout << "Thread " << thread << " affinity is:";
+
     for (int cpu = 0; cpu < CPU_SETSIZE; cpu++) {
         if (CPU_ISSET(cpu, &cpuset)) {
-            std::cout << " CPU" << cpu;
+            // std::cout << " CPU" << cpu;
+            RCUTILS_LOG_INFO("Thread %lu has affinity: CPU%d", thread, cpu);
         }
     }
-    std::cout << std::endl;
 }
