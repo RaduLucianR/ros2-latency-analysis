@@ -5,11 +5,20 @@
 #include "control.hpp"
 #include "actuator.hpp"
 #include "rclcpp/rclcpp.hpp"
+#include "cpu_affinity_utils.hpp"
 #include <thread>
 
 int main(int argc, char* argv[])
 {
     rclcpp::init(argc, argv);
+
+    if (!(argc > 1 && std::string(argv[1]).substr(std::string(argv[1]).length() - 5) == ".yaml")) {
+        std::cerr << "Please provide a .yaml file with CPU affinity mask.\n";
+        return 1;
+    }
+
+    std::string yaml_path = argv[1];
+    auto thread_affinities = load_thread_affinities(yaml_path);
     
     auto cameraNode = std::make_shared<Camera>();
     auto fusionNode = std::make_shared<Fusion>();
@@ -31,9 +40,20 @@ int main(int argc, char* argv[])
     executor_3.add_node(controlNode);
     executor_3.add_node(actuatorNode);
 
-    std::thread thread1([&executor_1]() { executor_1.spin(); });
-    std::thread thread2([&executor_2]() { executor_2.spin(); });
-    std::thread thread3([&executor_3]() { executor_3.spin(); });
+    std::thread thread1([&executor_1, &thread_affinities]() { 
+        setThreadAffinity(thread_affinities.at("thread1"));
+        executor_1.spin(); 
+    });
+
+    std::thread thread2([&executor_2, &thread_affinities]() { 
+        setThreadAffinity(thread_affinities.at("thread2"));
+        executor_2.spin(); 
+    });
+
+    std::thread thread3([&executor_3, &thread_affinities]() { 
+        setThreadAffinity(thread_affinities.at("thread3"));
+        executor_3.spin(); 
+    });
 
     thread1.join();
     thread2.join();

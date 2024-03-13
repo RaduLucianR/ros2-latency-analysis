@@ -84,13 +84,6 @@ int main(int argc, char* argv[])
     thread5.join();
     thread6.join();
 
-    // std::thread thread1([&executor_c]() { executor_c.spin(); });
-    // std::thread thread2([&executor_f]() { executor_f.spin(); });
-    // std::thread thread3([&executor_e]() { executor_e.spin(); });
-    // std::thread thread4([&executor_l]() { executor_l.spin(); });
-    // std::thread thread5([&executor_o]() { executor_o.spin(); });
-    // std::thread thread6([&executor_a]() { executor_a.spin(); });
-
     rclcpp::shutdown();
 
     return 0;

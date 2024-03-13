@@ -56,8 +56,10 @@ add_executable(n-mte-per-1-node
                src/tasks/planning.cpp
                src/tasks/control.cpp
                src/tasks/actuator.cpp
+               src/utils/cpu_affinity_utils.cpp
 )
 ament_target_dependencies(n-mte-per-1-node rclcpp std_msgs)
+target_link_libraries(n-mte-per-1-node yaml-cpp)
 
 add_executable(n-mte-per-2-node
                src/n-mte-per-2-node.cpp
@@ -67,8 +69,10 @@ add_executable(n-mte-per-2-node
                src/tasks/planning.cpp
                src/tasks/control.cpp
                src/tasks/actuator.cpp
+               src/utils/cpu_affinity_utils.cpp
 )
 ament_target_dependencies(n-mte-per-2-node rclcpp std_msgs)
+target_link_libraries(n-mte-per-2-node yaml-cpp)
 
 install(TARGETS
   1-ste

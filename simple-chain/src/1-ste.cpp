@@ -26,6 +26,7 @@ int main(int argc, char* argv[])
     executor.add_node(controlNode);
     executor.add_node(actuatorNode);
     executor.spin();
+    
     rclcpp::shutdown();
 
     return 0;
