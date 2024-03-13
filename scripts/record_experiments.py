@@ -49,7 +49,7 @@ def run_experiment(executors, name):
     commands = f"""
     source /opt/ros/humble/setup.bash
     source ~/ros2_caret_ws/install/local_setup.bash
-    source ~/simple-chain-ws/install/local_setup.bash
+    source ~/ros_ws/install/local_setup.bash
     export LD_PRELOAD=$(readlink -f ~/ros2_caret_ws/install/caret_trace/lib/libcaret.so)
     ros2 launch simple-chain {executors}-launch.py trfolder:={name}
     """
@@ -134,7 +134,7 @@ def main():
     for tup in settings_n_2:
         name = f"{executor}-{tup[0]}-{cores_string(tup[1])}"
         update_payload(path_config_payload, tup[0])
-        update_cores(path_config_cores_1, tup[1])
+        update_cores(path_config_cores_2, tup[1])
         run_experiment(executor, name)
     
 
