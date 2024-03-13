@@ -8,12 +8,12 @@ import os
 import time
 
 def generate_launch_description():
-    executors = 'n-mte-per-2-node'
+    executors = 'n-mte-per-1-node'
 
     config_cores = os.path.join(
       get_package_share_directory('simple-chain'),
       'config',
-      'exec-cpu-n-mte-per-2-node.yaml'
+      'exec-cpu-n-per-1-node.yaml'
       )
     
     config_payload = os.path.join(
@@ -43,7 +43,7 @@ def generate_launch_description():
         ),
 
         TimerAction(
-            period=10.0,  # time in seconds after which the shutdown will be triggered
+            period=60.0,  # time in seconds after which the shutdown will be triggered
             actions=[
                 Shutdown(reason='Time limit reached')
             ]

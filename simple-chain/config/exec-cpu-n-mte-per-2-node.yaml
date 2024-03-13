@@ -1,8 +1,6 @@
 thread1:
-  core: 2
-
+  core: 5
 thread2:
-  core: 2
-
+  core: 5
 thread3:
-  core: 2
+  core: 5

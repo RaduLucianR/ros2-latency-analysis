@@ -1,19 +1,15 @@
 /camera:
   ros__parameters:
-    message_size: "256B"
-    
-/fusion:
-  ros__parameters:
-    message_size: "256B"
-
-/perception:
-  ros__parameters:
-    message_size: "256B"
-
-/planning:
-  ros__parameters:
-    message_size: "256B"
-
+    message_size: 1KB
 /control:
   ros__parameters:
-    message_size: "256B"
+    message_size: 1KB
+/fusion:
+  ros__parameters:
+    message_size: 1KB
+/perception:
+  ros__parameters:
+    message_size: 1KB
+/planning:
+  ros__parameters:
+    message_size: 1KB
