@@ -136,7 +136,5 @@ def main():
         update_payload(path_config_payload, tup[0])
         update_cores(path_config_cores_2, tup[1])
         run_experiment(executor, name)
-    
-
 
 main()
