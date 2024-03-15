@@ -1,10 +1,3 @@
-# big 2-tuple list [cpu-setting, payload-setting]
-
-# for 
-#   modify cpu.yaml
-#   modify msg_sizes.yaml
-#   ros2 launch simple-chain 1-ste trfolder:=<name>
-
 import subprocess
 import yaml
 
@@ -14,7 +7,7 @@ def update_payload(file_path, new_size):
         data = yaml.safe_load(stream)
 
     # Update the message_size for each specified key
-    keys_to_update = ['/camera', '/fusion', '/perception', '/planning', '/control']
+    keys_to_update = ['/talker']
     for key in keys_to_update:
         if key in data and 'ros__parameters' in data[key]:
             data[key]['ros__parameters']['message_size'] = new_size
@@ -64,77 +57,69 @@ def run_experiment(executors, name):
         print("Errors:\n", stderr)
 
 def main():
-    path_config_cores_1 = "/home/lucian/simple-chain-ws/src/ros2-latency-analysis/simple-chain/config/exec-cpu-n-per-1-node.yaml"
-    path_config_cores_2 = "/home/lucian/simple-chain-ws/src/ros2-latency-analysis/simple-chain/config/exec-cpu-n-mte-per-2-node.yaml"
-    path_config_payload = "/home/lucian/simple-chain-ws/src/ros2-latency-analysis/simple-chain/config/msg_sizes.yaml"
-
-    settings_1 = [
-        ("128B"),
-        ("1KB"),
-        ("10KB"),
-        ("100KB"),
-        ("500KB"),
-    ]
-
-    settings_n_1 = [
-        ("128B", {'thread1': 1,'thread2': 1,'thread3': 2,'thread4': 3,'thread5': 4,'thread6': 4}),
-        ("1KB", {'thread1': 1,'thread2': 1,'thread3': 2,'thread4': 3,'thread5': 4,'thread6': 4}),
-        ("10KB", {'thread1': 1,'thread2': 1,'thread3': 2,'thread4': 3,'thread5': 4,'thread6': 4}),
-        ("100KB", {'thread1': 1,'thread2': 1,'thread3': 2,'thread4': 3,'thread5': 4,'thread6': 4}),
-        ("500KB", {'thread1': 1,'thread2': 1,'thread3': 2,'thread4': 3,'thread5': 4,'thread6': 4}),
-
-        ("128B", {'thread1': 1,'thread2': 1,'thread3': 1,'thread4': 2,'thread5': 3,'thread6': 4}),
-        ("1KB", {'thread1': 1,'thread2': 1,'thread3': 1,'thread4': 2,'thread5': 3,'thread6': 4}),
-        ("10KB", {'thread1': 1,'thread2': 1,'thread3': 1,'thread4': 2,'thread5': 3,'thread6': 4}),
-        ("100KB", {'thread1': 1,'thread2': 1,'thread3': 1,'thread4': 2,'thread5': 3,'thread6': 4}),
-        ("500KB", {'thread1': 1,'thread2': 1,'thread3': 1,'thread4': 2,'thread5': 3,'thread6': 4}),
-
-        ("128B", {'thread1': 1,'thread2': 1,'thread3': 1,'thread4': 2,'thread5': 3,'thread6': 3}),
-        ("1KB", {'thread1': 1,'thread2': 1,'thread3': 1,'thread4': 2,'thread5': 3,'thread6': 3}),
-        ("10KB", {'thread1': 1,'thread2': 1,'thread3': 1,'thread4': 2,'thread5': 3,'thread6': 3}),
-        ("100KB", {'thread1': 1,'thread2': 1,'thread3': 1,'thread4': 2,'thread5': 3,'thread6': 3}),
-        ("500KB", {'thread1': 1,'thread2': 1,'thread3': 1,'thread4': 2,'thread5': 3,'thread6': 3}),
-    ]
+    path_config_cores_1 = "/home/lucian/simple-chain-ws/src/ros2-latency-analysis/simple-chain/config/two_nodes_1.yaml"
+    path_config_cores_2 = "/home/lucian/simple-chain-ws/src/ros2-latency-analysis/simple-chain/config/two_nodes_2.yaml"
+    path_config_payload = "/home/lucian/simple-chain-ws/src/ros2-latency-analysis/simple-chain/config/two_nodes_payload.yaml"
     
-    settings_n_2 = [
-        ("128B", {'thread1': 1,'thread2': 2,'thread3': 3}),
-        ("1KB", {'thread1': 1,'thread2': 2,'thread3': 3}),
-        ("10KB", {'thread1': 1,'thread2': 2,'thread3': 3}),
-        ("100KB", {'thread1': 1,'thread2': 2,'thread3': 3}),
-        ("500KB", {'thread1': 1,'thread2': 2,'thread3': 3}),
+    core_config = [
+        {'thread1': 1,'thread2': 1},
+        {'thread1': 1,'thread2': 2},
     ]
 
-    executor = "1-ste"
-    for tup in settings_1:
-        name = f"{executor}-{tup}"
-        update_payload(path_config_payload, tup)
-        run_experiment(executor, name)
+    executor = "two_nodes_s1"
+    for i in range(128, 500 * 1024 + 1, 128):
+        size = ''
 
-    executor = "1-mte"
-    for tup in settings_1:
-        name = f"{executor}-{tup}"
-        update_payload(path_config_payload, tup)
-        run_experiment(executor, name)
+        if i < 1024:
+            size = f"{i}B"  # Print in bytes
+        else:
+            size = f"{i / 1024:.2f}KB"  # Convert to KB and print
 
-    executor = "n-ste"
-    for tup in settings_n_1:
-        name = f"{executor}-{tup[0]}-{cores_string(tup[1])}"
-        update_payload(path_config_payload, tup[0])
-        update_cores(path_config_cores_1, tup[1])
+        name = f"{executor}-{size}"
+        update_payload(path_config_payload, size)
         run_experiment(executor, name)
     
-    executor = "n-mte-per-1-node"
-    for tup in settings_n_1:
-        name = f"{executor}-{tup[0]}-{cores_string(tup[1])}"
-        update_payload(path_config_payload, tup[0])
-        update_cores(path_config_cores_1, tup[1])
-        run_experiment(executor, name)
+    executor = "two_nodes_m1"
+    for i in range(128, 500 * 1024 + 1, 128):
+        size = ''
 
-    executor = "n-mte-per-2-node"
-    for tup in settings_n_2:
-        name = f"{executor}-{tup[0]}-{cores_string(tup[1])}"
-        update_payload(path_config_payload, tup[0])
-        update_cores(path_config_cores_2, tup[1])
+        if i < 1024:
+            size = f"{i}B"  # Print in bytes
+        else:
+            size = f"{i / 1024:.2f}KB"  # Convert to KB and print
+
+        name = f"{executor}-{size}"
+        update_payload(path_config_payload, size)
         run_experiment(executor, name)
+    
+    executor = "two_nodes_s2"
+    for i in range(128, 500 * 1024 + 1, 128):
+        size = ''
+
+        if i < 1024:
+            size = f"{i}B"  # Print in bytes
+        else:
+            size = f"{i / 1024:.2f}KB"  # Convert to KB and print
+
+        for cc in core_config:
+            name = f"{executor}-{size}-{cc[1]}"
+            update_payload(path_config_payload, size)
+            update_cores(path_config_cores_2, cores_string(cc[1]))
+            run_experiment(executor, name)
+
+    executor = "two_nodes_m2"
+    for i in range(128, 500 * 1024 + 1, 128):
+        size = ''
+
+        if i < 1024:
+            size = f"{i}B"  # Print in bytes
+        else:
+            size = f"{i / 1024:.2f}KB"  # Convert to KB and print
+
+        for cc in core_config:
+            name = f"{executor}-{size}-{cc[1]}"
+            update_payload(path_config_payload, size)
+            update_cores(path_config_cores_2, cores_string(cc[1]))
+            run_experiment(executor, name)
 
 main()
