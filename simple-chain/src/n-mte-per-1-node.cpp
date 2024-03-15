@@ -70,7 +70,7 @@ int main(int argc, char* argv[])
         setThreadAffinity(thread_affinities.at("thread6"));
         executor_a.spin(); 
     });
-
+    
     thread1.join();
     thread2.join();
     thread3.join();

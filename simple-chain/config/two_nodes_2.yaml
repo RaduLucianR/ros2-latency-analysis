@@ -1,0 +1,4 @@
+thread1:
+  core: 1
+thread2:
+  core: 2

@@ -37,24 +37,14 @@ void setThreadAffinity(int core_id) {
         // std::cerr << "Error setting thread affinity: " << rc << std::endl;
         RCUTILS_LOG_ERROR("Error setting thread affinity!");
     }
-}
 
-void checkThreadAffinity(pthread_t thread) {
-    cpu_set_t cpuset;
     CPU_ZERO(&cpuset);
-    int s = pthread_getaffinity_np(thread, sizeof(cpu_set_t), &cpuset);
-
-    if (s != 0) {
-        RCUTILS_LOG_ERROR("pthread_getaffinity_np failed");
-        return;
-    }
-
-    // std::cout << "Thread " << thread << " affinity is:";
+    pthread_getaffinity_np(current_thread, sizeof(cpu_set_t), &cpuset);
 
     for (int cpu = 0; cpu < CPU_SETSIZE; cpu++) {
         if (CPU_ISSET(cpu, &cpuset)) {
             // std::cout << " CPU" << cpu;
-            RCUTILS_LOG_INFO("Thread %lu has affinity: CPU%d", thread, cpu);
+            RCUTILS_LOG_INFO("Thread %lu has affinity: CPU%d", current_thread, cpu);
         }
     }
 }

@@ -70,13 +70,6 @@ int main(int argc, char* argv[])
         executor_a.spin(); 
     });
 
-    checkThreadAffinity(thread1.native_handle());
-    checkThreadAffinity(thread2.native_handle());
-    checkThreadAffinity(thread3.native_handle());
-    checkThreadAffinity(thread4.native_handle());
-    checkThreadAffinity(thread5.native_handle());
-    checkThreadAffinity(thread6.native_handle());
-
     thread1.join();
     thread2.join();
     thread3.join();
