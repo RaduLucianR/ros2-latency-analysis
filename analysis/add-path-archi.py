@@ -1,14 +1,18 @@
 import argparse
 import os
 from caret_analyze import Architecture
+from caret_analyze.exceptions import ItemNotFoundError
 
 def proc_folder(path_folder, source_node, dest_node, name, context_t):
     archi_file = f"archi-{os.path.basename(path_folder)}.yaml"
     parent_dir = os.path.dirname(path_folder)
     arch = Architecture('yaml', f"{parent_dir}/{archi_file}")
-
+    paths = []
     # Get a list of all possible paths between source and destination nodes
-    paths = arch.search_paths(source_node, dest_node) 
+    try:
+        paths = arch.search_paths(source_node, dest_node) 
+    except ItemNotFoundError:
+        print(f"Oops, {archi_file} doesn't have the {source_node} or {dest_node}")
 
     # Select the first path from the list. This assumes that there is ONLY ONE
     # possible path between the source and destination nodes!!!

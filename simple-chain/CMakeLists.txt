@@ -116,6 +116,14 @@ add_executable(two_nodes_m2
 ament_target_dependencies(two_nodes_m2 rclcpp std_msgs)
 target_link_libraries(two_nodes_m2 yaml-cpp)
 
+add_executable(exec_archi
+               src/exec_archi.cpp
+               src/tasks/templnode.cpp
+               src/utils/cpu_affinity_utils.cpp
+)
+ament_target_dependencies(exec_archi rclcpp std_msgs)
+target_link_libraries(exec_archi yaml-cpp)
+
 install(TARGETS
   1-ste
   1-mte
@@ -126,6 +134,7 @@ install(TARGETS
   two_nodes_s2
   two_nodes_m1
   two_nodes_m2
+  exec_archi
   DESTINATION lib/${PROJECT_NAME}
 )
 

@@ -4,6 +4,7 @@
 #include <string>
 #include <map>
 #include <pthread.h>
+#include <vector>
 
 /*
     Load affinity settings from a yaml file.
@@ -14,6 +15,11 @@ std::map<std::string, int> load_thread_affinities(const std::string& file_path);
 
 */
 void setThreadAffinity(int core_id);
+
+/*
+
+*/
+void setThreadAffinity(std::vector<int> cores);
 
 /*
 

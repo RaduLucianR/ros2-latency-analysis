@@ -3,10 +3,12 @@ from caret_analyze.plot import Plot, chain_latency
 from caret_analyze.record import ResponseTime
 from bokeh.plotting import figure, show
 from bokeh.io import export_png
+from caret_analyze.exceptions import ItemNotFoundError
 
 import argparse
 import os
 from caret_analyze import Architecture
+import subprocess
 
 def proc_folder(trace_folder_path, trace_path_name, destination_path):
     lttng = Lttng(trace_folder_path)
@@ -15,7 +17,28 @@ def proc_folder(trace_folder_path, trace_path_name, destination_path):
     parent_dir = os.path.dirname(trace_folder_path)
     arch = Architecture('yaml', f"{parent_dir}/{archi_file}")
     app = Application(arch, lttng)
-    path = app.get_path(trace_path_name)
+
+    try:
+        path = app.get_path(trace_path_name)
+    except ItemNotFoundError:
+        commands = f"""
+        python3 /home/lucian/simple-chain-ws/src/ros2-latency-analysis/analysis/add-path-archi.py {trace_folder_path} /talker /listener target
+        """
+
+        # Running the commands in the same shell instance
+        process = subprocess.Popen(['/bin/bash'], stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+        stdout, stderr = process.communicate(commands)# Send the commands to the bash process
+        print(stdout) # Print the outputs and errors, if any
+        if stderr:
+            print("Errors:\n", stderr)
+
+        lttng = Lttng(trace_folder_path)
+        trace_folder_name = os.path.basename(trace_folder_path)
+        archi_file = f"archi-{trace_folder_name}.yaml"
+        parent_dir = os.path.dirname(trace_folder_path)
+        arch = Architecture('yaml', f"{parent_dir}/{archi_file}")
+        app = Application(arch, lttng)
+        path = app.get_path(trace_path_name)
 
     try:
         new_folder = os.path.join(destination_path, os.path.basename(trace_folder_path))
@@ -57,12 +80,15 @@ def proc_folder(trace_folder_path, trace_path_name, destination_path):
     response_df.to_csv(f"{new_folder}/resp-time-{trace_folder_name}.csv")
 
 def main(trace_folder_path, trace_path_name, destination_path, subfolders):
+    visited = [folder.name for folder in os.scandir(destination_path) if folder.is_dir()]
+
     if subfolders:
         for item in os.listdir(trace_folder_path):
             full_path = os.path.join(trace_folder_path, item)
 
-            if os.path.isdir(full_path):
+            if os.path.isdir(full_path) and (os.path.basename(full_path) not in visited):
                 proc_folder(full_path, trace_path_name, destination_path)
+                # print(os.path.basename(full_path))
     else:
         proc_folder(trace_folder_path, trace_path_name, destination_path)
     
@@ -70,7 +96,7 @@ def main(trace_folder_path, trace_path_name, destination_path, subfolders):
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Get and save plots and data for a trace folder.")
     parser.add_argument("trace_folder_path", type=str, help="Path to the trace folder, or to a folder containing trace sub-folders. \
-                        Assuming its architecture respective yaml file is in the parent directory of the trace (sub-)folder.")
+                        Assuming its respective architecture yaml file is in the parent directory of the trace (sub-)folder.")
     parser.add_argument("trace_path_name", type=str, help="The name of the trace path from the architecture file \
                         for which the plots are needed.")
     parser.add_argument("destination_path", type=str, help="Path to the folder used for storing the plots and data.")

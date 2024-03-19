@@ -48,3 +48,34 @@ void setThreadAffinity(int core_id) {
         }
     }
 }
+
+void setThreadAffinity(std::vector<int> cores) {
+    int num_cores = sysconf(_SC_NPROCESSORS_ONLN);
+    cpu_set_t cpuset;
+    CPU_ZERO(&cpuset);
+    pthread_t current_thread = pthread_self();
+
+    for (auto core_id : cores) {
+        if (core_id < 0 || core_id >= num_cores)
+            RCUTILS_LOG_ERROR("Affinity out of range!");
+
+        CPU_SET(core_id, &cpuset);
+
+        int rc = pthread_setaffinity_np(current_thread, sizeof(cpu_set_t), &cpuset);
+
+        if (rc != 0) {
+            // std::cerr << "Error setting thread affinity: " << rc << std::endl;
+            RCUTILS_LOG_ERROR("Error setting thread affinity!");
+        }
+    }
+
+    CPU_ZERO(&cpuset);
+    pthread_getaffinity_np(current_thread, sizeof(cpu_set_t), &cpuset);
+
+    for (int cpu = 0; cpu < CPU_SETSIZE; cpu++) {
+        if (CPU_ISSET(cpu, &cpuset)) {
+            // std::cout << " CPU" << cpu;
+            RCUTILS_LOG_INFO("Thread %lu has affinity: CPU%d", current_thread, cpu);
+        }
+    }
+}
