@@ -57,21 +57,21 @@ def proc_folder(trace_folder_path, trace_path_name, destination_path):
     histogram_fig = histogram.figure()
     export_png(histogram_fig, filename = f"{new_folder}/histo-{trace_folder_name}.png")
 
-    stacked_bar = Plot.create_response_time_stacked_bar_plot(path)   
-    stacked_bar_fig = stacked_bar.figure()
-    export_png(stacked_bar_fig, filename = f"{new_folder}/stacked-{trace_folder_name}.png")
+    # stacked_bar = Plot.create_response_time_stacked_bar_plot(path)   
+    # stacked_bar_fig = stacked_bar.figure()
+    # export_png(stacked_bar_fig, filename = f"{new_folder}/stacked-{trace_folder_name}.png")
 
-    message_flow_node = Plot.create_message_flow_plot(path, granularity='node', lstrip_s=1, rstrip_s=1)
-    message_flow_node_fig = message_flow_node.figure()
-    export_png(message_flow_node_fig, filename = f"{new_folder}/mf-node-{trace_folder_name}.png")
+    # message_flow_node = Plot.create_message_flow_plot(path, granularity='node', lstrip_s=1, rstrip_s=1)
+    # message_flow_node_fig = message_flow_node.figure()
+    # export_png(message_flow_node_fig, filename = f"{new_folder}/mf-node-{trace_folder_name}.png")
 
-    message_flow_e2e = Plot.create_message_flow_plot(path, granularity='raw', lstrip_s=1, rstrip_s=1)
-    message_flow_e2e_fig = message_flow_e2e.figure()
-    export_png(message_flow_e2e_fig, filename = f"{new_folder}/mf-raw-{trace_folder_name}.png")
+    # message_flow_e2e = Plot.create_message_flow_plot(path, granularity='raw', lstrip_s=1, rstrip_s=1)
+    # message_flow_e2e_fig = message_flow_e2e.figure()
+    # export_png(message_flow_e2e_fig, filename = f"{new_folder}/mf-raw-{trace_folder_name}.png")
 
-    cb_latency = Plot.create_latency_timeseries_plot(app.callbacks)
-    cb_latency_fig = cb_latency.figure()
-    export_png(cb_latency_fig, filename = f"{new_folder}/cb-lat-{trace_folder_name}.png")
+    # cb_latency = Plot.create_latency_timeseries_plot(app.callbacks)
+    # cb_latency_fig = cb_latency.figure()
+    # export_png(cb_latency_fig, filename = f"{new_folder}/cb-lat-{trace_folder_name}.png")
     
     records = path.to_records()
     response = ResponseTime(records)
