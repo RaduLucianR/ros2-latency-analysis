@@ -19,6 +19,7 @@ executors:
     subscribe: topic3
     publish: topic4
     payload: 128B
+    # a = 10
 # - name: executor2
 #   type: single_threaded
 #   cores: [3]

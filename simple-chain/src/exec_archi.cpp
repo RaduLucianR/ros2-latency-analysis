@@ -3,6 +3,17 @@
 #include <yaml-cpp/yaml.h>
 #include <iostream>
 #include <cpu_affinity_utils.hpp>
+#include "rcutils/logging_macros.h"
+
+void check_executor_type(const std::shared_ptr<rclcpp::Executor>& executor) {
+    if (dynamic_cast<rclcpp::executors::SingleThreadedExecutor*>(executor.get())) {
+        RCUTILS_LOG_INFO("The executor is SingleThreadedExecutor.");
+    } else if (dynamic_cast<rclcpp::executors::MultiThreadedExecutor*>(executor.get())) {
+        RCUTILS_LOG_INFO("The executor is MultiThreadedExecutor.");
+    } else {
+        RCUTILS_LOG_INFO("The executor type is unknown or custom.");
+    }
+}
 
 int main(int argc, char* argv[]) {
     rclcpp::init(argc, argv);
@@ -14,10 +25,19 @@ int main(int argc, char* argv[]) {
 
     YAML::Node config = YAML::LoadFile(argv[1]);
 
-    // We will use a single executor for simplicity; adjust if necessary for your use case.
-    auto executor = std::make_shared<rclcpp::executors::MultiThreadedExecutor>();
+    // auto executor = std::make_shared<rclcpp::executors::MultiThreadedExecutor>();
+    std::shared_ptr<rclcpp::Executor> executor;
     auto exec_yaml = config["executors"][0];
+    auto exec_type = exec_yaml["type"].as<std::string>();
     auto exec_cpu = exec_yaml["cores"];
+
+    if (exec_type == "single_threaded") {
+        executor = std::make_shared<rclcpp::executors::SingleThreadedExecutor>();
+    } else if (exec_type == "multi_threaded") {
+        executor = std::make_shared<rclcpp::executors::MultiThreadedExecutor>();
+    }
+
+    check_executor_type(executor);
 
     std::vector<std::shared_ptr<TemplNode>> nodes;
 
