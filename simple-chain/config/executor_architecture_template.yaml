@@ -1,7 +1,7 @@
 executors:
 - name: executor1
-  type: multi_threaded
-  cores: [2, 5, 6]
+  type: single_threaded
+  cores: [11]
   nodes:
   - name: node1_name
     subscribe: NONE
@@ -19,24 +19,23 @@ executors:
     subscribe: topic3
     publish: topic4
     payload: 128B
-    # a = 10
-# - name: executor2
-#   type: single_threaded
-#   cores: [3]
-#   nodes:
-#   - name: node1_name
-#     subscribe: NONE
-#     publish: topic1
-#     payload: 128B
-#   - name: node2_name
-#     subscribe: topic1
-#     publish: topic2
-#     payload: 128B
-#   - name: node3_name
-#     subscribe: topic2
-#     publish: topic3
-#     payload: 128B
-#   - name: node4_name
-#     subscribe: topic3
-#     publish: topic4
-#     payload: 128B
+- name: executor2
+  type: single_threaded
+  cores: [6]
+  nodes:
+  - name: node5_name
+    subscribe: NONE
+    publish: topic5
+    payload: 256B
+  - name: node6_name
+    subscribe: topic5
+    publish: topic6
+    payload: 128B
+  - name: node7_name
+    subscribe: topic6
+    publish: topic7
+    payload: 128B
+  - name: node8_name
+    subscribe: topic7
+    publish: topic8
+    payload: 128B

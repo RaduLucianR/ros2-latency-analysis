@@ -2,14 +2,17 @@
 #include <rclcpp/rclcpp.hpp>
 #include <yaml-cpp/yaml.h>
 #include <iostream>
+#include <thread>
+#include <vector>
+#include <tuple>
 #include <cpu_affinity_utils.hpp>
 #include "rcutils/logging_macros.h"
 
-void check_executor_type(const std::shared_ptr<rclcpp::Executor>& executor) {
+void check_executor_type(const std::shared_ptr<rclcpp::Executor>& executor, std::string exec_name) {
     if (dynamic_cast<rclcpp::executors::SingleThreadedExecutor*>(executor.get())) {
-        RCUTILS_LOG_INFO("The executor is SingleThreadedExecutor.");
+        RCUTILS_LOG_INFO("The executor %s is SingleThreadedExecutor.", exec_name.c_str());
     } else if (dynamic_cast<rclcpp::executors::MultiThreadedExecutor*>(executor.get())) {
-        RCUTILS_LOG_INFO("The executor is MultiThreadedExecutor.");
+        RCUTILS_LOG_INFO("The executor %s is MultiThreadedExecutor.", exec_name.c_str());
     } else {
         RCUTILS_LOG_INFO("The executor type is unknown or custom.");
     }
@@ -24,47 +27,62 @@ int main(int argc, char* argv[]) {
     }
 
     YAML::Node config = YAML::LoadFile(argv[1]);
+    std::vector<std::tuple<std::shared_ptr<rclcpp::Executor>, std::vector<int>, std::vector<std::shared_ptr<TemplNode>>>> executor_info;
+    std::vector<std::thread> threads;
 
-    // auto executor = std::make_shared<rclcpp::executors::MultiThreadedExecutor>();
-    std::shared_ptr<rclcpp::Executor> executor;
-    auto exec_yaml = config["executors"][0];
-    auto exec_type = exec_yaml["type"].as<std::string>();
-    auto exec_cpu = exec_yaml["cores"];
+    // Loop to create tuples with executor, exec_cores, and nodes
+    for (const auto& exec_yaml : config["executors"]) {
+        auto exec_type = exec_yaml["type"].as<std::string>();
+        auto exec_name = exec_yaml["name"].as<std::string>();
+        std::vector<int> exec_cores = exec_yaml["cores"].as<std::vector<int>>();
+        std::shared_ptr<rclcpp::Executor> executor;
 
-    if (exec_type == "single_threaded") {
-        executor = std::make_shared<rclcpp::executors::SingleThreadedExecutor>();
-    } else if (exec_type == "multi_threaded") {
-        executor = std::make_shared<rclcpp::executors::MultiThreadedExecutor>();
+        if (exec_type == "single_threaded") {
+            executor = std::make_shared<rclcpp::executors::SingleThreadedExecutor>();
+        } else if (exec_type == "multi_threaded") {
+            executor = std::make_shared<rclcpp::executors::MultiThreadedExecutor>();
+        } else {
+            std::cerr << "Unsupported executor type: " << exec_type << "\n";
+            continue;
+        }
+        
+        check_executor_type(executor, exec_name);
+
+        std::vector<std::shared_ptr<TemplNode>> nodes;
+        for (const auto& node_yaml : exec_yaml["nodes"]) {
+            nodes.push_back(std::make_shared<TemplNode>(
+                node_yaml["name"].as<std::string>(),
+                node_yaml["subscribe"].as<std::string>(),
+                node_yaml["publish"].as<std::string>(),
+                node_yaml["payload"].as<std::string>()
+            ));
+        }
+
+        executor_info.emplace_back(executor, exec_cores, nodes);
     }
 
-    check_executor_type(executor);
-
-    std::vector<std::shared_ptr<TemplNode>> nodes;
-
-    for (int i = 0; i < exec_yaml["nodes"].size(); i++) {
-        auto node_yaml = exec_yaml["nodes"][i];
-        nodes.push_back(std::make_shared<TemplNode>(
-            node_yaml["name"].as<std::string>(),
-            node_yaml["subscribe"].as<std::string>(),
-            node_yaml["publish"].as<std::string>(),
-            node_yaml["payload"].as<std::string>()
-        ));
+    // Loop to add nodes to their respective executor
+    for (auto& info : executor_info) {
+        for (auto& node : std::get<2>(info)) {
+            std::get<0>(info)->add_node(node);
+        }
     }
 
-    for (auto& node : nodes) {
-        executor->add_node(node);
+    // Loop to create threads with the exec_cores for each executor
+    for (const auto& info : executor_info) {
+        threads.emplace_back([executor = std::get<0>(info), exec_cores = std::get<1>(info)]() {
+            setThreadAffinity(exec_cores);
+            executor->spin();
+        });
     }
-    
-    // Spin the executor in the main thread
-    executor->spin();
 
-    std::thread thread1([&executor, &exec_cpu]() { 
-        setThreadAffinity(exec_cpu.as<std::vector<int>>());
-        executor->spin(); 
-    });
+    // Join all threads
+    for (auto& thread : threads) {
+        if (thread.joinable()) {
+            thread.join();
+        }
+    }
 
-    thread1.join();
     rclcpp::shutdown();
-
     return 0;
 }
