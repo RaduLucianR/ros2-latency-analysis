@@ -43,7 +43,7 @@ def generate_launch_description():
         ),
 
         TimerAction(
-            period=60.0,  # time in seconds after which the shutdown will be triggered
+            period=5.0,  # time in seconds after which the shutdown will be triggered
             actions=[
                 Shutdown(reason='Time limit reached')
             ]

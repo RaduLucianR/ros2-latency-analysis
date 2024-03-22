@@ -66,8 +66,12 @@ def main():
         {'thread1': 1,'thread2': 2},
     ]
 
+    r_start = 5 * 1024
+    r_end = 600 * 1024 + 1
+    r_step = 100 * 1024
+
     executor = "two_nodes_s1"
-    for i in range(128, 500 * 1024 + 1, 128):
+    for i in range(r_start, r_end, r_step):
         size = ''
 
         if i < 1024:
@@ -80,7 +84,7 @@ def main():
         run_experiment(executor, name)
     
     executor = "two_nodes_m1"
-    for i in range(128, 500 * 1024 + 1, 128):
+    for i in range(r_start, r_end, r_step):
         size = ''
 
         if i < 1024:
@@ -93,7 +97,7 @@ def main():
         run_experiment(executor, name)
     
     executor = "two_nodes_s2"
-    for i in range(128, 500 * 1024 + 1, 128):
+    for i in range(r_start, r_end, r_step):
         size = ''
 
         if i < 1024:
@@ -108,7 +112,7 @@ def main():
             run_experiment(executor, name)
 
     executor = "two_nodes_m2"
-    for i in range(128, 500 * 1024 + 1, 128):
+    for i in range(r_start, r_end, r_step):
         size = ''
 
         if i < 1024:
