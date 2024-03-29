@@ -16,6 +16,12 @@ def extract_max_latency(file_path):
         content = file.read()
         match = re.search(r'max: ([\d.]+) ms', content)
         return float(match.group(1)) if match else None
+    
+def extract_avg_latency(file_path):
+    with open(file_path, 'r') as file:
+        content = file.read()
+        match = re.search(r'avg: ([\d.]+) ms', content)
+        return float(match.group(1)) if match else None
 
 # Function to plot data
 def plot_data(data, title, filename):
@@ -43,7 +49,7 @@ def process_and_plot(folder_path):
                 config, payload, setting = match.groups()
                 payload_value = float(payload[:-2])  # Convert payload size to float
                 file_name = f"cl-e2e-{dir_name}"
-                max_latency = extract_max_latency(os.path.join(root, dir_name, file_name))
+                max_latency = extract_avg_latency(os.path.join(root, dir_name, file_name))
                 if max_latency is not None:
                     key = f"{config}-{setting}" if setting else config
                     data[key].append((payload_value, max_latency))
@@ -63,7 +69,8 @@ def process_and_plot(folder_path):
 
     # Combined plot including s1 and m1
     plt.figure(figsize=(15, 9))
-    data = filt(filt_s1(data), 5.00)
+    # data = filt(filt_s1(data), 5.00)
+    data = filt_s1(data)
     colors = ['blue', 'red', 'green', 'orange', 'purple', 'grey']
     ct = 0
 
@@ -82,7 +89,7 @@ def process_and_plot(folder_path):
 
         ct = ct + 1
         
-    plt.title('Latency vs Payload for 2 nodes, various configurations')
+    plt.title('Latency vs Payload for 2 nodes, various configurations, average case')
     plt.xlabel('Payload (KB)')
     plt.ylabel('Latency (ms)')
     plt.legend()

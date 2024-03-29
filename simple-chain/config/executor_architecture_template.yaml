@@ -1,7 +1,7 @@
 executors:
 - name: executor1
-  type: single_threaded
-  cores: [11]
+  type: multi_threaded
+  cores: [4, 5, 6]
   nodes:
   - name: node1_name
     subscribe: NONE

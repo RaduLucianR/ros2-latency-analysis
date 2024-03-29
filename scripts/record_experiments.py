@@ -108,7 +108,7 @@ def main():
         for cc in core_config:
             name = f"{executor}-{size}-{cc[1]}"
             update_payload(path_config_payload, size)
-            update_cores(path_config_cores_2, cores_string(cc[1]))
+            update_cores(path_config_cores_1, cores_string(cc[1]))
             run_experiment(executor, name)
 
     executor = "two_nodes_m2"
