@@ -9,7 +9,7 @@ def process_and_plot(folder_path):
 
     for root, dirs, files in os.walk(folder_path):
         for dir_name in dirs:
-            match = re.match(r'^two_nodes_(s1)-(\d+\.\d+)KB()$', dir_name)
+            match = re.match(r'^two_nodes_(m2)-(\d+\.\d+)KB-(12)$', dir_name)
             if match:
                 config, payload_str, setting = match.groups()
                 payload_size = float(payload_str)
@@ -40,16 +40,17 @@ def process_and_plot(folder_path):
         latencies.extend(times)
 
     # Plotting all box plots in one figure
-    plt.figure(figsize=(12, 8))
+    plt.figure(figsize=(20, 8))
     whis = 10
     # plt.scatter(payload_sizes, latencies, alpha=0.5)
     plt.boxplot(box_data, labels=labels, whis=whis) #whiskers set to 'whis' times the IQR
     plt.xticks(rotation=45)  # Rotate labels for readability
     # plt.title(f'RT by PS, 1 MTE for all tasks, whiskers {whis}x IQR')
-    plt.title(f'RT by PS, whiskers {whis}x IQR')
+    plt.title(f'RT by PS - one MTE for each tasks on more cores - whiskers {whis}x IQR')
     plt.xlabel('Payload Size (KB)')
     plt.ylabel('Response Time (ms)')
     plt.tight_layout()  # Adjust layout
+    plt.savefig("/home/lucian/simple-chain-ws/src/ros2-latency-analysis/analysis/results/two-nodes/two_nodes_box_m2-12.png")
     plt.show()
 
 # Replace 'your_folder_path' with the path to your folder containing the sub-folders
