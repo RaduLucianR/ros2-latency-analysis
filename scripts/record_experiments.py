@@ -57,9 +57,9 @@ def run_experiment(executors, name):
         print("Errors:\n", stderr)
 
 def main():
-    path_config_cores_1 = "/home/lucian/simple-chain-ws/src/ros2-latency-analysis/simple-chain/config/two_nodes_1.yaml"
-    path_config_cores_2 = "/home/lucian/simple-chain-ws/src/ros2-latency-analysis/simple-chain/config/two_nodes_2.yaml"
-    path_config_payload = "/home/lucian/simple-chain-ws/src/ros2-latency-analysis/simple-chain/config/two_nodes_payload.yaml"
+    path_config_cores_1 = "/home/pi/ros_ws/src/ros2-latency-analysis/simple-chain/config/two_nodes_1.yaml"
+    path_config_cores_2 = "/home/pi/ros_ws/src/ros2-latency-analysis/simple-chain/config/two_nodes_2.yaml"
+    path_config_payload = "/home/pi/ros_ws/src/ros2-latency-analysis/simple-chain/config/two_nodes_payload.yaml"
     
     core_config = [
         {'thread1': 1,'thread2': 1},
@@ -68,7 +68,7 @@ def main():
 
     r_start = 5 * 1024
     r_end = 600 * 1024 + 1
-    r_step = 100 * 1024
+    r_step = 20 * 1024
 
     executor = "two_nodes_s1"
     for i in range(r_start, r_end, r_step):
