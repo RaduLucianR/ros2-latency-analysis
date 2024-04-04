@@ -11,7 +11,7 @@ int main()
     thread = pthread_self();     // Get the ID of the current thread
 
     CPU_ZERO(&cpuset);           // Clear all entries from the CPU set
-    CPU_SET(4, &cpuset);         // Add CPU 0 to the CPU set
+    CPU_SET(3, &cpuset);         // Add CPU 0 to the CPU set
 
     // Set affinity of the current thread to the defined CPU set
     s = pthread_setaffinity_np(thread, sizeof(cpu_set_t), &cpuset);
@@ -36,6 +36,7 @@ int main()
             printf("%d ", cpu);
         }
     }
+    
     printf("\n");
 
     int L2_CACHE_SIZE = 1048576;

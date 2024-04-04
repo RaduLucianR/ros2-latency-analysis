@@ -8,3 +8,5 @@ cl-*
 build/*
 install/*
 log/*
+*.o
+*.png

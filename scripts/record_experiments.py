@@ -44,7 +44,7 @@ def run_experiment(executors, name):
     source ~/ros2_caret_ws/install/local_setup.bash
     source ~/ros_ws/install/local_setup.bash
     export LD_PRELOAD=$(readlink -f ~/ros2_caret_ws/install/caret_trace/lib/libcaret.so)
-    ros2 launch simple-chain {executors}-launch.py trfolder:={name}
+    ros2 launch simple-chain {executors}_launch.py trfolder:={name}
     """
 
     # Running the commands in the same shell instance
@@ -106,9 +106,9 @@ def main():
             size = f"{i / 1024:.2f}KB"  # Convert to KB and print
 
         for cc in core_config:
-            name = f"{executor}-{size}-{cc[1]}"
+            name = f"{executor}-{size}-{cores_string(cc)}"
             update_payload(path_config_payload, size)
-            update_cores(path_config_cores_1, cores_string(cc[1]))
+            update_cores(path_config_cores_1, cc)
             run_experiment(executor, name)
 
     executor = "two_nodes_m2"
@@ -121,9 +121,9 @@ def main():
             size = f"{i / 1024:.2f}KB"  # Convert to KB and print
 
         for cc in core_config:
-            name = f"{executor}-{size}-{cc[1]}"
+            name = f"{executor}-{size}-{cores_string(cc)}"
             update_payload(path_config_payload, size)
-            update_cores(path_config_cores_2, cores_string(cc[1]))
+            update_cores(path_config_cores_2, cc)
             run_experiment(executor, name)
 
 main()

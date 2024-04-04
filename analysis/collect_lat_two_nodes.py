@@ -32,7 +32,7 @@ def plot_data(data, title, filename):
         plt.title(title)
         plt.xlabel('Payload (KB)')
         plt.ylabel('Latency (ms)')
-        plt.xticks(range(0, 501, 20))  # Granularity of 20KB
+        plt.xticks(range(0, 601, 20))  # Granularity of 20KB
         plt.savefig(filename)
         plt.show()
 
@@ -49,7 +49,7 @@ def process_and_plot(folder_path):
                 config, payload, setting = match.groups()
                 payload_value = float(payload[:-2])  # Convert payload size to float
                 file_name = f"cl-e2e-{dir_name}"
-                max_latency = extract_avg_latency(os.path.join(root, dir_name, file_name))
+                max_latency = extract_max_latency(os.path.join(root, dir_name, file_name))
                 if max_latency is not None:
                     key = f"{config}-{setting}" if setting else config
                     data[key].append((payload_value, max_latency))
@@ -89,14 +89,14 @@ def process_and_plot(folder_path):
 
         ct = ct + 1
         
-    plt.title('Latency vs Payload for 2 nodes, various configurations, average case')
+    plt.title('Max Latency vs Payload for 2 nodes, various configurations, cache evictions')
     plt.xlabel('Payload (KB)')
     plt.ylabel('Latency (ms)')
     plt.legend()
-    plt.xticks(range(0, 501, 20))  # Granularity of 20KB
-    name = "two_nodes_all_config_trend"
-    # plt.savefig(f"/home/lucian/simple-chain-ws/src/ros2-latency-analysis/analysis/results/two-nodes/{name}.png")
+    plt.xticks(range(0, 601, 20))  # Granularity of 20KB
+    name = "two_nodes_cache_evict_trend"
+    plt.savefig(f"/home/lucian/simple-chain-ws/src/ros2-latency-analysis/analysis/results/two-nodes/{name}.png")
     plt.show()
 
 # Replace 'your_folder_path' with the path to your folder containing the sub-folders
-process_and_plot('/home/lucian/simple-chain-ws/graphs/two-nodes')
+process_and_plot('/home/lucian/simple-chain-ws/graphs/two-nodes-cache-evict')
