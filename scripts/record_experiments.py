@@ -1,34 +1,10 @@
 import subprocess
 import yaml
 
-def update_payload(file_path, new_size):
-    # Load the YAML file
-    with open(file_path, 'r') as stream:
-        data = yaml.safe_load(stream)
-
-    # Update the message_size for each specified key
-    keys_to_update = ['/talker']
-    for key in keys_to_update:
-        if key in data and 'ros__parameters' in data[key]:
-            data[key]['ros__parameters']['message_size'] = new_size
-
+def update_yaml(file_path, new_data):
     # Overwrite the YAML file with the new data
     with open(file_path, 'w') as stream:
-        yaml.dump(data, stream, default_flow_style=False)
-
-def update_cores(file_path, core_values):
-    # Load the YAML file
-    with open(file_path, 'r') as stream:
-        data = yaml.safe_load(stream)
-
-    # Update the core values for each specified thread
-    for thread, core in core_values.items():
-        if thread in data:
-            data[thread]['core'] = core
-
-    # Overwrite the YAML file with the new data
-    with open(file_path, 'w') as stream:
-        yaml.dump(data, stream, default_flow_style=False)
+        yaml.dump(new_data, stream, default_flow_style=False)
 
 def cores_string(core_values):
     concatenated_values = ""
@@ -57,20 +33,13 @@ def run_experiment(executors, name):
         print("Errors:\n", stderr)
 
 def main():
-    path_config_cores_1 = "/home/pi/ros_ws/src/ros2-latency-analysis/simple-chain/config/two_nodes_1.yaml"
-    path_config_cores_2 = "/home/pi/ros_ws/src/ros2-latency-analysis/simple-chain/config/two_nodes_2.yaml"
-    path_config_payload = "/home/pi/ros_ws/src/ros2-latency-analysis/simple-chain/config/two_nodes_payload.yaml"
-    
-    core_config = [
-        {'thread1': 1,'thread2': 1},
-        {'thread1': 1,'thread2': 2},
-    ]
+    base_path = "/home/pi/ros_ws/src/ros2-latency-analysis/simple-chain/config/"
+    path_config = "/home/pi/ros_ws/src/ros2-latency-analysis/simple-chain/config/executor_architecture_template.yaml"
 
     r_start = 5 * 1024
-    r_end = 600 * 1024 + 1
-    r_step = 20 * 1024
+    r_end = 990 * 1024
+    r_step = 10 * 1024
 
-    executor = "two_nodes_s1"
     for i in range(r_start, r_end, r_step):
         size = ''
 
@@ -79,51 +48,75 @@ def main():
         else:
             size = f"{i / 1024:.2f}KB"  # Convert to KB and print
 
-        name = f"{executor}-{size}"
-        update_payload(path_config_payload, size)
-        run_experiment(executor, name)
-    
-    executor = "two_nodes_m1"
-    for i in range(r_start, r_end, r_step):
-        size = ''
+        data1 = {
+            "executors": [
+                {
+                    "name": "executor1",
+                    "type": "multi_threaded",
+                    "cores": [1, 2],
+                    "nodes": [
+                        {"name": "node1", "subscribe": "NONE", "publish": "topic1", "payload": size},
+                        {"name": "node2", "subscribe": "topic1", "publish": "NONE", "payload": size},
+                    ],
+                }
+            ]
+        }
 
-        if i < 1024:
-            size = f"{i}B"  # Print in bytes
-        else:
-            size = f"{i / 1024:.2f}KB"  # Convert to KB and print
+        data2 = {
+            "executors": [
+                {
+                    "name": "executor1",
+                    "type": "multi_threaded",
+                    "cores": [1, 2],
+                    "nodes": [
+                        {"name": "node1", "subscribe": "NONE", "publish": "topic1", "payload": size},
+                        {"name": "node2", "subscribe": "topic1", "publish": "topic2", "payload": size},
+                        {"name": "node3", "subscribe": "topic2", "publish": "NONE", "payload": size},
+                    ],
+                }
+            ]
+        }
 
-        name = f"{executor}-{size}"
-        update_payload(path_config_payload, size)
-        run_experiment(executor, name)
-    
-    executor = "two_nodes_s2"
-    for i in range(r_start, r_end, r_step):
-        size = ''
+        data3 = {
+            "executors": [
+                {
+                    "name": "executor1",
+                    "type": "multi_threaded",
+                    "cores": [1, 2],
+                    "nodes": [
+                        {"name": "node1", "subscribe": "NONE", "publish": "topic1", "payload": size},
+                        {"name": "node2", "subscribe": "topic1", "publish": "topic2", "payload": size},
+                        {"name": "node3", "subscribe": "topic2", "publish": "topic3", "payload": size},
+                        {"name": "node4", "subscribe": "topic3", "publish": "NONE", "payload": size},
+                    ],
+                }
+            ]
+        }
 
-        if i < 1024:
-            size = f"{i}B"  # Print in bytes
-        else:
-            size = f"{i / 1024:.2f}KB"  # Convert to KB and print
+        data4 = {
+            "executors": [
+                {
+                    "name": "executor1",
+                    "type": "multi_threaded",
+                    "cores": [1, 2],
+                    "nodes": [
+                        {"name": "node1", "subscribe": "NONE", "publish": "topic1", "payload": size},
+                        {"name": "node2", "subscribe": "topic1", "publish": "topic2", "payload": size},
+                        {"name": "node3", "subscribe": "topic2", "publish": "topic3", "payload": size},
+                        {"name": "node4", "subscribe": "topic3", "publish": "topic4", "payload": size},
+                        {"name": "node5", "subscribe": "topic4", "publish": "NONE", "payload": size},
+                    ],
+                }
+            ]
+        }
 
-        for cc in core_config:
-            name = f"{executor}-{size}-{cores_string(cc)}"
-            update_payload(path_config_payload, size)
-            update_cores(path_config_cores_1, cc)
-            run_experiment(executor, name)
+        data = [data1, data2, data3, data4]
+        nrof_tasks = 2
 
-    executor = "two_nodes_m2"
-    for i in range(r_start, r_end, r_step):
-        size = ''
-
-        if i < 1024:
-            size = f"{i}B"  # Print in bytes
-        else:
-            size = f"{i / 1024:.2f}KB"  # Convert to KB and print
-
-        for cc in core_config:
-            name = f"{executor}-{size}-{cores_string(cc)}"
-            update_payload(path_config_payload, size)
-            update_cores(path_config_cores_2, cc)
-            run_experiment(executor, name)
+        for d in data:
+            name = f"tasks_{nrof_tasks}_1mte12_{size}"
+            update_yaml(path_config, d)
+            run_experiment("exec_archi", name)
+            nrof_tasks = nrof_tasks + 1
 
 main()

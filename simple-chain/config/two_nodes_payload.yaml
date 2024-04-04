@@ -1,3 +1,0 @@
-/talker:
-  ros__parameters:
-    message_size: 1KB

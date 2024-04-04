@@ -1,6 +1,0 @@
-thread1:
-  core: 5
-thread2:
-  core: 5
-thread3:
-  core: 5
