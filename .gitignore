@@ -9,4 +9,3 @@ build/*
 install/*
 log/*
 *.o
-*.png
