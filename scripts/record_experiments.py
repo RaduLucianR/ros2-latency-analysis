@@ -1,6 +1,7 @@
 import subprocess
 import yaml
 import argparse
+from exec_architectures import exec_architectures
 
 def update_ps(file_path, yaml_obj, size):
     for exec in yaml_obj['executors']:
@@ -80,89 +81,6 @@ def run_experiment(executors, ros2_ws_name, name):
     if stderr:
         print("Errors:\n", stderr)
 
-def exec_architectures():
-    return [ 
-        {
-            "executors": [
-                {
-                    "name": "executor1",
-                    "type": "multi_threaded",
-                    "cores": [1, 2],
-                    "nodes": [
-                        {"name": "node1", "subscribe": "NONE", "publish": "topic1", "payload": "256B"},
-                        {"name": "node2", "subscribe": "topic1", "publish": "NONE", "payload": "128B"}
-                    ],
-                }
-            ]
-        },
-
-        {
-            "executors": [
-                {
-                    "name": "executor1",
-                    "type": "multi_threaded",
-                    "cores": [1, 2],
-                    "nodes": [
-                        {"name": "node1", "subscribe": "NONE", "publish": "topic1", "payload": "256B"},
-                        {"name": "node2", "subscribe": "topic1", "publish": "topic2", "payload": "128B"},
-                        {"name": "node3", "subscribe": "topic2", "publish": "NONE", "payload": "128B"},
-                    ],
-                }
-            ]
-        },
-
-        {
-            "executors": [
-                {
-                    "name": "executor1",
-                    "type": "multi_threaded",
-                    "cores": [1, 2],
-                    "nodes": [
-                        {"name": "node1", "subscribe": "NONE", "publish": "topic1", "payload": "256B"},
-                        {"name": "node2", "subscribe": "topic1", "publish": "topic2", "payload": "128B"},
-                        {"name": "node3", "subscribe": "topic2", "publish": "topic3", "payload": "128B"},
-                        {"name": "node4", "subscribe": "topic3", "publish": "NONE", "payload": "128B"},
-                    ],
-                }
-            ]
-        },
-
-        {
-            "executors": [
-                {
-                    "name": "executor1",
-                    "type": "multi_threaded",
-                    "cores": [1, 2],
-                    "nodes": [
-                        {"name": "node1", "subscribe": "NONE", "publish": "topic1", "payload": "256B"},
-                        {"name": "node2", "subscribe": "topic1", "publish": "topic2", "payload": "128B"},
-                        {"name": "node3", "subscribe": "topic2", "publish": "topic3", "payload": "128B"},
-                        {"name": "node4", "subscribe": "topic3", "publish": "topic4", "payload": "128B"},
-                        {"name": "node5", "subscribe": "topic4", "publish": "NONE", "payload": "128B"}
-                    ],
-                }
-            ]
-        },
-
-        {
-            "executors": [
-                {
-                    "name": "executor1",
-                    "type": "multi_threaded",
-                    "cores": [1, 2],
-                    "nodes": [
-                        {"name": "node1", "subscribe": "NONE", "publish": "topic1", "payload": "256B"},
-                        {"name": "node2", "subscribe": "topic1", "publish": "topic2", "payload": "128B"},
-                        {"name": "node3", "subscribe": "topic2", "publish": "topic3", "payload": "128B"},
-                        {"name": "node4", "subscribe": "topic3", "publish": "topic4", "payload": "128B"},
-                        {"name": "node5", "subscribe": "topic4", "publish": "topic5", "payload": "128B"},
-                        {"name": "node6", "subscribe": "topic5", "publish": "NONE", "payload": "128B"},
-                    ],
-                }
-            ]
-        },
-    ]
-
 def main(config_path, ros2_ws_name, ps_start, ps_end, ps_step, overwrite_ps):
     archis = exec_architectures()
     ps_start *= 1024
@@ -181,8 +99,9 @@ def main(config_path, ros2_ws_name, ps_start, ps_end, ps_step, overwrite_ps):
             for config in archis:
                 details = name_details(config)
                 name = f"{details}_{size}"
-                update_ps(config_path, config, size)
-                run_experiment("exec_archi", ros2_ws_name, name)
+                print(name)
+                # update_ps(config_path, config, size)
+                # run_experiment("exec_archi", ros2_ws_name, name)
     else:
         for config in archis:
             details = name_details(config)
