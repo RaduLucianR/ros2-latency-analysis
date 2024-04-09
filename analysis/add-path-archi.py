@@ -4,6 +4,15 @@ from caret_analyze import Architecture
 from caret_analyze.exceptions import ItemNotFoundError
 
 def proc_folder(path_folder, source_node, dest_node, name, context_t):
+    fold_name = os.path.basename(path_folder)
+
+    if fold_name[2].isnumeric():
+        task_number = f"{fold_name[1]}{fold_name[2]}"
+    else:
+        task_number = fold_name[1]
+
+    dest_node = f"/node{task_number}"
+
     archi_file = f"archi-{os.path.basename(path_folder)}.yaml"
     parent_dir = os.path.dirname(path_folder)
     arch = Architecture('yaml', f"{parent_dir}/{archi_file}")
@@ -17,6 +26,7 @@ def proc_folder(path_folder, source_node, dest_node, name, context_t):
     # Select the first path from the list. This assumes that there is ONLY ONE
     # possible path between the source and destination nodes!!!
     # This might NOT be the case!!! For our purposes this is fine, but beware!
+    print(fold_name)
     path = paths[0]
 
     arch.add_path(name, path)
@@ -33,6 +43,8 @@ def proc_folder(path_folder, source_node, dest_node, name, context_t):
         file.write(file_contents)
 
 def main(path, source_node, dest_node, name, context_t, subfolders):
+    visited = [folder.name for folder in os.scandir(path) if folder.is_dir()]
+
     if subfolders:
         for item in os.listdir(path):
             full_path = os.path.join(path, item)

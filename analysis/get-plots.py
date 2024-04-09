@@ -22,7 +22,7 @@ def proc_folder(trace_folder_path, trace_path_name, destination_path):
         path = app.get_path(trace_path_name)
     except ItemNotFoundError:
         commands = f"""
-        python3 /home/lucian/simple-chain-ws/src/ros2-latency-analysis/analysis/add-path-archi.py {trace_folder_path} /talker /listener target
+        python3 /home/lucian/simple-chain-ws/src/ros2-latency-analysis/analysis/add-path-archi.py {trace_folder_path} /node1 /listener target
         """
 
         # Running the commands in the same shell instance
