@@ -99,7 +99,7 @@ def main(config_path, ros2_ws_name, ps_start, ps_end, ps_step, overwrite_ps):
             for config in archis:
                 details = name_details(config)
                 name = f"{details}_{size}"
-                print(name)
+                print(details)
                 # update_ps(config_path, config, size)
                 # run_experiment("exec_archi", ros2_ws_name, name)
     else:
