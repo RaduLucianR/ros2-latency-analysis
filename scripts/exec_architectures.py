@@ -7978,7 +7978,7 @@ def exec_architectures():
             ]
         },
 
-        ######## 8 NODES - 2 exec - sm - 11112222
+        ######## 8 NODES - 2 exec - sm - 11111122
         {
             "executors": [
                 {
@@ -7989,7 +7989,9 @@ def exec_architectures():
                         {"name": "node1", "subscribe": "NONE", "publish": "topic1", "payload": "128B"},
                         {"name": "node2", "subscribe": "topic1", "publish": "topic2", "payload": "128B"},
                         {"name": "node3", "subscribe": "topic2", "publish": "topic3", "payload": "128B"},
-                        {"name": "node4", "subscribe": "topic3", "publish": "topic4", "payload": "128B"}
+                        {"name": "node4", "subscribe": "topic3", "publish": "topic4", "payload": "128B"},
+                        {"name": "node5", "subscribe": "topic4", "publish": "topic5", "payload": "128B"},
+                        {"name": "node6", "subscribe": "topic5", "publish": "topic6", "payload": "128B"}
                     ],
                 },
 
@@ -7998,8 +8000,6 @@ def exec_architectures():
                     "type": "multi_threaded",
                     "cores": [1],
                     "nodes": [
-                        {"name": "node5", "subscribe": "topic4", "publish": "topic5", "payload": "128B"},
-                        {"name": "node6", "subscribe": "topic5", "publish": "topic6", "payload": "128B"},
                         {"name": "node7", "subscribe": "topic6", "publish": "topic7", "payload": "128B"},
                         {"name": "node8", "subscribe": "topic7", "publish": "NONE", "payload": "128B"}
                     ],
@@ -8017,7 +8017,9 @@ def exec_architectures():
                         {"name": "node1", "subscribe": "NONE", "publish": "topic1", "payload": "128B"},
                         {"name": "node2", "subscribe": "topic1", "publish": "topic2", "payload": "128B"},
                         {"name": "node3", "subscribe": "topic2", "publish": "topic3", "payload": "128B"},
-                        {"name": "node4", "subscribe": "topic3", "publish": "topic4", "payload": "128B"}
+                        {"name": "node4", "subscribe": "topic3", "publish": "topic4", "payload": "128B"},
+                        {"name": "node5", "subscribe": "topic4", "publish": "topic5", "payload": "128B"},
+                        {"name": "node6", "subscribe": "topic5", "publish": "topic6", "payload": "128B"}
                     ],
                 },
 
@@ -8026,8 +8028,6 @@ def exec_architectures():
                     "type": "multi_threaded",
                     "cores": [2],
                     "nodes": [
-                        {"name": "node5", "subscribe": "topic4", "publish": "topic5", "payload": "128B"},
-                        {"name": "node6", "subscribe": "topic5", "publish": "topic6", "payload": "128B"},
                         {"name": "node7", "subscribe": "topic6", "publish": "topic7", "payload": "128B"},
                         {"name": "node8", "subscribe": "topic7", "publish": "NONE", "payload": "128B"}
                     ],
@@ -8035,7 +8035,64 @@ def exec_architectures():
             ]
         },
 
-        ######## 8 NODES - 4 exec - ssss
+        ######## 8 NODES - 2 exec - ms - 11111122
+        {
+            "executors": [
+                {
+                    "name": "executor1",
+                    "type": "multi_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node1", "subscribe": "NONE", "publish": "topic1", "payload": "128B"},
+                        {"name": "node2", "subscribe": "topic1", "publish": "topic2", "payload": "128B"},
+                        {"name": "node3", "subscribe": "topic2", "publish": "topic3", "payload": "128B"},
+                        {"name": "node4", "subscribe": "topic3", "publish": "topic4", "payload": "128B"},
+                        {"name": "node5", "subscribe": "topic4", "publish": "topic5", "payload": "128B"},
+                        {"name": "node6", "subscribe": "topic5", "publish": "topic6", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor2",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node7", "subscribe": "topic6", "publish": "topic7", "payload": "128B"},
+                        {"name": "node8", "subscribe": "topic7", "publish": "NONE", "payload": "128B"}
+                    ],
+                }
+            ]
+        },
+
+        {
+            "executors": [
+                {
+                    "name": "executor1",
+                    "type": "multi_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node1", "subscribe": "NONE", "publish": "topic1", "payload": "128B"},
+                        {"name": "node2", "subscribe": "topic1", "publish": "topic2", "payload": "128B"},
+                        {"name": "node3", "subscribe": "topic2", "publish": "topic3", "payload": "128B"},
+                        {"name": "node4", "subscribe": "topic3", "publish": "topic4", "payload": "128B"},
+                        {"name": "node5", "subscribe": "topic4", "publish": "topic5", "payload": "128B"},
+                        {"name": "node6", "subscribe": "topic5", "publish": "topic6", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor2",
+                    "type": "single_threaded",
+                    "cores": [2],
+                    "nodes": [
+                        {"name": "node7", "subscribe": "topic6", "publish": "topic7", "payload": "128B"},
+                        {"name": "node8", "subscribe": "topic7", "publish": "NONE", "payload": "128B"}
+                    ],
+                }
+            ]
+        },
+
+        ######## 8 NODES - 4 exec - ssss - 11223344
         {
             "executors": [
                 {
@@ -8074,6 +8131,1201 @@ def exec_architectures():
                     "cores": [1],
                     "nodes": [
                         {"name": "node7", "subscribe": "topic6", "publish": "topic7", "payload": "128B"},
+                        {"name": "node8", "subscribe": "topic7", "publish": "NONE", "payload": "128B"}
+                    ],
+                }
+            ]
+        },
+
+        {
+            "executors": [
+                {
+                    "name": "executor1",
+                    "type": "single_threaded",
+                    "cores": [0],
+                    "nodes": [
+                        {"name": "node1", "subscribe": "NONE", "publish": "topic1", "payload": "128B"},
+                        {"name": "node2", "subscribe": "topic1", "publish": "topic2", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor2",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node3", "subscribe": "topic2", "publish": "topic3", "payload": "128B"},
+                        {"name": "node4", "subscribe": "topic3", "publish": "topic4", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor3",
+                    "type": "single_threaded",
+                    "cores": [2],
+                    "nodes": [
+                        {"name": "node5", "subscribe": "topic4", "publish": "topic5", "payload": "128B"},
+                        {"name": "node6", "subscribe": "topic5", "publish": "topic6", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor4",
+                    "type": "single_threaded",
+                    "cores": [3],
+                    "nodes": [
+                        {"name": "node7", "subscribe": "topic6", "publish": "topic7", "payload": "128B"},
+                        {"name": "node8", "subscribe": "topic7", "publish": "NONE", "payload": "128B"}
+                    ],
+                }
+            ]
+        },
+
+        {
+            "executors": [
+                {
+                    "name": "executor1",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node1", "subscribe": "NONE", "publish": "topic1", "payload": "128B"},
+                        {"name": "node2", "subscribe": "topic1", "publish": "topic2", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor2",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node3", "subscribe": "topic2", "publish": "topic3", "payload": "128B"},
+                        {"name": "node4", "subscribe": "topic3", "publish": "topic4", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor3",
+                    "type": "single_threaded",
+                    "cores": [2],
+                    "nodes": [
+                        {"name": "node5", "subscribe": "topic4", "publish": "topic5", "payload": "128B"},
+                        {"name": "node6", "subscribe": "topic5", "publish": "topic6", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor4",
+                    "type": "single_threaded",
+                    "cores": [3],
+                    "nodes": [
+                        {"name": "node7", "subscribe": "topic6", "publish": "topic7", "payload": "128B"},
+                        {"name": "node8", "subscribe": "topic7", "publish": "NONE", "payload": "128B"}
+                    ],
+                }
+            ]
+        },
+
+        ######## 8 NODES - 4 exec - mmmm - 11223344
+        {
+            "executors": [
+                {
+                    "name": "executor1",
+                    "type": "multi_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node1", "subscribe": "NONE", "publish": "topic1", "payload": "128B"},
+                        {"name": "node2", "subscribe": "topic1", "publish": "topic2", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor2",
+                    "type": "multi_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node3", "subscribe": "topic2", "publish": "topic3", "payload": "128B"},
+                        {"name": "node4", "subscribe": "topic3", "publish": "topic4", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor3",
+                    "type": "multi_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node5", "subscribe": "topic4", "publish": "topic5", "payload": "128B"},
+                        {"name": "node6", "subscribe": "topic5", "publish": "topic6", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor4",
+                    "type": "multi_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node7", "subscribe": "topic6", "publish": "topic7", "payload": "128B"},
+                        {"name": "node8", "subscribe": "topic7", "publish": "NONE", "payload": "128B"}
+                    ],
+                }
+            ]
+        },
+
+        {
+            "executors": [
+                {
+                    "name": "executor1",
+                    "type": "multi_threaded",
+                    "cores": [0],
+                    "nodes": [
+                        {"name": "node1", "subscribe": "NONE", "publish": "topic1", "payload": "128B"},
+                        {"name": "node2", "subscribe": "topic1", "publish": "topic2", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor2",
+                    "type": "multi_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node3", "subscribe": "topic2", "publish": "topic3", "payload": "128B"},
+                        {"name": "node4", "subscribe": "topic3", "publish": "topic4", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor3",
+                    "type": "multi_threaded",
+                    "cores": [2],
+                    "nodes": [
+                        {"name": "node5", "subscribe": "topic4", "publish": "topic5", "payload": "128B"},
+                        {"name": "node6", "subscribe": "topic5", "publish": "topic6", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor4",
+                    "type": "multi_threaded",
+                    "cores": [3],
+                    "nodes": [
+                        {"name": "node7", "subscribe": "topic6", "publish": "topic7", "payload": "128B"},
+                        {"name": "node8", "subscribe": "topic7", "publish": "NONE", "payload": "128B"}
+                    ],
+                }
+            ]
+        },
+
+        {
+            "executors": [
+                {
+                    "name": "executor1",
+                    "type": "multi_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node1", "subscribe": "NONE", "publish": "topic1", "payload": "128B"},
+                        {"name": "node2", "subscribe": "topic1", "publish": "topic2", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor2",
+                    "type": "multi_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node3", "subscribe": "topic2", "publish": "topic3", "payload": "128B"},
+                        {"name": "node4", "subscribe": "topic3", "publish": "topic4", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor3",
+                    "type": "multi_threaded",
+                    "cores": [2],
+                    "nodes": [
+                        {"name": "node5", "subscribe": "topic4", "publish": "topic5", "payload": "128B"},
+                        {"name": "node6", "subscribe": "topic5", "publish": "topic6", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor4",
+                    "type": "multi_threaded",
+                    "cores": [3],
+                    "nodes": [
+                        {"name": "node7", "subscribe": "topic6", "publish": "topic7", "payload": "128B"},
+                        {"name": "node8", "subscribe": "topic7", "publish": "NONE", "payload": "128B"}
+                    ],
+                }
+            ]
+        },
+
+        ######## 8 NODES - 4 exec - ssmm - 11223344
+        {
+            "executors": [
+                {
+                    "name": "executor1",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node1", "subscribe": "NONE", "publish": "topic1", "payload": "128B"},
+                        {"name": "node2", "subscribe": "topic1", "publish": "topic2", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor2",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node3", "subscribe": "topic2", "publish": "topic3", "payload": "128B"},
+                        {"name": "node4", "subscribe": "topic3", "publish": "topic4", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor3",
+                    "type": "multi_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node5", "subscribe": "topic4", "publish": "topic5", "payload": "128B"},
+                        {"name": "node6", "subscribe": "topic5", "publish": "topic6", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor4",
+                    "type": "multi_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node7", "subscribe": "topic6", "publish": "topic7", "payload": "128B"},
+                        {"name": "node8", "subscribe": "topic7", "publish": "NONE", "payload": "128B"}
+                    ],
+                }
+            ]
+        },
+
+        {
+            "executors": [
+                {
+                    "name": "executor1",
+                    "type": "single_threaded",
+                    "cores": [0],
+                    "nodes": [
+                        {"name": "node1", "subscribe": "NONE", "publish": "topic1", "payload": "128B"},
+                        {"name": "node2", "subscribe": "topic1", "publish": "topic2", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor2",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node3", "subscribe": "topic2", "publish": "topic3", "payload": "128B"},
+                        {"name": "node4", "subscribe": "topic3", "publish": "topic4", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor3",
+                    "type": "multi_threaded",
+                    "cores": [2],
+                    "nodes": [
+                        {"name": "node5", "subscribe": "topic4", "publish": "topic5", "payload": "128B"},
+                        {"name": "node6", "subscribe": "topic5", "publish": "topic6", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor4",
+                    "type": "multi_threaded",
+                    "cores": [3],
+                    "nodes": [
+                        {"name": "node7", "subscribe": "topic6", "publish": "topic7", "payload": "128B"},
+                        {"name": "node8", "subscribe": "topic7", "publish": "NONE", "payload": "128B"}
+                    ],
+                }
+            ]
+        },
+
+        {
+            "executors": [
+                {
+                    "name": "executor1",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node1", "subscribe": "NONE", "publish": "topic1", "payload": "128B"},
+                        {"name": "node2", "subscribe": "topic1", "publish": "topic2", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor2",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node3", "subscribe": "topic2", "publish": "topic3", "payload": "128B"},
+                        {"name": "node4", "subscribe": "topic3", "publish": "topic4", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor3",
+                    "type": "multi_threaded",
+                    "cores": [2],
+                    "nodes": [
+                        {"name": "node5", "subscribe": "topic4", "publish": "topic5", "payload": "128B"},
+                        {"name": "node6", "subscribe": "topic5", "publish": "topic6", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor4",
+                    "type": "multi_threaded",
+                    "cores": [3],
+                    "nodes": [
+                        {"name": "node7", "subscribe": "topic6", "publish": "topic7", "payload": "128B"},
+                        {"name": "node8", "subscribe": "topic7", "publish": "NONE", "payload": "128B"}
+                    ],
+                }
+            ]
+        },
+
+        ######## 8 NODES - 4 exec - mmss - 11223344
+        {
+            "executors": [
+                {
+                    "name": "executor1",
+                    "type": "multi_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node1", "subscribe": "NONE", "publish": "topic1", "payload": "128B"},
+                        {"name": "node2", "subscribe": "topic1", "publish": "topic2", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor2",
+                    "type": "multi_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node3", "subscribe": "topic2", "publish": "topic3", "payload": "128B"},
+                        {"name": "node4", "subscribe": "topic3", "publish": "topic4", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor3",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node5", "subscribe": "topic4", "publish": "topic5", "payload": "128B"},
+                        {"name": "node6", "subscribe": "topic5", "publish": "topic6", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor4",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node7", "subscribe": "topic6", "publish": "topic7", "payload": "128B"},
+                        {"name": "node8", "subscribe": "topic7", "publish": "NONE", "payload": "128B"}
+                    ],
+                }
+            ]
+        },
+
+        {
+            "executors": [
+                {
+                    "name": "executor1",
+                    "type": "multi_threaded",
+                    "cores": [0],
+                    "nodes": [
+                        {"name": "node1", "subscribe": "NONE", "publish": "topic1", "payload": "128B"},
+                        {"name": "node2", "subscribe": "topic1", "publish": "topic2", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor2",
+                    "type": "multi_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node3", "subscribe": "topic2", "publish": "topic3", "payload": "128B"},
+                        {"name": "node4", "subscribe": "topic3", "publish": "topic4", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor3",
+                    "type": "single_threaded",
+                    "cores": [2],
+                    "nodes": [
+                        {"name": "node5", "subscribe": "topic4", "publish": "topic5", "payload": "128B"},
+                        {"name": "node6", "subscribe": "topic5", "publish": "topic6", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor4",
+                    "type": "single_threaded",
+                    "cores": [3],
+                    "nodes": [
+                        {"name": "node7", "subscribe": "topic6", "publish": "topic7", "payload": "128B"},
+                        {"name": "node8", "subscribe": "topic7", "publish": "NONE", "payload": "128B"}
+                    ],
+                }
+            ]
+        },
+
+        {
+            "executors": [
+                {
+                    "name": "executor1",
+                    "type": "multi_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node1", "subscribe": "NONE", "publish": "topic1", "payload": "128B"},
+                        {"name": "node2", "subscribe": "topic1", "publish": "topic2", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor2",
+                    "type": "multi_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node3", "subscribe": "topic2", "publish": "topic3", "payload": "128B"},
+                        {"name": "node4", "subscribe": "topic3", "publish": "topic4", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor3",
+                    "type": "single_threaded",
+                    "cores": [2],
+                    "nodes": [
+                        {"name": "node5", "subscribe": "topic4", "publish": "topic5", "payload": "128B"},
+                        {"name": "node6", "subscribe": "topic5", "publish": "topic6", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor4",
+                    "type": "single_threaded",
+                    "cores": [3],
+                    "nodes": [
+                        {"name": "node7", "subscribe": "topic6", "publish": "topic7", "payload": "128B"},
+                        {"name": "node8", "subscribe": "topic7", "publish": "NONE", "payload": "128B"}
+                    ],
+                }
+            ]
+        },
+
+        ######## 8 NODES - 4 exec - ssss - 11111234
+        {
+            "executors": [
+                {
+                    "name": "executor1",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node1", "subscribe": "NONE", "publish": "topic1", "payload": "128B"},
+                        {"name": "node2", "subscribe": "topic1", "publish": "topic2", "payload": "128B"},
+                        {"name": "node3", "subscribe": "topic2", "publish": "topic3", "payload": "128B"},
+                        {"name": "node4", "subscribe": "topic3", "publish": "topic4", "payload": "128B"},
+                        {"name": "node5", "subscribe": "topic4", "publish": "topic5", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor2",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node6", "subscribe": "topic5", "publish": "topic6", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor3",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node7", "subscribe": "topic6", "publish": "topic7", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor4",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node8", "subscribe": "topic7", "publish": "NONE", "payload": "128B"}
+                    ],
+                }
+            ]
+        },
+
+        {
+            "executors": [
+                {
+                    "name": "executor1",
+                    "type": "single_threaded",
+                    "cores": [0],
+                    "nodes": [
+                        {"name": "node1", "subscribe": "NONE", "publish": "topic1", "payload": "128B"},
+                        {"name": "node2", "subscribe": "topic1", "publish": "topic2", "payload": "128B"},
+                        {"name": "node3", "subscribe": "topic2", "publish": "topic3", "payload": "128B"},
+                        {"name": "node4", "subscribe": "topic3", "publish": "topic4", "payload": "128B"},
+                        {"name": "node5", "subscribe": "topic4", "publish": "topic5", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor2",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node6", "subscribe": "topic5", "publish": "topic6", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor3",
+                    "type": "single_threaded",
+                    "cores": [2],
+                    "nodes": [
+                        {"name": "node7", "subscribe": "topic6", "publish": "topic7", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor4",
+                    "type": "single_threaded",
+                    "cores": [3],
+                    "nodes": [
+                        {"name": "node8", "subscribe": "topic7", "publish": "NONE", "payload": "128B"}
+                    ],
+                }
+            ]
+        },
+
+        {
+            "executors": [
+                {
+                    "name": "executor1",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node1", "subscribe": "NONE", "publish": "topic1", "payload": "128B"},
+                        {"name": "node2", "subscribe": "topic1", "publish": "topic2", "payload": "128B"},
+                        {"name": "node3", "subscribe": "topic2", "publish": "topic3", "payload": "128B"},
+                        {"name": "node4", "subscribe": "topic3", "publish": "topic4", "payload": "128B"},
+                        {"name": "node5", "subscribe": "topic4", "publish": "topic5", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor2",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node6", "subscribe": "topic5", "publish": "topic6", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor3",
+                    "type": "single_threaded",
+                    "cores": [2],
+                    "nodes": [
+                        {"name": "node7", "subscribe": "topic6", "publish": "topic7", "payload": "128B"},
+                    ],
+                },
+
+                {
+                    "name": "executor4",
+                    "type": "single_threaded",
+                    "cores": [3],
+                    "nodes": [
+                        {"name": "node8", "subscribe": "topic7", "publish": "NONE", "payload": "128B"}
+                    ],
+                }
+            ]
+        },
+
+        {
+            "executors": [
+                {
+                    "name": "executor1",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node1", "subscribe": "NONE", "publish": "topic1", "payload": "128B"},
+                        {"name": "node2", "subscribe": "topic1", "publish": "topic2", "payload": "128B"},
+                        {"name": "node3", "subscribe": "topic2", "publish": "topic3", "payload": "128B"},
+                        {"name": "node4", "subscribe": "topic3", "publish": "topic4", "payload": "128B"},
+                        {"name": "node5", "subscribe": "topic4", "publish": "topic5", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor2",
+                    "type": "single_threaded",
+                    "cores": [2],
+                    "nodes": [
+                        {"name": "node6", "subscribe": "topic5", "publish": "topic6", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor3",
+                    "type": "single_threaded",
+                    "cores": [2],
+                    "nodes": [
+                        {"name": "node7", "subscribe": "topic6", "publish": "topic7", "payload": "128B"},
+                    ],
+                },
+
+                {
+                    "name": "executor4",
+                    "type": "single_threaded",
+                    "cores": [2],
+                    "nodes": [
+                        {"name": "node8", "subscribe": "topic7", "publish": "NONE", "payload": "128B"}
+                    ],
+                }
+            ]
+        },
+
+        ######## 8 NODES - 4 exec - mmmm - 11111234
+        {
+            "executors": [
+                {
+                    "name": "executor1",
+                    "type": "multi_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node1", "subscribe": "NONE", "publish": "topic1", "payload": "128B"},
+                        {"name": "node2", "subscribe": "topic1", "publish": "topic2", "payload": "128B"},
+                        {"name": "node3", "subscribe": "topic2", "publish": "topic3", "payload": "128B"},
+                        {"name": "node4", "subscribe": "topic3", "publish": "topic4", "payload": "128B"},
+                        {"name": "node5", "subscribe": "topic4", "publish": "topic5", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor2",
+                    "type": "multi_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node6", "subscribe": "topic5", "publish": "topic6", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor3",
+                    "type": "multi_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node7", "subscribe": "topic6", "publish": "topic7", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor4",
+                    "type": "multi_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node8", "subscribe": "topic7", "publish": "NONE", "payload": "128B"}
+                    ],
+                }
+            ]
+        },
+
+        {
+            "executors": [
+                {
+                    "name": "executor1",
+                    "type": "multi_threaded",
+                    "cores": [0],
+                    "nodes": [
+                        {"name": "node1", "subscribe": "NONE", "publish": "topic1", "payload": "128B"},
+                        {"name": "node2", "subscribe": "topic1", "publish": "topic2", "payload": "128B"},
+                        {"name": "node3", "subscribe": "topic2", "publish": "topic3", "payload": "128B"},
+                        {"name": "node4", "subscribe": "topic3", "publish": "topic4", "payload": "128B"},
+                        {"name": "node5", "subscribe": "topic4", "publish": "topic5", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor2",
+                    "type": "multi_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node6", "subscribe": "topic5", "publish": "topic6", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor3",
+                    "type": "multi_threaded",
+                    "cores": [2],
+                    "nodes": [
+                        {"name": "node7", "subscribe": "topic6", "publish": "topic7", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor4",
+                    "type": "multi_threaded",
+                    "cores": [3],
+                    "nodes": [
+                        {"name": "node8", "subscribe": "topic7", "publish": "NONE", "payload": "128B"}
+                    ],
+                }
+            ]
+        },
+
+        {
+            "executors": [
+                {
+                    "name": "executor1",
+                    "type": "multi_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node1", "subscribe": "NONE", "publish": "topic1", "payload": "128B"},
+                        {"name": "node2", "subscribe": "topic1", "publish": "topic2", "payload": "128B"},
+                        {"name": "node3", "subscribe": "topic2", "publish": "topic3", "payload": "128B"},
+                        {"name": "node4", "subscribe": "topic3", "publish": "topic4", "payload": "128B"},
+                        {"name": "node5", "subscribe": "topic4", "publish": "topic5", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor2",
+                    "type": "multi_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node6", "subscribe": "topic5", "publish": "topic6", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor3",
+                    "type": "multi_threaded",
+                    "cores": [2],
+                    "nodes": [
+                        {"name": "node7", "subscribe": "topic6", "publish": "topic7", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor4",
+                    "type": "multi_threaded",
+                    "cores": [3],
+                    "nodes": [
+                        {"name": "node8", "subscribe": "topic7", "publish": "NONE", "payload": "128B"}
+                    ],
+                }
+            ]
+        },
+
+        {
+            "executors": [
+                {
+                    "name": "executor1",
+                    "type": "multi_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node1", "subscribe": "NONE", "publish": "topic1", "payload": "128B"},
+                        {"name": "node2", "subscribe": "topic1", "publish": "topic2", "payload": "128B"},
+                        {"name": "node3", "subscribe": "topic2", "publish": "topic3", "payload": "128B"},
+                        {"name": "node4", "subscribe": "topic3", "publish": "topic4", "payload": "128B"},
+                        {"name": "node5", "subscribe": "topic4", "publish": "topic5", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor2",
+                    "type": "multi_threaded",
+                    "cores": [2],
+                    "nodes": [
+                        {"name": "node6", "subscribe": "topic5", "publish": "topic6", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor3",
+                    "type": "multi_threaded",
+                    "cores": [2],
+                    "nodes": [
+                        {"name": "node7", "subscribe": "topic6", "publish": "topic7", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor4",
+                    "type": "multi_threaded",
+                    "cores": [2],
+                    "nodes": [
+                        {"name": "node8", "subscribe": "topic7", "publish": "NONE", "payload": "128B"}
+                    ],
+                }
+            ]
+        },
+
+        ######## 8 NODES - 4 exec - ssmm - 11223344
+        {
+            "executors": [
+                {
+                    "name": "executor1",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node1", "subscribe": "NONE", "publish": "topic1", "payload": "128B"},
+                        {"name": "node2", "subscribe": "topic1", "publish": "topic2", "payload": "128B"},
+                        {"name": "node3", "subscribe": "topic2", "publish": "topic3", "payload": "128B"},
+                        {"name": "node4", "subscribe": "topic3", "publish": "topic4", "payload": "128B"},
+                        {"name": "node5", "subscribe": "topic4", "publish": "topic5", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor2",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node6", "subscribe": "topic5", "publish": "topic6", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor3",
+                    "type": "multi_threaded",
+                    "cores": [1],
+                    "nodes": [
+                       {"name": "node7", "subscribe": "topic6", "publish": "topic7", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor4",
+                    "type": "multi_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node8", "subscribe": "topic7", "publish": "NONE", "payload": "128B"}
+                    ],
+                }
+            ]
+        },
+
+        {
+            "executors": [
+                {
+                    "name": "executor1",
+                    "type": "single_threaded",
+                    "cores": [0],
+                    "nodes": [
+                        {"name": "node1", "subscribe": "NONE", "publish": "topic1", "payload": "128B"},
+                        {"name": "node2", "subscribe": "topic1", "publish": "topic2", "payload": "128B"},
+                        {"name": "node3", "subscribe": "topic2", "publish": "topic3", "payload": "128B"},
+                        {"name": "node4", "subscribe": "topic3", "publish": "topic4", "payload": "128B"},
+                        {"name": "node5", "subscribe": "topic4", "publish": "topic5", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor2",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node6", "subscribe": "topic5", "publish": "topic6", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor3",
+                    "type": "multi_threaded",
+                    "cores": [2],
+                    "nodes": [
+                        {"name": "node7", "subscribe": "topic6", "publish": "topic7", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor4",
+                    "type": "multi_threaded",
+                    "cores": [3],
+                    "nodes": [
+                        {"name": "node8", "subscribe": "topic7", "publish": "NONE", "payload": "128B"}
+                    ],
+                }
+            ]
+        },
+
+        {
+            "executors": [
+                {
+                    "name": "executor1",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node1", "subscribe": "NONE", "publish": "topic1", "payload": "128B"},
+                        {"name": "node2", "subscribe": "topic1", "publish": "topic2", "payload": "128B"},
+                        {"name": "node3", "subscribe": "topic2", "publish": "topic3", "payload": "128B"},
+                        {"name": "node4", "subscribe": "topic3", "publish": "topic4", "payload": "128B"},
+                        {"name": "node5", "subscribe": "topic4", "publish": "topic5", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor2",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node6", "subscribe": "topic5", "publish": "topic6", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor3",
+                    "type": "multi_threaded",
+                    "cores": [2],
+                    "nodes": [
+                        {"name": "node7", "subscribe": "topic6", "publish": "topic7", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor4",
+                    "type": "multi_threaded",
+                    "cores": [3],
+                    "nodes": [
+                        {"name": "node8", "subscribe": "topic7", "publish": "NONE", "payload": "128B"}
+                    ],
+                }
+            ]
+        },
+
+        {
+            "executors": [
+                {
+                    "name": "executor1",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node1", "subscribe": "NONE", "publish": "topic1", "payload": "128B"},
+                        {"name": "node2", "subscribe": "topic1", "publish": "topic2", "payload": "128B"},
+                        {"name": "node3", "subscribe": "topic2", "publish": "topic3", "payload": "128B"},
+                        {"name": "node4", "subscribe": "topic3", "publish": "topic4", "payload": "128B"},
+                        {"name": "node5", "subscribe": "topic4", "publish": "topic5", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor2",
+                    "type": "single_threaded",
+                    "cores": [2],
+                    "nodes": [
+                        {"name": "node6", "subscribe": "topic5", "publish": "topic6", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor3",
+                    "type": "multi_threaded",
+                    "cores": [2],
+                    "nodes": [
+                        {"name": "node7", "subscribe": "topic6", "publish": "topic7", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor4",
+                    "type": "multi_threaded",
+                    "cores": [2],
+                    "nodes": [
+                        {"name": "node8", "subscribe": "topic7", "publish": "NONE", "payload": "128B"}
+                    ],
+                }
+            ]
+        },
+
+        ######## 8 NODES - 4 exec - mmss - 11223344
+        {
+            "executors": [
+                {
+                    "name": "executor1",
+                    "type": "multi_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node1", "subscribe": "NONE", "publish": "topic1", "payload": "128B"},
+                        {"name": "node2", "subscribe": "topic1", "publish": "topic2", "payload": "128B"},
+                        {"name": "node3", "subscribe": "topic2", "publish": "topic3", "payload": "128B"},
+                        {"name": "node4", "subscribe": "topic3", "publish": "topic4", "payload": "128B"},
+                        {"name": "node5", "subscribe": "topic4", "publish": "topic5", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor2",
+                    "type": "multi_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node6", "subscribe": "topic5", "publish": "topic6", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor3",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node7", "subscribe": "topic6", "publish": "topic7", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor4",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node8", "subscribe": "topic7", "publish": "NONE", "payload": "128B"}
+                    ],
+                }
+            ]
+        },
+
+        {
+            "executors": [
+                {
+                    "name": "executor1",
+                    "type": "multi_threaded",
+                    "cores": [0],
+                    "nodes": [
+                        {"name": "node1", "subscribe": "NONE", "publish": "topic1", "payload": "128B"},
+                        {"name": "node2", "subscribe": "topic1", "publish": "topic2", "payload": "128B"},
+                        {"name": "node3", "subscribe": "topic2", "publish": "topic3", "payload": "128B"},
+                        {"name": "node4", "subscribe": "topic3", "publish": "topic4", "payload": "128B"},
+                        {"name": "node5", "subscribe": "topic4", "publish": "topic5", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor2",
+                    "type": "multi_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node6", "subscribe": "topic5", "publish": "topic6", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor3",
+                    "type": "single_threaded",
+                    "cores": [2],
+                    "nodes": [
+                        {"name": "node7", "subscribe": "topic6", "publish": "topic7", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor4",
+                    "type": "single_threaded",
+                    "cores": [3],
+                    "nodes": [
+                        {"name": "node8", "subscribe": "topic7", "publish": "NONE", "payload": "128B"}
+                    ],
+                }
+            ]
+        },
+
+        {
+            "executors": [
+                {
+                    "name": "executor1",
+                    "type": "multi_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node1", "subscribe": "NONE", "publish": "topic1", "payload": "128B"},
+                        {"name": "node2", "subscribe": "topic1", "publish": "topic2", "payload": "128B"},
+                        {"name": "node3", "subscribe": "topic2", "publish": "topic3", "payload": "128B"},
+                        {"name": "node4", "subscribe": "topic3", "publish": "topic4", "payload": "128B"},
+                        {"name": "node5", "subscribe": "topic4", "publish": "topic5", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor2",
+                    "type": "multi_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node6", "subscribe": "topic5", "publish": "topic6", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor3",
+                    "type": "single_threaded",
+                    "cores": [2],
+                    "nodes": [
+                        {"name": "node7", "subscribe": "topic6", "publish": "topic7", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor4",
+                    "type": "single_threaded",
+                    "cores": [3],
+                    "nodes": [
+                        {"name": "node8", "subscribe": "topic7", "publish": "NONE", "payload": "128B"}
+                    ],
+                }
+            ]
+        },
+
+        {
+            "executors": [
+                {
+                    "name": "executor1",
+                    "type": "multi_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node1", "subscribe": "NONE", "publish": "topic1", "payload": "128B"},
+                        {"name": "node2", "subscribe": "topic1", "publish": "topic2", "payload": "128B"},
+                        {"name": "node3", "subscribe": "topic2", "publish": "topic3", "payload": "128B"},
+                        {"name": "node4", "subscribe": "topic3", "publish": "topic4", "payload": "128B"},
+                        {"name": "node5", "subscribe": "topic4", "publish": "topic5", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor2",
+                    "type": "multi_threaded",
+                    "cores": [2],
+                    "nodes": [
+                        {"name": "node6", "subscribe": "topic5", "publish": "topic6", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor3",
+                    "type": "single_threaded",
+                    "cores": [2],
+                    "nodes": [
+                        {"name": "node7", "subscribe": "topic6", "publish": "topic7", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor4",
+                    "type": "single_threaded",
+                    "cores": [2],
+                    "nodes": [
                         {"name": "node8", "subscribe": "topic7", "publish": "NONE", "payload": "128B"}
                     ],
                 }
@@ -8141,6 +9393,1116 @@ def exec_architectures():
             ]
         },
 
+        {
+            "executors": [
+                {
+                    "name": "executor1",
+                    "type": "single_threaded",
+                    "cores": [0],
+                    "nodes": [
+                        {"name": "node1", "subscribe": "NONE", "publish": "topic1", "payload": "128B"},
+                        {"name": "node2", "subscribe": "topic1", "publish": "topic2", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor2",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node3", "subscribe": "topic2", "publish": "topic3", "payload": "128B"},
+                        {"name": "node4", "subscribe": "topic3", "publish": "topic4", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor3",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node5", "subscribe": "topic4", "publish": "topic5", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor4",
+                    "type": "single_threaded",
+                    "cores": [2],
+                    "nodes": [
+                        {"name": "node6", "subscribe": "topic5", "publish": "topic6", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor5",
+                    "type": "single_threaded",
+                    "cores": [2],
+                    "nodes": [
+                        {"name": "node7", "subscribe": "topic6", "publish": "topic7", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor6",
+                    "type": "single_threaded",
+                    "cores": [3],
+                    "nodes": [
+                        {"name": "node8", "subscribe": "topic7", "publish": "NONE", "payload": "128B"}
+                    ],
+                }
+            ]
+        },
+
+        ######## 8 NODES - 6 exec - mmmmmm
+        {
+            "executors": [
+                {
+                    "name": "executor1",
+                    "type": "multi_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node1", "subscribe": "NONE", "publish": "topic1", "payload": "128B"},
+                        {"name": "node2", "subscribe": "topic1", "publish": "topic2", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor2",
+                    "type": "multi_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node3", "subscribe": "topic2", "publish": "topic3", "payload": "128B"},
+                        {"name": "node4", "subscribe": "topic3", "publish": "topic4", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor3",
+                    "type": "multi_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node5", "subscribe": "topic4", "publish": "topic5", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor4",
+                    "type": "multi_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node6", "subscribe": "topic5", "publish": "topic6", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor5",
+                    "type": "multi_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node7", "subscribe": "topic6", "publish": "topic7", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor6",
+                    "type": "multi_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node8", "subscribe": "topic7", "publish": "NONE", "payload": "128B"}
+                    ],
+                }
+            ]
+        },
+
+        {
+            "executors": [
+                {
+                    "name": "executor1",
+                    "type": "multi_threaded",
+                    "cores": [0],
+                    "nodes": [
+                        {"name": "node1", "subscribe": "NONE", "publish": "topic1", "payload": "128B"},
+                        {"name": "node2", "subscribe": "topic1", "publish": "topic2", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor2",
+                    "type": "multi_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node3", "subscribe": "topic2", "publish": "topic3", "payload": "128B"},
+                        {"name": "node4", "subscribe": "topic3", "publish": "topic4", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor3",
+                    "type": "multi_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node5", "subscribe": "topic4", "publish": "topic5", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor4",
+                    "type": "multi_threaded",
+                    "cores": [2],
+                    "nodes": [
+                        {"name": "node6", "subscribe": "topic5", "publish": "topic6", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor5",
+                    "type": "multi_threaded",
+                    "cores": [2],
+                    "nodes": [
+                        {"name": "node7", "subscribe": "topic6", "publish": "topic7", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor6",
+                    "type": "multi_threaded",
+                    "cores": [3],
+                    "nodes": [
+                        {"name": "node8", "subscribe": "topic7", "publish": "NONE", "payload": "128B"}
+                    ],
+                }
+            ]
+        },
+
+        ######## 8 NODES - 6 exec - sssmmm
+        {
+            "executors": [
+                {
+                    "name": "executor1",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node1", "subscribe": "NONE", "publish": "topic1", "payload": "128B"},
+                        {"name": "node2", "subscribe": "topic1", "publish": "topic2", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor2",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node3", "subscribe": "topic2", "publish": "topic3", "payload": "128B"},
+                        {"name": "node4", "subscribe": "topic3", "publish": "topic4", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor3",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node5", "subscribe": "topic4", "publish": "topic5", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor4",
+                    "type": "multi_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node6", "subscribe": "topic5", "publish": "topic6", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor5",
+                    "type": "multi_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node7", "subscribe": "topic6", "publish": "topic7", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor6",
+                    "type": "multi_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node8", "subscribe": "topic7", "publish": "NONE", "payload": "128B"}
+                    ],
+                }
+            ]
+        },
+
+        {
+            "executors": [
+                {
+                    "name": "executor1",
+                    "type": "single_threaded",
+                    "cores": [0],
+                    "nodes": [
+                        {"name": "node1", "subscribe": "NONE", "publish": "topic1", "payload": "128B"},
+                        {"name": "node2", "subscribe": "topic1", "publish": "topic2", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor2",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node3", "subscribe": "topic2", "publish": "topic3", "payload": "128B"},
+                        {"name": "node4", "subscribe": "topic3", "publish": "topic4", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor3",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node5", "subscribe": "topic4", "publish": "topic5", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor4",
+                    "type": "multi_threaded",
+                    "cores": [2],
+                    "nodes": [
+                        {"name": "node6", "subscribe": "topic5", "publish": "topic6", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor5",
+                    "type": "multi_threaded",
+                    "cores": [2],
+                    "nodes": [
+                        {"name": "node7", "subscribe": "topic6", "publish": "topic7", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor6",
+                    "type": "multi_threaded",
+                    "cores": [3],
+                    "nodes": [
+                        {"name": "node8", "subscribe": "topic7", "publish": "NONE", "payload": "128B"}
+                    ],
+                }
+            ]
+        },
+
+        ######## 8 NODES - 6 exec - mmmsss
+        {
+            "executors": [
+                {
+                    "name": "executor1",
+                    "type": "multi_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node1", "subscribe": "NONE", "publish": "topic1", "payload": "128B"},
+                        {"name": "node2", "subscribe": "topic1", "publish": "topic2", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor2",
+                    "type": "multi_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node3", "subscribe": "topic2", "publish": "topic3", "payload": "128B"},
+                        {"name": "node4", "subscribe": "topic3", "publish": "topic4", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor3",
+                    "type": "multi_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node5", "subscribe": "topic4", "publish": "topic5", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor4",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node6", "subscribe": "topic5", "publish": "topic6", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor5",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node7", "subscribe": "topic6", "publish": "topic7", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor6",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node8", "subscribe": "topic7", "publish": "NONE", "payload": "128B"}
+                    ],
+                }
+            ]
+        },
+
+        {
+            "executors": [
+                {
+                    "name": "executor1",
+                    "type": "multi_threaded",
+                    "cores": [0],
+                    "nodes": [
+                        {"name": "node1", "subscribe": "NONE", "publish": "topic1", "payload": "128B"},
+                        {"name": "node2", "subscribe": "topic1", "publish": "topic2", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor2",
+                    "type": "multi_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node3", "subscribe": "topic2", "publish": "topic3", "payload": "128B"},
+                        {"name": "node4", "subscribe": "topic3", "publish": "topic4", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor3",
+                    "type": "multi_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node5", "subscribe": "topic4", "publish": "topic5", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor4",
+                    "type": "single_threaded",
+                    "cores": [2],
+                    "nodes": [
+                        {"name": "node6", "subscribe": "topic5", "publish": "topic6", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor5",
+                    "type": "single_threaded",
+                    "cores": [2],
+                    "nodes": [
+                        {"name": "node7", "subscribe": "topic6", "publish": "topic7", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor6",
+                    "type": "single_threaded",
+                    "cores": [3],
+                    "nodes": [
+                        {"name": "node8", "subscribe": "topic7", "publish": "NONE", "payload": "128B"}
+                    ],
+                }
+            ]
+        },
+
+        ######## 8 NODES - 8 exec - ssssssss
+        {
+            "executors": [
+                {
+                    "name": "executor1",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node1", "subscribe": "NONE", "publish": "topic1", "payload": "128B"},
+                    ],
+                },
+
+                {
+                    "name": "executor2",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node2", "subscribe": "topic1", "publish": "topic2", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor3",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node3", "subscribe": "topic2", "publish": "topic3", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor4",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node4", "subscribe": "topic3", "publish": "topic4", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor5",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node5", "subscribe": "topic4", "publish": "topic5", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor6",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node6", "subscribe": "topic5", "publish": "topic6", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor7",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node7", "subscribe": "topic6", "publish": "topic7", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor8",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node8", "subscribe": "topic7", "publish": "NONE", "payload": "128B"}
+                    ],
+                }
+            ]
+        },
+
+        {
+            "executors": [
+                {
+                    "name": "executor1",
+                    "type": "single_threaded",
+                    "cores": [0],
+                    "nodes": [
+                        {"name": "node1", "subscribe": "NONE", "publish": "topic1", "payload": "128B"},
+                    ],
+                },
+
+                {
+                    "name": "executor2",
+                    "type": "single_threaded",
+                    "cores": [0],
+                    "nodes": [
+                        {"name": "node2", "subscribe": "topic1", "publish": "topic2", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor3",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node3", "subscribe": "topic2", "publish": "topic3", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor4",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node4", "subscribe": "topic3", "publish": "topic4", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor5",
+                    "type": "single_threaded",
+                    "cores": [2],
+                    "nodes": [
+                        {"name": "node5", "subscribe": "topic4", "publish": "topic5", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor6",
+                    "type": "single_threaded",
+                    "cores": [2],
+                    "nodes": [
+                        {"name": "node6", "subscribe": "topic5", "publish": "topic6", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor7",
+                    "type": "single_threaded",
+                    "cores": [3],
+                    "nodes": [
+                        {"name": "node7", "subscribe": "topic6", "publish": "topic7", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor8",
+                    "type": "single_threaded",
+                    "cores": [3],
+                    "nodes": [
+                        {"name": "node8", "subscribe": "topic7", "publish": "NONE", "payload": "128B"}
+                    ],
+                }
+            ]
+        },
+
+        {
+            "executors": [
+                {
+                    "name": "executor1",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node1", "subscribe": "NONE", "publish": "topic1", "payload": "128B"},
+                    ],
+                },
+
+                {
+                    "name": "executor2",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node2", "subscribe": "topic1", "publish": "topic2", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor3",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node3", "subscribe": "topic2", "publish": "topic3", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor4",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node4", "subscribe": "topic3", "publish": "topic4", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor5",
+                    "type": "single_threaded",
+                    "cores": [2],
+                    "nodes": [
+                        {"name": "node5", "subscribe": "topic4", "publish": "topic5", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor6",
+                    "type": "single_threaded",
+                    "cores": [2],
+                    "nodes": [
+                        {"name": "node6", "subscribe": "topic5", "publish": "topic6", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor7",
+                    "type": "single_threaded",
+                    "cores": [2],
+                    "nodes": [
+                        {"name": "node7", "subscribe": "topic6", "publish": "topic7", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor8",
+                    "type": "single_threaded",
+                    "cores": [2],
+                    "nodes": [
+                        {"name": "node8", "subscribe": "topic7", "publish": "NONE", "payload": "128B"}
+                    ],
+                }
+            ]
+        },
+
+        ######## 8 NODES - 8 exec - mmmmmmmm
+        {
+            "executors": [
+                {
+                    "name": "executor1",
+                    "type": "multi_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node1", "subscribe": "NONE", "publish": "topic1", "payload": "128B"},
+                    ],
+                },
+
+                {
+                    "name": "executor2",
+                    "type": "multi_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node2", "subscribe": "topic1", "publish": "topic2", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor3",
+                    "type": "multi_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node3", "subscribe": "topic2", "publish": "topic3", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor4",
+                    "type": "multi_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node4", "subscribe": "topic3", "publish": "topic4", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor5",
+                    "type": "multi_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node5", "subscribe": "topic4", "publish": "topic5", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor6",
+                    "type": "multi_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node6", "subscribe": "topic5", "publish": "topic6", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor7",
+                    "type": "multi_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node7", "subscribe": "topic6", "publish": "topic7", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor8",
+                    "type": "multi_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node8", "subscribe": "topic7", "publish": "NONE", "payload": "128B"}
+                    ],
+                }
+            ]
+        },
+
+        {
+            "executors": [
+                {
+                    "name": "executor1",
+                    "type": "multi_threaded",
+                    "cores": [0],
+                    "nodes": [
+                        {"name": "node1", "subscribe": "NONE", "publish": "topic1", "payload": "128B"},
+                    ],
+                },
+
+                {
+                    "name": "executor2",
+                    "type": "multi_threaded",
+                    "cores": [0],
+                    "nodes": [
+                        {"name": "node2", "subscribe": "topic1", "publish": "topic2", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor3",
+                    "type": "multi_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node3", "subscribe": "topic2", "publish": "topic3", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor4",
+                    "type": "multi_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node4", "subscribe": "topic3", "publish": "topic4", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor5",
+                    "type": "multi_threaded",
+                    "cores": [2],
+                    "nodes": [
+                        {"name": "node5", "subscribe": "topic4", "publish": "topic5", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor6",
+                    "type": "multi_threaded",
+                    "cores": [2],
+                    "nodes": [
+                        {"name": "node6", "subscribe": "topic5", "publish": "topic6", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor7",
+                    "type": "multi_threaded",
+                    "cores": [3],
+                    "nodes": [
+                        {"name": "node7", "subscribe": "topic6", "publish": "topic7", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor8",
+                    "type": "multi_threaded",
+                    "cores": [3],
+                    "nodes": [
+                        {"name": "node8", "subscribe": "topic7", "publish": "NONE", "payload": "128B"}
+                    ],
+                }
+            ]
+        },
+
+        {
+            "executors": [
+                {
+                    "name": "executor1",
+                    "type": "multi_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node1", "subscribe": "NONE", "publish": "topic1", "payload": "128B"},
+                    ],
+                },
+
+                {
+                    "name": "executor2",
+                    "type": "multi_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node2", "subscribe": "topic1", "publish": "topic2", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor3",
+                    "type": "multi_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node3", "subscribe": "topic2", "publish": "topic3", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor4",
+                    "type": "multi_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node4", "subscribe": "topic3", "publish": "topic4", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor5",
+                    "type": "multi_threaded",
+                    "cores": [2],
+                    "nodes": [
+                        {"name": "node5", "subscribe": "topic4", "publish": "topic5", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor6",
+                    "type": "multi_threaded",
+                    "cores": [2],
+                    "nodes": [
+                        {"name": "node6", "subscribe": "topic5", "publish": "topic6", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor7",
+                    "type": "multi_threaded",
+                    "cores": [2],
+                    "nodes": [
+                        {"name": "node7", "subscribe": "topic6", "publish": "topic7", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor8",
+                    "type": "multi_threaded",
+                    "cores": [2],
+                    "nodes": [
+                        {"name": "node8", "subscribe": "topic7", "publish": "NONE", "payload": "128B"}
+                    ],
+                }
+            ]
+        },
+
+        ######## 8 NODES - 8 exec - ssssmmmm
+        {
+            "executors": [
+                {
+                    "name": "executor1",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node1", "subscribe": "NONE", "publish": "topic1", "payload": "128B"},
+                    ],
+                },
+
+                {
+                    "name": "executor2",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node2", "subscribe": "topic1", "publish": "topic2", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor3",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node3", "subscribe": "topic2", "publish": "topic3", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor4",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node4", "subscribe": "topic3", "publish": "topic4", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor5",
+                    "type": "multi_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node5", "subscribe": "topic4", "publish": "topic5", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor6",
+                    "type": "multi_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node6", "subscribe": "topic5", "publish": "topic6", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor7",
+                    "type": "multi_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node7", "subscribe": "topic6", "publish": "topic7", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor8",
+                    "type": "multi_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node8", "subscribe": "topic7", "publish": "NONE", "payload": "128B"}
+                    ],
+                }
+            ]
+        },
+
+        {
+            "executors": [
+                {
+                    "name": "executor1",
+                    "type": "single_threaded",
+                    "cores": [0],
+                    "nodes": [
+                        {"name": "node1", "subscribe": "NONE", "publish": "topic1", "payload": "128B"},
+                    ],
+                },
+
+                {
+                    "name": "executor2",
+                    "type": "single_threaded",
+                    "cores": [0],
+                    "nodes": [
+                        {"name": "node2", "subscribe": "topic1", "publish": "topic2", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor3",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node3", "subscribe": "topic2", "publish": "topic3", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor4",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node4", "subscribe": "topic3", "publish": "topic4", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor5",
+                    "type": "multi_threaded",
+                    "cores": [2],
+                    "nodes": [
+                        {"name": "node5", "subscribe": "topic4", "publish": "topic5", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor6",
+                    "type": "multi_threaded",
+                    "cores": [2],
+                    "nodes": [
+                        {"name": "node6", "subscribe": "topic5", "publish": "topic6", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor7",
+                    "type": "multi_threaded",
+                    "cores": [3],
+                    "nodes": [
+                        {"name": "node7", "subscribe": "topic6", "publish": "topic7", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor8",
+                    "type": "multi_threaded",
+                    "cores": [3],
+                    "nodes": [
+                        {"name": "node8", "subscribe": "topic7", "publish": "NONE", "payload": "128B"}
+                    ],
+                }
+            ]
+        },
+
+        {
+            "executors": [
+                {
+                    "name": "executor1",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node1", "subscribe": "NONE", "publish": "topic1", "payload": "128B"},
+                    ],
+                },
+
+                {
+                    "name": "executor2",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node2", "subscribe": "topic1", "publish": "topic2", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor3",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node3", "subscribe": "topic2", "publish": "topic3", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor4",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node4", "subscribe": "topic3", "publish": "topic4", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor5",
+                    "type": "multi_threaded",
+                    "cores": [2],
+                    "nodes": [
+                        {"name": "node5", "subscribe": "topic4", "publish": "topic5", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor6",
+                    "type": "multi_threaded",
+                    "cores": [2],
+                    "nodes": [
+                        {"name": "node6", "subscribe": "topic5", "publish": "topic6", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor7",
+                    "type": "multi_threaded",
+                    "cores": [2],
+                    "nodes": [
+                        {"name": "node7", "subscribe": "topic6", "publish": "topic7", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor8",
+                    "type": "multi_threaded",
+                    "cores": [2],
+                    "nodes": [
+                        {"name": "node8", "subscribe": "topic7", "publish": "NONE", "payload": "128B"}
+                    ],
+                }
+            ]
+        },
+
         ######## 9 NODES - 1 exec - s
         {
             "executors": [
@@ -8185,6 +10547,2838 @@ def exec_architectures():
             ]
         },
 
+        ######## 9 NODES - 3 exec - sss - 111222333
+        {
+            "executors": [
+                {
+                    "name": "executor1",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node1", "subscribe": "NONE", "publish": "topic1", "payload": "128B"},
+                        {"name": "node2", "subscribe": "topic1", "publish": "topic2", "payload": "128B"},
+                        {"name": "node3", "subscribe": "topic2", "publish": "topic3", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor2",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node4", "subscribe": "topic3", "publish": "topic4", "payload": "128B"},
+                        {"name": "node5", "subscribe": "topic4", "publish": "topic5", "payload": "128B"},
+                        {"name": "node6", "subscribe": "topic5", "publish": "topic6", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor3",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node7", "subscribe": "topic6", "publish": "topic7", "payload": "128B"},
+                        {"name": "node8", "subscribe": "topic7", "publish": "topic8", "payload": "128B"},
+                        {"name": "node9", "subscribe": "topic8", "publish": "NONE", "payload": "128B"}
+                    ],
+                },
+            ]
+        },
+
+        {
+            "executors": [
+                {
+                    "name": "executor1",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node1", "subscribe": "NONE", "publish": "topic1", "payload": "128B"},
+                        {"name": "node2", "subscribe": "topic1", "publish": "topic2", "payload": "128B"},
+                        {"name": "node3", "subscribe": "topic2", "publish": "topic3", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor2",
+                    "type": "single_threaded",
+                    "cores": [2],
+                    "nodes": [
+                        {"name": "node4", "subscribe": "topic3", "publish": "topic4", "payload": "128B"},
+                        {"name": "node5", "subscribe": "topic4", "publish": "topic5", "payload": "128B"},
+                        {"name": "node6", "subscribe": "topic5", "publish": "topic6", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor3",
+                    "type": "single_threaded",
+                    "cores": [3],
+                    "nodes": [
+                        {"name": "node7", "subscribe": "topic6", "publish": "topic7", "payload": "128B"},
+                        {"name": "node8", "subscribe": "topic7", "publish": "topic8", "payload": "128B"},
+                        {"name": "node9", "subscribe": "topic8", "publish": "NONE", "payload": "128B"}
+                    ],
+                },
+            ]
+        },
+
+        ######## 9 NODES - 3 exec - mmm - 111222333
+        {
+            "executors": [
+                {
+                    "name": "executor1",
+                    "type": "multi_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node1", "subscribe": "NONE", "publish": "topic1", "payload": "128B"},
+                        {"name": "node2", "subscribe": "topic1", "publish": "topic2", "payload": "128B"},
+                        {"name": "node3", "subscribe": "topic2", "publish": "topic3", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor2",
+                    "type": "multi_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node4", "subscribe": "topic3", "publish": "topic4", "payload": "128B"},
+                        {"name": "node5", "subscribe": "topic4", "publish": "topic5", "payload": "128B"},
+                        {"name": "node6", "subscribe": "topic5", "publish": "topic6", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor3",
+                    "type": "multi_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node7", "subscribe": "topic6", "publish": "topic7", "payload": "128B"},
+                        {"name": "node8", "subscribe": "topic7", "publish": "topic8", "payload": "128B"},
+                        {"name": "node9", "subscribe": "topic8", "publish": "NONE", "payload": "128B"}
+                    ],
+                },
+            ]
+        },
+
+        {
+            "executors": [
+                {
+                    "name": "executor1",
+                    "type": "multi_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node1", "subscribe": "NONE", "publish": "topic1", "payload": "128B"},
+                        {"name": "node2", "subscribe": "topic1", "publish": "topic2", "payload": "128B"},
+                        {"name": "node3", "subscribe": "topic2", "publish": "topic3", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor2",
+                    "type": "multi_threaded",
+                    "cores": [2],
+                    "nodes": [
+                        {"name": "node4", "subscribe": "topic3", "publish": "topic4", "payload": "128B"},
+                        {"name": "node5", "subscribe": "topic4", "publish": "topic5", "payload": "128B"},
+                        {"name": "node6", "subscribe": "topic5", "publish": "topic6", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor3",
+                    "type": "multi_threaded",
+                    "cores": [3],
+                    "nodes": [
+                        {"name": "node7", "subscribe": "topic6", "publish": "topic7", "payload": "128B"},
+                        {"name": "node8", "subscribe": "topic7", "publish": "topic8", "payload": "128B"},
+                        {"name": "node9", "subscribe": "topic8", "publish": "NONE", "payload": "128B"}
+                    ],
+                },
+            ]
+        },
+
+        ######## 9 NODES - 3 exec - ssm - 111222333
+        {
+            "executors": [
+                {
+                    "name": "executor1",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node1", "subscribe": "NONE", "publish": "topic1", "payload": "128B"},
+                        {"name": "node2", "subscribe": "topic1", "publish": "topic2", "payload": "128B"},
+                        {"name": "node3", "subscribe": "topic2", "publish": "topic3", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor2",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node4", "subscribe": "topic3", "publish": "topic4", "payload": "128B"},
+                        {"name": "node5", "subscribe": "topic4", "publish": "topic5", "payload": "128B"},
+                        {"name": "node6", "subscribe": "topic5", "publish": "topic6", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor3",
+                    "type": "multi_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node7", "subscribe": "topic6", "publish": "topic7", "payload": "128B"},
+                        {"name": "node8", "subscribe": "topic7", "publish": "topic8", "payload": "128B"},
+                        {"name": "node9", "subscribe": "topic8", "publish": "NONE", "payload": "128B"}
+                    ],
+                },
+            ]
+        },
+
+        {
+            "executors": [
+                {
+                    "name": "executor1",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node1", "subscribe": "NONE", "publish": "topic1", "payload": "128B"},
+                        {"name": "node2", "subscribe": "topic1", "publish": "topic2", "payload": "128B"},
+                        {"name": "node3", "subscribe": "topic2", "publish": "topic3", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor2",
+                    "type": "single_threaded",
+                    "cores": [2],
+                    "nodes": [
+                        {"name": "node4", "subscribe": "topic3", "publish": "topic4", "payload": "128B"},
+                        {"name": "node5", "subscribe": "topic4", "publish": "topic5", "payload": "128B"},
+                        {"name": "node6", "subscribe": "topic5", "publish": "topic6", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor3",
+                    "type": "multi_threaded",
+                    "cores": [3],
+                    "nodes": [
+                        {"name": "node7", "subscribe": "topic6", "publish": "topic7", "payload": "128B"},
+                        {"name": "node8", "subscribe": "topic7", "publish": "topic8", "payload": "128B"},
+                        {"name": "node9", "subscribe": "topic8", "publish": "NONE", "payload": "128B"}
+                    ],
+                },
+            ]
+        },
+
+        ######## 9 NODES - 3 execs - sss - 111111123
+        {
+            "executors": [
+                {
+                    "name": "executor1",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node1", "subscribe": "NONE", "publish": "topic1", "payload": "128B"},
+                        {"name": "node2", "subscribe": "topic1", "publish": "topic2", "payload": "128B"},
+                        {"name": "node3", "subscribe": "topic2", "publish": "topic3", "payload": "128B"},
+                        {"name": "node4", "subscribe": "topic3", "publish": "topic4", "payload": "128B"},
+                        {"name": "node5", "subscribe": "topic4", "publish": "topic5", "payload": "128B"},
+                        {"name": "node6", "subscribe": "topic5", "publish": "topic6", "payload": "128B"},
+                        {"name": "node7", "subscribe": "topic6", "publish": "topic7", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor2",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node8", "subscribe": "topic7", "publish": "topic8", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor3",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node9", "subscribe": "topic8", "publish": "NONE", "payload": "128B"}
+                    ],
+                },
+            ]
+        },
+
+        {
+            "executors": [
+                {
+                    "name": "executor1",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node1", "subscribe": "NONE", "publish": "topic1", "payload": "128B"},
+                        {"name": "node2", "subscribe": "topic1", "publish": "topic2", "payload": "128B"},
+                        {"name": "node3", "subscribe": "topic2", "publish": "topic3", "payload": "128B"},
+                        {"name": "node4", "subscribe": "topic3", "publish": "topic4", "payload": "128B"},
+                        {"name": "node5", "subscribe": "topic4", "publish": "topic5", "payload": "128B"},
+                        {"name": "node6", "subscribe": "topic5", "publish": "topic6", "payload": "128B"},
+                        {"name": "node7", "subscribe": "topic6", "publish": "topic7", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor2",
+                    "type": "single_threaded",
+                    "cores": [2],
+                    "nodes": [
+                        {"name": "node8", "subscribe": "topic7", "publish": "topic8", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor3",
+                    "type": "single_threaded",
+                    "cores": [3],
+                    "nodes": [
+                        {"name": "node9", "subscribe": "topic8", "publish": "NONE", "payload": "128B"}
+                    ],
+                },
+            ]
+        },
+
+        {
+            "executors": [
+                {
+                    "name": "executor1",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node1", "subscribe": "NONE", "publish": "topic1", "payload": "128B"},
+                        {"name": "node2", "subscribe": "topic1", "publish": "topic2", "payload": "128B"},
+                        {"name": "node3", "subscribe": "topic2", "publish": "topic3", "payload": "128B"},
+                        {"name": "node4", "subscribe": "topic3", "publish": "topic4", "payload": "128B"},
+                        {"name": "node5", "subscribe": "topic4", "publish": "topic5", "payload": "128B"},
+                        {"name": "node6", "subscribe": "topic5", "publish": "topic6", "payload": "128B"},
+                        {"name": "node7", "subscribe": "topic6", "publish": "topic7", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor2",
+                    "type": "single_threaded",
+                    "cores": [2],
+                    "nodes": [
+                        {"name": "node8", "subscribe": "topic7", "publish": "topic8", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor3",
+                    "type": "single_threaded",
+                    "cores": [2],
+                    "nodes": [
+                        {"name": "node9", "subscribe": "topic8", "publish": "NONE", "payload": "128B"}
+                    ],
+                },
+            ]
+        },
+
+        ######## 9 NODES - 3 execs - mmm - 111111123
+        {
+            "executors": [
+                {
+                    "name": "executor1",
+                    "type": "multi_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node1", "subscribe": "NONE", "publish": "topic1", "payload": "128B"},
+                        {"name": "node2", "subscribe": "topic1", "publish": "topic2", "payload": "128B"},
+                        {"name": "node3", "subscribe": "topic2", "publish": "topic3", "payload": "128B"},
+                        {"name": "node4", "subscribe": "topic3", "publish": "topic4", "payload": "128B"},
+                        {"name": "node5", "subscribe": "topic4", "publish": "topic5", "payload": "128B"},
+                        {"name": "node6", "subscribe": "topic5", "publish": "topic6", "payload": "128B"},
+                        {"name": "node7", "subscribe": "topic6", "publish": "topic7", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor2",
+                    "type": "multi_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node8", "subscribe": "topic7", "publish": "topic8", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor3",
+                    "type": "multi_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node9", "subscribe": "topic8", "publish": "NONE", "payload": "128B"}
+                    ],
+                },
+            ]
+        },
+
+        {
+            "executors": [
+                {
+                    "name": "executor1",
+                    "type": "multi_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node1", "subscribe": "NONE", "publish": "topic1", "payload": "128B"},
+                        {"name": "node2", "subscribe": "topic1", "publish": "topic2", "payload": "128B"},
+                        {"name": "node3", "subscribe": "topic2", "publish": "topic3", "payload": "128B"},
+                        {"name": "node4", "subscribe": "topic3", "publish": "topic4", "payload": "128B"},
+                        {"name": "node5", "subscribe": "topic4", "publish": "topic5", "payload": "128B"},
+                        {"name": "node6", "subscribe": "topic5", "publish": "topic6", "payload": "128B"},
+                        {"name": "node7", "subscribe": "topic6", "publish": "topic7", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor2",
+                    "type": "multi_threaded",
+                    "cores": [2],
+                    "nodes": [
+                        {"name": "node8", "subscribe": "topic7", "publish": "topic8", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor3",
+                    "type": "multi_threaded",
+                    "cores": [3],
+                    "nodes": [
+                        {"name": "node9", "subscribe": "topic8", "publish": "NONE", "payload": "128B"}
+                    ],
+                },
+            ]
+        },
+
+        {
+            "executors": [
+                {
+                    "name": "executor1",
+                    "type": "multi_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node1", "subscribe": "NONE", "publish": "topic1", "payload": "128B"},
+                        {"name": "node2", "subscribe": "topic1", "publish": "topic2", "payload": "128B"},
+                        {"name": "node3", "subscribe": "topic2", "publish": "topic3", "payload": "128B"},
+                        {"name": "node4", "subscribe": "topic3", "publish": "topic4", "payload": "128B"},
+                        {"name": "node5", "subscribe": "topic4", "publish": "topic5", "payload": "128B"},
+                        {"name": "node6", "subscribe": "topic5", "publish": "topic6", "payload": "128B"},
+                        {"name": "node7", "subscribe": "topic6", "publish": "topic7", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor2",
+                    "type": "multi_threaded",
+                    "cores": [2],
+                    "nodes": [
+                        {"name": "node8", "subscribe": "topic7", "publish": "topic8", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor3",
+                    "type": "multi_threaded",
+                    "cores": [2],
+                    "nodes": [
+                        {"name": "node9", "subscribe": "topic8", "publish": "NONE", "payload": "128B"}
+                    ],
+                },
+            ]
+        },
+
+        ######## 9 NODES - 3 execs - sss - 111122233
+        {
+            "executors": [
+                {
+                    "name": "executor1",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node1", "subscribe": "NONE", "publish": "topic1", "payload": "128B"},
+                        {"name": "node2", "subscribe": "topic1", "publish": "topic2", "payload": "128B"},
+                        {"name": "node3", "subscribe": "topic2", "publish": "topic3", "payload": "128B"},
+                        {"name": "node4", "subscribe": "topic3", "publish": "topic4", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor2",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node5", "subscribe": "topic4", "publish": "topic5", "payload": "128B"},
+                        {"name": "node6", "subscribe": "topic5", "publish": "topic6", "payload": "128B"},
+                        {"name": "node7", "subscribe": "topic6", "publish": "topic7", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor3",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node8", "subscribe": "topic7", "publish": "topic8", "payload": "128B"},
+                        {"name": "node9", "subscribe": "topic8", "publish": "NONE", "payload": "128B"}
+                    ],
+                },
+            ]
+        },
+
+        {
+            "executors": [
+                {
+                    "name": "executor1",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node1", "subscribe": "NONE", "publish": "topic1", "payload": "128B"},
+                        {"name": "node2", "subscribe": "topic1", "publish": "topic2", "payload": "128B"},
+                        {"name": "node3", "subscribe": "topic2", "publish": "topic3", "payload": "128B"},
+                        {"name": "node4", "subscribe": "topic3", "publish": "topic4", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor2",
+                    "type": "single_threaded",
+                    "cores": [2],
+                    "nodes": [
+                        {"name": "node5", "subscribe": "topic4", "publish": "topic5", "payload": "128B"},
+                        {"name": "node6", "subscribe": "topic5", "publish": "topic6", "payload": "128B"},
+                        {"name": "node7", "subscribe": "topic6", "publish": "topic7", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor3",
+                    "type": "single_threaded",
+                    "cores": [3],
+                    "nodes": [
+                        {"name": "node8", "subscribe": "topic7", "publish": "topic8", "payload": "128B"},
+                        {"name": "node9", "subscribe": "topic8", "publish": "NONE", "payload": "128B"}
+                    ],
+                },
+            ]
+        },
+
+        ######## 9 NODES - 3 execs - mmm - 111122233
+        {
+            "executors": [
+                {
+                    "name": "executor1",
+                    "type": "multi_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node1", "subscribe": "NONE", "publish": "topic1", "payload": "128B"},
+                        {"name": "node2", "subscribe": "topic1", "publish": "topic2", "payload": "128B"},
+                        {"name": "node3", "subscribe": "topic2", "publish": "topic3", "payload": "128B"},
+                        {"name": "node4", "subscribe": "topic3", "publish": "topic4", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor2",
+                    "type": "multi_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node5", "subscribe": "topic4", "publish": "topic5", "payload": "128B"},
+                        {"name": "node6", "subscribe": "topic5", "publish": "topic6", "payload": "128B"},
+                        {"name": "node7", "subscribe": "topic6", "publish": "topic7", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor3",
+                    "type": "multi_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node8", "subscribe": "topic7", "publish": "topic8", "payload": "128B"},
+                        {"name": "node9", "subscribe": "topic8", "publish": "NONE", "payload": "128B"}
+                    ],
+                },
+            ]
+        },
+
+        {
+            "executors": [
+                {
+                    "name": "executor1",
+                    "type": "multi_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node1", "subscribe": "NONE", "publish": "topic1", "payload": "128B"},
+                        {"name": "node2", "subscribe": "topic1", "publish": "topic2", "payload": "128B"},
+                        {"name": "node3", "subscribe": "topic2", "publish": "topic3", "payload": "128B"},
+                        {"name": "node4", "subscribe": "topic3", "publish": "topic4", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor2",
+                    "type": "multi_threaded",
+                    "cores": [2],
+                    "nodes": [
+                        {"name": "node5", "subscribe": "topic4", "publish": "topic5", "payload": "128B"},
+                        {"name": "node6", "subscribe": "topic5", "publish": "topic6", "payload": "128B"},
+                        {"name": "node7", "subscribe": "topic6", "publish": "topic7", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor3",
+                    "type": "multi_threaded",
+                    "cores": [3],
+                    "nodes": [
+                        {"name": "node8", "subscribe": "topic7", "publish": "topic8", "payload": "128B"},
+                        {"name": "node9", "subscribe": "topic8", "publish": "NONE", "payload": "128B"}
+                    ],
+                },
+            ]
+        },
+
+        ######## 9 NODES - 3 execs - ssm - 111122233
+        {
+            "executors": [
+                {
+                    "name": "executor1",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node1", "subscribe": "NONE", "publish": "topic1", "payload": "128B"},
+                        {"name": "node2", "subscribe": "topic1", "publish": "topic2", "payload": "128B"},
+                        {"name": "node3", "subscribe": "topic2", "publish": "topic3", "payload": "128B"},
+                        {"name": "node4", "subscribe": "topic3", "publish": "topic4", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor2",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node5", "subscribe": "topic4", "publish": "topic5", "payload": "128B"},
+                        {"name": "node6", "subscribe": "topic5", "publish": "topic6", "payload": "128B"},
+                        {"name": "node7", "subscribe": "topic6", "publish": "topic7", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor3",
+                    "type": "multi_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node8", "subscribe": "topic7", "publish": "topic8", "payload": "128B"},
+                        {"name": "node9", "subscribe": "topic8", "publish": "NONE", "payload": "128B"}
+                    ],
+                },
+            ]
+        },
+
+        {
+            "executors": [
+                {
+                    "name": "executor1",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node1", "subscribe": "NONE", "publish": "topic1", "payload": "128B"},
+                        {"name": "node2", "subscribe": "topic1", "publish": "topic2", "payload": "128B"},
+                        {"name": "node3", "subscribe": "topic2", "publish": "topic3", "payload": "128B"},
+                        {"name": "node4", "subscribe": "topic3", "publish": "topic4", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor2",
+                    "type": "single_threaded",
+                    "cores": [2],
+                    "nodes": [
+                        {"name": "node5", "subscribe": "topic4", "publish": "topic5", "payload": "128B"},
+                        {"name": "node6", "subscribe": "topic5", "publish": "topic6", "payload": "128B"},
+                        {"name": "node7", "subscribe": "topic6", "publish": "topic7", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor3",
+                    "type": "multi_threaded",
+                    "cores": [3],
+                    "nodes": [
+                        {"name": "node8", "subscribe": "topic7", "publish": "topic8", "payload": "128B"},
+                        {"name": "node9", "subscribe": "topic8", "publish": "NONE", "payload": "128B"}
+                    ],
+                },
+            ]
+        },
+
+        ######## 9 NODES - 3 execs - mms - 111122233
+        {
+            "executors": [
+                {
+                    "name": "executor1",
+                    "type": "multi_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node1", "subscribe": "NONE", "publish": "topic1", "payload": "128B"},
+                        {"name": "node2", "subscribe": "topic1", "publish": "topic2", "payload": "128B"},
+                        {"name": "node3", "subscribe": "topic2", "publish": "topic3", "payload": "128B"},
+                        {"name": "node4", "subscribe": "topic3", "publish": "topic4", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor2",
+                    "type": "multi_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node5", "subscribe": "topic4", "publish": "topic5", "payload": "128B"},
+                        {"name": "node6", "subscribe": "topic5", "publish": "topic6", "payload": "128B"},
+                        {"name": "node7", "subscribe": "topic6", "publish": "topic7", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor3",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node8", "subscribe": "topic7", "publish": "topic8", "payload": "128B"},
+                        {"name": "node9", "subscribe": "topic8", "publish": "NONE", "payload": "128B"}
+                    ],
+                },
+            ]
+        },
+
+        {
+            "executors": [
+                {
+                    "name": "executor1",
+                    "type": "multi_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node1", "subscribe": "NONE", "publish": "topic1", "payload": "128B"},
+                        {"name": "node2", "subscribe": "topic1", "publish": "topic2", "payload": "128B"},
+                        {"name": "node3", "subscribe": "topic2", "publish": "topic3", "payload": "128B"},
+                        {"name": "node4", "subscribe": "topic3", "publish": "topic4", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor2",
+                    "type": "multi_threaded",
+                    "cores": [2],
+                    "nodes": [
+                        {"name": "node5", "subscribe": "topic4", "publish": "topic5", "payload": "128B"},
+                        {"name": "node6", "subscribe": "topic5", "publish": "topic6", "payload": "128B"},
+                        {"name": "node7", "subscribe": "topic6", "publish": "topic7", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor3",
+                    "type": "single_threaded",
+                    "cores": [3],
+                    "nodes": [
+                        {"name": "node8", "subscribe": "topic7", "publish": "topic8", "payload": "128B"},
+                        {"name": "node9", "subscribe": "topic8", "publish": "NONE", "payload": "128B"}
+                    ],
+                },
+            ]
+        },
+
+        ######## 9 NODES - 6 execs - ssssss - 112233456
+        {
+            "executors": [
+                {
+                    "name": "executor1",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node1", "subscribe": "NONE", "publish": "topic1", "payload": "128B"},
+                        {"name": "node2", "subscribe": "topic1", "publish": "topic2", "payload": "128B"},
+                    ],
+                },
+
+                {
+                    "name": "executor2",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node3", "subscribe": "topic2", "publish": "topic3", "payload": "128B"},
+                        {"name": "node4", "subscribe": "topic3", "publish": "topic4", "payload": "128B"},
+                    ],
+                },
+
+                {
+                    "name": "executor3",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node5", "subscribe": "topic4", "publish": "topic5", "payload": "128B"},
+                        {"name": "node6", "subscribe": "topic5", "publish": "topic6", "payload": "128B"},
+                    ],
+                },
+
+                {
+                    "name": "executor4",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node7", "subscribe": "topic6", "publish": "topic7", "payload": "128B"},
+                    ],
+                },
+
+                {
+                    "name": "executor5",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node8", "subscribe": "topic7", "publish": "topic8", "payload": "128B"},
+                    ],
+                },
+
+                {
+                    "name": "executor6",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node9", "subscribe": "topic8", "publish": "NONE", "payload": "128B"}
+                    ],
+                },
+            ]
+        },
+
+        {
+            "executors": [
+                {
+                    "name": "executor1",
+                    "type": "single_threaded",
+                    "cores": [0],
+                    "nodes": [
+                        {"name": "node1", "subscribe": "NONE", "publish": "topic1", "payload": "128B"},
+                        {"name": "node2", "subscribe": "topic1", "publish": "topic2", "payload": "128B"},
+                    ],
+                },
+
+                {
+                    "name": "executor2",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node3", "subscribe": "topic2", "publish": "topic3", "payload": "128B"},
+                        {"name": "node4", "subscribe": "topic3", "publish": "topic4", "payload": "128B"},
+                    ],
+                },
+
+                {
+                    "name": "executor3",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node5", "subscribe": "topic4", "publish": "topic5", "payload": "128B"},
+                        {"name": "node6", "subscribe": "topic5", "publish": "topic6", "payload": "128B"},
+                    ],
+                },
+
+                {
+                    "name": "executor4",
+                    "type": "single_threaded",
+                    "cores": [2],
+                    "nodes": [
+                        {"name": "node7", "subscribe": "topic6", "publish": "topic7", "payload": "128B"},
+                    ],
+                },
+
+                {
+                    "name": "executor5",
+                    "type": "single_threaded",
+                    "cores": [2],
+                    "nodes": [
+                        {"name": "node8", "subscribe": "topic7", "publish": "topic8", "payload": "128B"},
+                    ],
+                },
+
+                {
+                    "name": "executor6",
+                    "type": "single_threaded",
+                    "cores": [3],
+                    "nodes": [
+                        {"name": "node9", "subscribe": "topic8", "publish": "NONE", "payload": "128B"}
+                    ],
+                },
+            ]
+        },
+
+        ######## 9 NODES - 6 execs - mmmmmm - 112233456
+        {
+            "executors": [
+                {
+                    "name": "executor1",
+                    "type": "multi_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node1", "subscribe": "NONE", "publish": "topic1", "payload": "128B"},
+                        {"name": "node2", "subscribe": "topic1", "publish": "topic2", "payload": "128B"},
+                    ],
+                },
+
+                {
+                    "name": "executor2",
+                    "type": "multi_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node3", "subscribe": "topic2", "publish": "topic3", "payload": "128B"},
+                        {"name": "node4", "subscribe": "topic3", "publish": "topic4", "payload": "128B"},
+                    ],
+                },
+
+                {
+                    "name": "executor3",
+                    "type": "multi_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node5", "subscribe": "topic4", "publish": "topic5", "payload": "128B"},
+                        {"name": "node6", "subscribe": "topic5", "publish": "topic6", "payload": "128B"},
+                    ],
+                },
+
+                {
+                    "name": "executor4",
+                    "type": "multi_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node7", "subscribe": "topic6", "publish": "topic7", "payload": "128B"},
+                    ],
+                },
+
+                {
+                    "name": "executor5",
+                    "type": "multi_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node8", "subscribe": "topic7", "publish": "topic8", "payload": "128B"},
+                    ],
+                },
+
+                {
+                    "name": "executor6",
+                    "type": "multi_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node9", "subscribe": "topic8", "publish": "NONE", "payload": "128B"}
+                    ],
+                },
+            ]
+        },
+
+        {
+            "executors": [
+                {
+                    "name": "executor1",
+                    "type": "multi_threaded",
+                    "cores": [0],
+                    "nodes": [
+                        {"name": "node1", "subscribe": "NONE", "publish": "topic1", "payload": "128B"},
+                        {"name": "node2", "subscribe": "topic1", "publish": "topic2", "payload": "128B"},
+                    ],
+                },
+
+                {
+                    "name": "executor2",
+                    "type": "multi_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node3", "subscribe": "topic2", "publish": "topic3", "payload": "128B"},
+                        {"name": "node4", "subscribe": "topic3", "publish": "topic4", "payload": "128B"},
+                    ],
+                },
+
+                {
+                    "name": "executor3",
+                    "type": "multi_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node5", "subscribe": "topic4", "publish": "topic5", "payload": "128B"},
+                        {"name": "node6", "subscribe": "topic5", "publish": "topic6", "payload": "128B"},
+                    ],
+                },
+
+                {
+                    "name": "executor4",
+                    "type": "multi_threaded",
+                    "cores": [2],
+                    "nodes": [
+                        {"name": "node7", "subscribe": "topic6", "publish": "topic7", "payload": "128B"},
+                    ],
+                },
+
+                {
+                    "name": "executor5",
+                    "type": "multi_threaded",
+                    "cores": [2],
+                    "nodes": [
+                        {"name": "node8", "subscribe": "topic7", "publish": "topic8", "payload": "128B"},
+                    ],
+                },
+
+                {
+                    "name": "executor6",
+                    "type": "multi_threaded",
+                    "cores": [3],
+                    "nodes": [
+                        {"name": "node9", "subscribe": "topic8", "publish": "NONE", "payload": "128B"}
+                    ],
+                },
+            ]
+        },
+
+        ######## 9 NODES - 6 execs - sssmmm - 112233456
+        {
+            "executors": [
+                {
+                    "name": "executor1",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node1", "subscribe": "NONE", "publish": "topic1", "payload": "128B"},
+                        {"name": "node2", "subscribe": "topic1", "publish": "topic2", "payload": "128B"},
+                    ],
+                },
+
+                {
+                    "name": "executor2",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node3", "subscribe": "topic2", "publish": "topic3", "payload": "128B"},
+                        {"name": "node4", "subscribe": "topic3", "publish": "topic4", "payload": "128B"},
+                    ],
+                },
+
+                {
+                    "name": "executor3",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node5", "subscribe": "topic4", "publish": "topic5", "payload": "128B"},
+                        {"name": "node6", "subscribe": "topic5", "publish": "topic6", "payload": "128B"},
+                    ],
+                },
+
+                {
+                    "name": "executor4",
+                    "type": "multi_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node7", "subscribe": "topic6", "publish": "topic7", "payload": "128B"},
+                    ],
+                },
+
+                {
+                    "name": "executor5",
+                    "type": "multi_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node8", "subscribe": "topic7", "publish": "topic8", "payload": "128B"},
+                    ],
+                },
+
+                {
+                    "name": "executor6",
+                    "type": "multi_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node9", "subscribe": "topic8", "publish": "NONE", "payload": "128B"}
+                    ],
+                },
+            ]
+        },
+
+        {
+            "executors": [
+                {
+                    "name": "executor1",
+                    "type": "single_threaded",
+                    "cores": [0],
+                    "nodes": [
+                        {"name": "node1", "subscribe": "NONE", "publish": "topic1", "payload": "128B"},
+                        {"name": "node2", "subscribe": "topic1", "publish": "topic2", "payload": "128B"},
+                    ],
+                },
+
+                {
+                    "name": "executor2",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node3", "subscribe": "topic2", "publish": "topic3", "payload": "128B"},
+                        {"name": "node4", "subscribe": "topic3", "publish": "topic4", "payload": "128B"},
+                    ],
+                },
+
+                {
+                    "name": "executor3",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node5", "subscribe": "topic4", "publish": "topic5", "payload": "128B"},
+                        {"name": "node6", "subscribe": "topic5", "publish": "topic6", "payload": "128B"},
+                    ],
+                },
+
+                {
+                    "name": "executor4",
+                    "type": "multi_threaded",
+                    "cores": [2],
+                    "nodes": [
+                        {"name": "node7", "subscribe": "topic6", "publish": "topic7", "payload": "128B"},
+                    ],
+                },
+
+                {
+                    "name": "executor5",
+                    "type": "multi_threaded",
+                    "cores": [2],
+                    "nodes": [
+                        {"name": "node8", "subscribe": "topic7", "publish": "topic8", "payload": "128B"},
+                    ],
+                },
+
+                {
+                    "name": "executor6",
+                    "type": "multi_threaded",
+                    "cores": [3],
+                    "nodes": [
+                        {"name": "node9", "subscribe": "topic8", "publish": "NONE", "payload": "128B"}
+                    ],
+                },
+            ]
+        },
+
+        ######## 9 NODES - 6 execs - mmmsss - 112233456
+        {
+            "executors": [
+                {
+                    "name": "executor1",
+                    "type": "multi_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node1", "subscribe": "NONE", "publish": "topic1", "payload": "128B"},
+                        {"name": "node2", "subscribe": "topic1", "publish": "topic2", "payload": "128B"},
+                    ],
+                },
+
+                {
+                    "name": "executor2",
+                    "type": "multi_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node3", "subscribe": "topic2", "publish": "topic3", "payload": "128B"},
+                        {"name": "node4", "subscribe": "topic3", "publish": "topic4", "payload": "128B"},
+                    ],
+                },
+
+                {
+                    "name": "executor3",
+                    "type": "multi_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node5", "subscribe": "topic4", "publish": "topic5", "payload": "128B"},
+                        {"name": "node6", "subscribe": "topic5", "publish": "topic6", "payload": "128B"},
+                    ],
+                },
+
+                {
+                    "name": "executor4",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node7", "subscribe": "topic6", "publish": "topic7", "payload": "128B"},
+                    ],
+                },
+
+                {
+                    "name": "executor5",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node8", "subscribe": "topic7", "publish": "topic8", "payload": "128B"},
+                    ],
+                },
+
+                {
+                    "name": "executor6",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node9", "subscribe": "topic8", "publish": "NONE", "payload": "128B"}
+                    ],
+                },
+            ]
+        },
+
+        {
+            "executors": [
+                {
+                    "name": "executor1",
+                    "type": "multi_threaded",
+                    "cores": [0],
+                    "nodes": [
+                        {"name": "node1", "subscribe": "NONE", "publish": "topic1", "payload": "128B"},
+                        {"name": "node2", "subscribe": "topic1", "publish": "topic2", "payload": "128B"},
+                    ],
+                },
+
+                {
+                    "name": "executor2",
+                    "type": "multi_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node3", "subscribe": "topic2", "publish": "topic3", "payload": "128B"},
+                        {"name": "node4", "subscribe": "topic3", "publish": "topic4", "payload": "128B"},
+                    ],
+                },
+
+                {
+                    "name": "executor3",
+                    "type": "multi_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node5", "subscribe": "topic4", "publish": "topic5", "payload": "128B"},
+                        {"name": "node6", "subscribe": "topic5", "publish": "topic6", "payload": "128B"},
+                    ],
+                },
+
+                {
+                    "name": "executor4",
+                    "type": "single_threaded",
+                    "cores": [2],
+                    "nodes": [
+                        {"name": "node7", "subscribe": "topic6", "publish": "topic7", "payload": "128B"},
+                    ],
+                },
+
+                {
+                    "name": "executor5",
+                    "type": "single_threaded",
+                    "cores": [2],
+                    "nodes": [
+                        {"name": "node8", "subscribe": "topic7", "publish": "topic8", "payload": "128B"},
+                    ],
+                },
+
+                {
+                    "name": "executor6",
+                    "type": "single_threaded",
+                    "cores": [3],
+                    "nodes": [
+                        {"name": "node9", "subscribe": "topic8", "publish": "NONE", "payload": "128B"}
+                    ],
+                },
+            ]
+        },
+
+        ######## 9 NODES - 6 execs - ssssss - 111123456
+        {
+            "executors": [
+                {
+                    "name": "executor1",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node1", "subscribe": "NONE", "publish": "topic1", "payload": "128B"},
+                        {"name": "node2", "subscribe": "topic1", "publish": "topic2", "payload": "128B"},
+                        {"name": "node3", "subscribe": "topic2", "publish": "topic3", "payload": "128B"},
+                        {"name": "node4", "subscribe": "topic3", "publish": "topic4", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor2",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node5", "subscribe": "topic4", "publish": "topic5", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor3",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node6", "subscribe": "topic5", "publish": "topic6", "payload": "128B"},
+                    ],
+                },
+
+                {
+                    "name": "executor4",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node7", "subscribe": "topic6", "publish": "topic7", "payload": "128B"},
+                    ],
+                },
+
+                {
+                    "name": "executor5",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node8", "subscribe": "topic7", "publish": "topic8", "payload": "128B"},
+                    ],
+                },
+
+                {
+                    "name": "executor6",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node9", "subscribe": "topic8", "publish": "NONE", "payload": "128B"}
+                    ],
+                },
+            ]
+        },
+
+        {
+            "executors": [
+                {
+                    "name": "executor1",
+                    "type": "single_threaded",
+                    "cores": [0],
+                    "nodes": [
+                        {"name": "node1", "subscribe": "NONE", "publish": "topic1", "payload": "128B"},
+                        {"name": "node2", "subscribe": "topic1", "publish": "topic2", "payload": "128B"},
+                        {"name": "node3", "subscribe": "topic2", "publish": "topic3", "payload": "128B"},
+                        {"name": "node4", "subscribe": "topic3", "publish": "topic4", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor2",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node5", "subscribe": "topic4", "publish": "topic5", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor3",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node6", "subscribe": "topic5", "publish": "topic6", "payload": "128B"},
+                    ],
+                },
+
+                {
+                    "name": "executor4",
+                    "type": "single_threaded",
+                    "cores": [2],
+                    "nodes": [
+                        {"name": "node7", "subscribe": "topic6", "publish": "topic7", "payload": "128B"},
+                    ],
+                },
+
+                {
+                    "name": "executor5",
+                    "type": "single_threaded",
+                    "cores": [2],
+                    "nodes": [
+                        {"name": "node8", "subscribe": "topic7", "publish": "topic8", "payload": "128B"},
+                    ],
+                },
+
+                {
+                    "name": "executor6",
+                    "type": "single_threaded",
+                    "cores": [3],
+                    "nodes": [
+                        {"name": "node9", "subscribe": "topic8", "publish": "NONE", "payload": "128B"}
+                    ],
+                },
+            ]
+        },
+
+        {
+            "executors": [
+                {
+                    "name": "executor1",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node1", "subscribe": "NONE", "publish": "topic1", "payload": "128B"},
+                        {"name": "node2", "subscribe": "topic1", "publish": "topic2", "payload": "128B"},
+                        {"name": "node3", "subscribe": "topic2", "publish": "topic3", "payload": "128B"},
+                        {"name": "node4", "subscribe": "topic3", "publish": "topic4", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor2",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node5", "subscribe": "topic4", "publish": "topic5", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor3",
+                    "type": "single_threaded",
+                    "cores": [2],
+                    "nodes": [
+                        {"name": "node6", "subscribe": "topic5", "publish": "topic6", "payload": "128B"},
+                    ],
+                },
+
+                {
+                    "name": "executor4",
+                    "type": "single_threaded",
+                    "cores": [2],
+                    "nodes": [
+                        {"name": "node7", "subscribe": "topic6", "publish": "topic7", "payload": "128B"},
+                    ],
+                },
+
+                {
+                    "name": "executor5",
+                    "type": "single_threaded",
+                    "cores": [2],
+                    "nodes": [
+                        {"name": "node8", "subscribe": "topic7", "publish": "topic8", "payload": "128B"},
+                    ],
+                },
+
+                {
+                    "name": "executor6",
+                    "type": "single_threaded",
+                    "cores": [2],
+                    "nodes": [
+                        {"name": "node9", "subscribe": "topic8", "publish": "NONE", "payload": "128B"}
+                    ],
+                },
+            ]
+        },
+
+        ######## 9 NODES - 6 execs - mmmmmm - 111123456
+        {
+            "executors": [
+                {
+                    "name": "executor1",
+                    "type": "multi_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node1", "subscribe": "NONE", "publish": "topic1", "payload": "128B"},
+                        {"name": "node2", "subscribe": "topic1", "publish": "topic2", "payload": "128B"},
+                        {"name": "node3", "subscribe": "topic2", "publish": "topic3", "payload": "128B"},
+                        {"name": "node4", "subscribe": "topic3", "publish": "topic4", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor2",
+                    "type": "multi_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node5", "subscribe": "topic4", "publish": "topic5", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor3",
+                    "type": "multi_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node6", "subscribe": "topic5", "publish": "topic6", "payload": "128B"},
+                    ],
+                },
+
+                {
+                    "name": "executor4",
+                    "type": "multi_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node7", "subscribe": "topic6", "publish": "topic7", "payload": "128B"},
+                    ],
+                },
+
+                {
+                    "name": "executor5",
+                    "type": "multi_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node8", "subscribe": "topic7", "publish": "topic8", "payload": "128B"},
+                    ],
+                },
+
+                {
+                    "name": "executor6",
+                    "type": "multi_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node9", "subscribe": "topic8", "publish": "NONE", "payload": "128B"}
+                    ],
+                },
+            ]
+        },
+
+        {
+            "executors": [
+                {
+                    "name": "executor1",
+                    "type": "multi_threaded",
+                    "cores": [0],
+                    "nodes": [
+                        {"name": "node1", "subscribe": "NONE", "publish": "topic1", "payload": "128B"},
+                        {"name": "node2", "subscribe": "topic1", "publish": "topic2", "payload": "128B"},
+                        {"name": "node3", "subscribe": "topic2", "publish": "topic3", "payload": "128B"},
+                        {"name": "node4", "subscribe": "topic3", "publish": "topic4", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor2",
+                    "type": "multi_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node5", "subscribe": "topic4", "publish": "topic5", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor3",
+                    "type": "multi_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node6", "subscribe": "topic5", "publish": "topic6", "payload": "128B"},
+                    ],
+                },
+
+                {
+                    "name": "executor4",
+                    "type": "multi_threaded",
+                    "cores": [2],
+                    "nodes": [
+                        {"name": "node7", "subscribe": "topic6", "publish": "topic7", "payload": "128B"},
+                    ],
+                },
+
+                {
+                    "name": "executor5",
+                    "type": "multi_threaded",
+                    "cores": [2],
+                    "nodes": [
+                        {"name": "node8", "subscribe": "topic7", "publish": "topic8", "payload": "128B"},
+                    ],
+                },
+
+                {
+                    "name": "executor6",
+                    "type": "multi_threaded",
+                    "cores": [3],
+                    "nodes": [
+                        {"name": "node9", "subscribe": "topic8", "publish": "NONE", "payload": "128B"}
+                    ],
+                },
+            ]
+        },
+
+        {
+            "executors": [
+                {
+                    "name": "executor1",
+                    "type": "multi_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node1", "subscribe": "NONE", "publish": "topic1", "payload": "128B"},
+                        {"name": "node2", "subscribe": "topic1", "publish": "topic2", "payload": "128B"},
+                        {"name": "node3", "subscribe": "topic2", "publish": "topic3", "payload": "128B"},
+                        {"name": "node4", "subscribe": "topic3", "publish": "topic4", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor2",
+                    "type": "multi_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node5", "subscribe": "topic4", "publish": "topic5", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor3",
+                    "type": "multi_threaded",
+                    "cores": [2],
+                    "nodes": [
+                        {"name": "node6", "subscribe": "topic5", "publish": "topic6", "payload": "128B"},
+                    ],
+                },
+
+                {
+                    "name": "executor4",
+                    "type": "multi_threaded",
+                    "cores": [2],
+                    "nodes": [
+                        {"name": "node7", "subscribe": "topic6", "publish": "topic7", "payload": "128B"},
+                    ],
+                },
+
+                {
+                    "name": "executor5",
+                    "type": "multi_threaded",
+                    "cores": [2],
+                    "nodes": [
+                        {"name": "node8", "subscribe": "topic7", "publish": "topic8", "payload": "128B"},
+                    ],
+                },
+
+                {
+                    "name": "executor6",
+                    "type": "multi_threaded",
+                    "cores": [2],
+                    "nodes": [
+                        {"name": "node9", "subscribe": "topic8", "publish": "NONE", "payload": "128B"}
+                    ],
+                },
+            ]
+        },
+
+        ######## 9 NODES - 6 execs - sssmmm - 111123456
+        {
+            "executors": [
+                {
+                    "name": "executor1",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node1", "subscribe": "NONE", "publish": "topic1", "payload": "128B"},
+                        {"name": "node2", "subscribe": "topic1", "publish": "topic2", "payload": "128B"},
+                        {"name": "node3", "subscribe": "topic2", "publish": "topic3", "payload": "128B"},
+                        {"name": "node4", "subscribe": "topic3", "publish": "topic4", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor2",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node5", "subscribe": "topic4", "publish": "topic5", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor3",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node6", "subscribe": "topic5", "publish": "topic6", "payload": "128B"},
+                    ],
+                },
+
+                {
+                    "name": "executor4",
+                    "type": "multi_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node7", "subscribe": "topic6", "publish": "topic7", "payload": "128B"},
+                    ],
+                },
+
+                {
+                    "name": "executor5",
+                    "type": "multi_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node8", "subscribe": "topic7", "publish": "topic8", "payload": "128B"},
+                    ],
+                },
+
+                {
+                    "name": "executor6",
+                    "type": "multi_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node9", "subscribe": "topic8", "publish": "NONE", "payload": "128B"}
+                    ],
+                },
+            ]
+        },
+
+        {
+            "executors": [
+                {
+                    "name": "executor1",
+                    "type": "single_threaded",
+                    "cores": [0],
+                    "nodes": [
+                        {"name": "node1", "subscribe": "NONE", "publish": "topic1", "payload": "128B"},
+                        {"name": "node2", "subscribe": "topic1", "publish": "topic2", "payload": "128B"},
+                        {"name": "node3", "subscribe": "topic2", "publish": "topic3", "payload": "128B"},
+                        {"name": "node4", "subscribe": "topic3", "publish": "topic4", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor2",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node5", "subscribe": "topic4", "publish": "topic5", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor3",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node6", "subscribe": "topic5", "publish": "topic6", "payload": "128B"},
+                    ],
+                },
+
+                {
+                    "name": "executor4",
+                    "type": "multi_threaded",
+                    "cores": [2],
+                    "nodes": [
+                        {"name": "node7", "subscribe": "topic6", "publish": "topic7", "payload": "128B"},
+                    ],
+                },
+
+                {
+                    "name": "executor5",
+                    "type": "multi_threaded",
+                    "cores": [2],
+                    "nodes": [
+                        {"name": "node8", "subscribe": "topic7", "publish": "topic8", "payload": "128B"},
+                    ],
+                },
+
+                {
+                    "name": "executor6",
+                    "type": "multi_threaded",
+                    "cores": [3],
+                    "nodes": [
+                        {"name": "node9", "subscribe": "topic8", "publish": "NONE", "payload": "128B"}
+                    ],
+                },
+            ]
+        },
+
+        {
+            "executors": [
+                {
+                    "name": "executor1",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node1", "subscribe": "NONE", "publish": "topic1", "payload": "128B"},
+                        {"name": "node2", "subscribe": "topic1", "publish": "topic2", "payload": "128B"},
+                        {"name": "node3", "subscribe": "topic2", "publish": "topic3", "payload": "128B"},
+                        {"name": "node4", "subscribe": "topic3", "publish": "topic4", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor2",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node5", "subscribe": "topic4", "publish": "topic5", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor3",
+                    "type": "single_threaded",
+                    "cores": [2],
+                    "nodes": [
+                        {"name": "node6", "subscribe": "topic5", "publish": "topic6", "payload": "128B"},
+                    ],
+                },
+
+                {
+                    "name": "executor4",
+                    "type": "multi_threaded",
+                    "cores": [2],
+                    "nodes": [
+                        {"name": "node7", "subscribe": "topic6", "publish": "topic7", "payload": "128B"},
+                    ],
+                },
+
+                {
+                    "name": "executor5",
+                    "type": "multi_threaded",
+                    "cores": [2],
+                    "nodes": [
+                        {"name": "node8", "subscribe": "topic7", "publish": "topic8", "payload": "128B"},
+                    ],
+                },
+
+                {
+                    "name": "executor6",
+                    "type": "multi_threaded",
+                    "cores": [2],
+                    "nodes": [
+                        {"name": "node9", "subscribe": "topic8", "publish": "NONE", "payload": "128B"}
+                    ],
+                },
+            ]
+        },
+
+        ######## 9 NODES - 6 execs - mmmsss - 111123456
+        {
+            "executors": [
+                {
+                    "name": "executor1",
+                    "type": "multi_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node1", "subscribe": "NONE", "publish": "topic1", "payload": "128B"},
+                        {"name": "node2", "subscribe": "topic1", "publish": "topic2", "payload": "128B"},
+                        {"name": "node3", "subscribe": "topic2", "publish": "topic3", "payload": "128B"},
+                        {"name": "node4", "subscribe": "topic3", "publish": "topic4", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor2",
+                    "type": "multi_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node5", "subscribe": "topic4", "publish": "topic5", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor3",
+                    "type": "multi_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node6", "subscribe": "topic5", "publish": "topic6", "payload": "128B"},
+                    ],
+                },
+
+                {
+                    "name": "executor4",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node7", "subscribe": "topic6", "publish": "topic7", "payload": "128B"},
+                    ],
+                },
+
+                {
+                    "name": "executor5",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node8", "subscribe": "topic7", "publish": "topic8", "payload": "128B"},
+                    ],
+                },
+
+                {
+                    "name": "executor6",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node9", "subscribe": "topic8", "publish": "NONE", "payload": "128B"}
+                    ],
+                },
+            ]
+        },
+
+        {
+            "executors": [
+                {
+                    "name": "executor1",
+                    "type": "multi_threaded",
+                    "cores": [0],
+                    "nodes": [
+                        {"name": "node1", "subscribe": "NONE", "publish": "topic1", "payload": "128B"},
+                        {"name": "node2", "subscribe": "topic1", "publish": "topic2", "payload": "128B"},
+                        {"name": "node3", "subscribe": "topic2", "publish": "topic3", "payload": "128B"},
+                        {"name": "node4", "subscribe": "topic3", "publish": "topic4", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor2",
+                    "type": "multi_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node5", "subscribe": "topic4", "publish": "topic5", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor3",
+                    "type": "multi_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node6", "subscribe": "topic5", "publish": "topic6", "payload": "128B"},
+                    ],
+                },
+
+                {
+                    "name": "executor4",
+                    "type": "single_threaded",
+                    "cores": [2],
+                    "nodes": [
+                        {"name": "node7", "subscribe": "topic6", "publish": "topic7", "payload": "128B"},
+                    ],
+                },
+
+                {
+                    "name": "executor5",
+                    "type": "single_threaded",
+                    "cores": [2],
+                    "nodes": [
+                        {"name": "node8", "subscribe": "topic7", "publish": "topic8", "payload": "128B"},
+                    ],
+                },
+
+                {
+                    "name": "executor6",
+                    "type": "single_threaded",
+                    "cores": [3],
+                    "nodes": [
+                        {"name": "node9", "subscribe": "topic8", "publish": "NONE", "payload": "128B"}
+                    ],
+                },
+            ]
+        },
+
+        {
+            "executors": [
+                {
+                    "name": "executor1",
+                    "type": "multi_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node1", "subscribe": "NONE", "publish": "topic1", "payload": "128B"},
+                        {"name": "node2", "subscribe": "topic1", "publish": "topic2", "payload": "128B"},
+                        {"name": "node3", "subscribe": "topic2", "publish": "topic3", "payload": "128B"},
+                        {"name": "node4", "subscribe": "topic3", "publish": "topic4", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor2",
+                    "type": "multi_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node5", "subscribe": "topic4", "publish": "topic5", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor3",
+                    "type": "multi_threaded",
+                    "cores": [2],
+                    "nodes": [
+                        {"name": "node6", "subscribe": "topic5", "publish": "topic6", "payload": "128B"},
+                    ],
+                },
+
+                {
+                    "name": "executor4",
+                    "type": "single_threaded",
+                    "cores": [2],
+                    "nodes": [
+                        {"name": "node7", "subscribe": "topic6", "publish": "topic7", "payload": "128B"},
+                    ],
+                },
+
+                {
+                    "name": "executor5",
+                    "type": "single_threaded",
+                    "cores": [2],
+                    "nodes": [
+                        {"name": "node8", "subscribe": "topic7", "publish": "topic8", "payload": "128B"},
+                    ],
+                },
+
+                {
+                    "name": "executor6",
+                    "type": "single_threaded",
+                    "cores": [2],
+                    "nodes": [
+                        {"name": "node9", "subscribe": "topic8", "publish": "NONE", "payload": "128B"}
+                    ],
+                },
+            ]
+        },
+
+        ######## 9 NODES - 9 exec - sssssssss
+        {
+            "executors": [
+                {
+                    "name": "executor1",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node1", "subscribe": "NONE", "publish": "topic1", "payload": "128B"},
+                    ],
+                },
+
+                {
+                    "name": "executor2",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node2", "subscribe": "topic1", "publish": "topic2", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor3",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node3", "subscribe": "topic2", "publish": "topic3", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor4",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node4", "subscribe": "topic3", "publish": "topic4", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor5",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node5", "subscribe": "topic4", "publish": "topic5", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor6",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node6", "subscribe": "topic5", "publish": "topic6", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor7",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node7", "subscribe": "topic6", "publish": "topic7", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor8",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node8", "subscribe": "topic7", "publish": "topic8", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor9",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node9", "subscribe": "topic8", "publish": "NONE", "payload": "128B"}
+                    ],
+                }
+            ]
+        },
+
+        {
+            "executors": [
+                {
+                    "name": "executor1",
+                    "type": "single_threaded",
+                    "cores": [0],
+                    "nodes": [
+                        {"name": "node1", "subscribe": "NONE", "publish": "topic1", "payload": "128B"},
+                    ],
+                },
+
+                {
+                    "name": "executor2",
+                    "type": "single_threaded",
+                    "cores": [0],
+                    "nodes": [
+                        {"name": "node2", "subscribe": "topic1", "publish": "topic2", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor3",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node3", "subscribe": "topic2", "publish": "topic3", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor4",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node4", "subscribe": "topic3", "publish": "topic4", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor5",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node5", "subscribe": "topic4", "publish": "topic5", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor6",
+                    "type": "single_threaded",
+                    "cores": [2],
+                    "nodes": [
+                        {"name": "node6", "subscribe": "topic5", "publish": "topic6", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor7",
+                    "type": "single_threaded",
+                    "cores": [2],
+                    "nodes": [
+                        {"name": "node7", "subscribe": "topic6", "publish": "topic7", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor8",
+                    "type": "single_threaded",
+                    "cores": [3],
+                    "nodes": [
+                        {"name": "node8", "subscribe": "topic7", "publish": "topic8", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor9",
+                    "type": "single_threaded",
+                    "cores": [3],
+                    "nodes": [
+                        {"name": "node9", "subscribe": "topic8", "publish": "NONE", "payload": "128B"}
+                    ],
+                }
+            ]
+        },
+
+        {
+            "executors": [
+                {
+                    "name": "executor1",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node1", "subscribe": "NONE", "publish": "topic1", "payload": "128B"},
+                    ],
+                },
+
+                {
+                    "name": "executor2",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node2", "subscribe": "topic1", "publish": "topic2", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor3",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node3", "subscribe": "topic2", "publish": "topic3", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor4",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node4", "subscribe": "topic3", "publish": "topic4", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor5",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node5", "subscribe": "topic4", "publish": "topic5", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor6",
+                    "type": "single_threaded",
+                    "cores": [2],
+                    "nodes": [
+                        {"name": "node6", "subscribe": "topic5", "publish": "topic6", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor7",
+                    "type": "single_threaded",
+                    "cores": [2],
+                    "nodes": [
+                        {"name": "node7", "subscribe": "topic6", "publish": "topic7", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor8",
+                    "type": "single_threaded",
+                    "cores": [2],
+                    "nodes": [
+                        {"name": "node8", "subscribe": "topic7", "publish": "topic8", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor9",
+                    "type": "single_threaded",
+                    "cores": [2],
+                    "nodes": [
+                        {"name": "node9", "subscribe": "topic8", "publish": "NONE", "payload": "128B"}
+                    ],
+                }
+            ]
+        },
+
+        ######## 9 NODES - 9 exec - m
+        {
+            "executors": [
+                {
+                    "name": "executor1",
+                    "type": "multi_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node1", "subscribe": "NONE", "publish": "topic1", "payload": "128B"},
+                    ],
+                },
+
+                {
+                    "name": "executor2",
+                    "type": "multi_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node2", "subscribe": "topic1", "publish": "topic2", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor3",
+                    "type": "multi_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node3", "subscribe": "topic2", "publish": "topic3", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor4",
+                    "type": "multi_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node4", "subscribe": "topic3", "publish": "topic4", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor5",
+                    "type": "multi_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node5", "subscribe": "topic4", "publish": "topic5", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor6",
+                    "type": "multi_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node6", "subscribe": "topic5", "publish": "topic6", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor7",
+                    "type": "multi_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node7", "subscribe": "topic6", "publish": "topic7", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor8",
+                    "type": "multi_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node8", "subscribe": "topic7", "publish": "topic8", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor9",
+                    "type": "multi_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node9", "subscribe": "topic8", "publish": "NONE", "payload": "128B"}
+                    ],
+                }
+            ]
+        },
+
+        {
+            "executors": [
+                {
+                    "name": "executor1",
+                    "type": "multi_threaded",
+                    "cores": [0],
+                    "nodes": [
+                        {"name": "node1", "subscribe": "NONE", "publish": "topic1", "payload": "128B"},
+                    ],
+                },
+
+                {
+                    "name": "executor2",
+                    "type": "multi_threaded",
+                    "cores": [0],
+                    "nodes": [
+                        {"name": "node2", "subscribe": "topic1", "publish": "topic2", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor3",
+                    "type": "multi_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node3", "subscribe": "topic2", "publish": "topic3", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor4",
+                    "type": "multi_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node4", "subscribe": "topic3", "publish": "topic4", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor5",
+                    "type": "multi_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node5", "subscribe": "topic4", "publish": "topic5", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor6",
+                    "type": "multi_threaded",
+                    "cores": [2],
+                    "nodes": [
+                        {"name": "node6", "subscribe": "topic5", "publish": "topic6", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor7",
+                    "type": "multi_threaded",
+                    "cores": [2],
+                    "nodes": [
+                        {"name": "node7", "subscribe": "topic6", "publish": "topic7", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor8",
+                    "type": "multi_threaded",
+                    "cores": [3],
+                    "nodes": [
+                        {"name": "node8", "subscribe": "topic7", "publish": "topic8", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor9",
+                    "type": "multi_threaded",
+                    "cores": [3],
+                    "nodes": [
+                        {"name": "node9", "subscribe": "topic8", "publish": "NONE", "payload": "128B"}
+                    ],
+                }
+            ]
+        },
+
+        {
+            "executors": [
+                {
+                    "name": "executor1",
+                    "type": "multi_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node1", "subscribe": "NONE", "publish": "topic1", "payload": "128B"},
+                    ],
+                },
+
+                {
+                    "name": "executor2",
+                    "type": "multi_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node2", "subscribe": "topic1", "publish": "topic2", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor3",
+                    "type": "multi_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node3", "subscribe": "topic2", "publish": "topic3", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor4",
+                    "type": "multi_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node4", "subscribe": "topic3", "publish": "topic4", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor5",
+                    "type": "multi_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node5", "subscribe": "topic4", "publish": "topic5", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor6",
+                    "type": "multi_threaded",
+                    "cores": [2],
+                    "nodes": [
+                        {"name": "node6", "subscribe": "topic5", "publish": "topic6", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor7",
+                    "type": "multi_threaded",
+                    "cores": [2],
+                    "nodes": [
+                        {"name": "node7", "subscribe": "topic6", "publish": "topic7", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor8",
+                    "type": "multi_threaded",
+                    "cores": [2],
+                    "nodes": [
+                        {"name": "node8", "subscribe": "topic7", "publish": "topic8", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor9",
+                    "type": "multi_threaded",
+                    "cores": [2],
+                    "nodes": [
+                        {"name": "node9", "subscribe": "topic8", "publish": "NONE", "payload": "128B"}
+                    ],
+                }
+            ]
+        },
+
+        ######## 9 NODES - 9 exec - sssssmmmm
+        {
+            "executors": [
+                {
+                    "name": "executor1",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node1", "subscribe": "NONE", "publish": "topic1", "payload": "128B"},
+                    ],
+                },
+
+                {
+                    "name": "executor2",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node2", "subscribe": "topic1", "publish": "topic2", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor3",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node3", "subscribe": "topic2", "publish": "topic3", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor4",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node4", "subscribe": "topic3", "publish": "topic4", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor5",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node5", "subscribe": "topic4", "publish": "topic5", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor6",
+                    "type": "multi_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node6", "subscribe": "topic5", "publish": "topic6", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor7",
+                    "type": "multi_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node7", "subscribe": "topic6", "publish": "topic7", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor8",
+                    "type": "multi_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node8", "subscribe": "topic7", "publish": "topic8", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor9",
+                    "type": "multi_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node9", "subscribe": "topic8", "publish": "NONE", "payload": "128B"}
+                    ],
+                }
+            ]
+        },
+
+        {
+            "executors": [
+                {
+                    "name": "executor1",
+                    "type": "single_threaded",
+                    "cores": [0],
+                    "nodes": [
+                        {"name": "node1", "subscribe": "NONE", "publish": "topic1", "payload": "128B"},
+                    ],
+                },
+
+                {
+                    "name": "executor2",
+                    "type": "single_threaded",
+                    "cores": [0],
+                    "nodes": [
+                        {"name": "node2", "subscribe": "topic1", "publish": "topic2", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor3",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node3", "subscribe": "topic2", "publish": "topic3", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor4",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node4", "subscribe": "topic3", "publish": "topic4", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor5",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node5", "subscribe": "topic4", "publish": "topic5", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor6",
+                    "type": "multi_threaded",
+                    "cores": [2],
+                    "nodes": [
+                        {"name": "node6", "subscribe": "topic5", "publish": "topic6", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor7",
+                    "type": "multi_threaded",
+                    "cores": [2],
+                    "nodes": [
+                        {"name": "node7", "subscribe": "topic6", "publish": "topic7", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor8",
+                    "type": "multi_threaded",
+                    "cores": [3],
+                    "nodes": [
+                        {"name": "node8", "subscribe": "topic7", "publish": "topic8", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor9",
+                    "type": "multi_threaded",
+                    "cores": [3],
+                    "nodes": [
+                        {"name": "node9", "subscribe": "topic8", "publish": "NONE", "payload": "128B"}
+                    ],
+                }
+            ]
+        },
+
+        {
+            "executors": [
+                {
+                    "name": "executor1",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node1", "subscribe": "NONE", "publish": "topic1", "payload": "128B"},
+                    ],
+                },
+
+                {
+                    "name": "executor2",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node2", "subscribe": "topic1", "publish": "topic2", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor3",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node3", "subscribe": "topic2", "publish": "topic3", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor4",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node4", "subscribe": "topic3", "publish": "topic4", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor5",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node5", "subscribe": "topic4", "publish": "topic5", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor6",
+                    "type": "multi_threaded",
+                    "cores": [2],
+                    "nodes": [
+                        {"name": "node6", "subscribe": "topic5", "publish": "topic6", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor7",
+                    "type": "multi_threaded",
+                    "cores": [2],
+                    "nodes": [
+                        {"name": "node7", "subscribe": "topic6", "publish": "topic7", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor8",
+                    "type": "multi_threaded",
+                    "cores": [2],
+                    "nodes": [
+                        {"name": "node8", "subscribe": "topic7", "publish": "topic8", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor9",
+                    "type": "multi_threaded",
+                    "cores": [2],
+                    "nodes": [
+                        {"name": "node9", "subscribe": "topic8", "publish": "NONE", "payload": "128B"}
+                    ],
+                }
+            ]
+        },
+
+        ######## 9 NODES - 9 exec - mmmmmssss
+        {
+            "executors": [
+                {
+                    "name": "executor1",
+                    "type": "multi_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node1", "subscribe": "NONE", "publish": "topic1", "payload": "128B"},
+                    ],
+                },
+
+                {
+                    "name": "executor2",
+                    "type": "multi_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node2", "subscribe": "topic1", "publish": "topic2", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor3",
+                    "type": "multi_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node3", "subscribe": "topic2", "publish": "topic3", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor4",
+                    "type": "multi_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node4", "subscribe": "topic3", "publish": "topic4", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor5",
+                    "type": "multi_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node5", "subscribe": "topic4", "publish": "topic5", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor6",
+                    "type": "single_threaded",
+                    "cores": [2],
+                    "nodes": [
+                        {"name": "node6", "subscribe": "topic5", "publish": "topic6", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor7",
+                    "type": "single_threaded",
+                    "cores": [2],
+                    "nodes": [
+                        {"name": "node7", "subscribe": "topic6", "publish": "topic7", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor8",
+                    "type": "single_threaded",
+                    "cores": [2],
+                    "nodes": [
+                        {"name": "node8", "subscribe": "topic7", "publish": "topic8", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor9",
+                    "type": "single_threaded",
+                    "cores": [2],
+                    "nodes": [
+                        {"name": "node9", "subscribe": "topic8", "publish": "NONE", "payload": "128B"}
+                    ],
+                }
+            ]
+        },
+
+
         ######## 10 NODES - 1 exec - s
         {
             "executors": [
@@ -8226,6 +13420,4365 @@ def exec_architectures():
                         {"name": "node8", "subscribe": "topic7", "publish": "topic8", "payload": "128B"},
                         {"name": "node9", "subscribe": "topic8", "publish": "topic9", "payload": "128B"},
                         {"name": "node10", "subscribe": "topic9", "publish": "NONE", "payload": "128B"}
+                    ],
+                }
+            ]
+        },
+
+        ##### 10 NODES - 3 exec - sss - 1111222333
+        {
+            "executors": [
+                {
+                    "name": "executor1",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node1", "subscribe": "NONE", "publish": "topic1", "payload": "128B"},
+                        {"name": "node2", "subscribe": "topic1", "publish": "topic2", "payload": "128B"},
+                        {"name": "node3", "subscribe": "topic2", "publish": "topic3", "payload": "128B"},
+                        {"name": "node4", "subscribe": "topic3", "publish": "topic4", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor2",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node5", "subscribe": "topic4", "publish": "topic5", "payload": "128B"},
+                        {"name": "node6", "subscribe": "topic5", "publish": "topic6", "payload": "128B"},
+                        {"name": "node7", "subscribe": "topic6", "publish": "topic7", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor3",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node8", "subscribe": "topic7", "publish": "topic8", "payload": "128B"},
+                        {"name": "node9", "subscribe": "topic8", "publish": "topic9", "payload": "128B"},
+                        {"name": "node10", "subscribe": "topic9", "publish": "NONE", "payload": "128B"}
+                    ],
+                }
+            ]
+        },
+
+        {
+            "executors": [
+                {
+                    "name": "executor1",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node1", "subscribe": "NONE", "publish": "topic1", "payload": "128B"},
+                        {"name": "node2", "subscribe": "topic1", "publish": "topic2", "payload": "128B"},
+                        {"name": "node3", "subscribe": "topic2", "publish": "topic3", "payload": "128B"},
+                        {"name": "node4", "subscribe": "topic3", "publish": "topic4", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor2",
+                    "type": "single_threaded",
+                    "cores": [2],
+                    "nodes": [
+                        {"name": "node5", "subscribe": "topic4", "publish": "topic5", "payload": "128B"},
+                        {"name": "node6", "subscribe": "topic5", "publish": "topic6", "payload": "128B"},
+                        {"name": "node7", "subscribe": "topic6", "publish": "topic7", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor3",
+                    "type": "single_threaded",
+                    "cores": [3],
+                    "nodes": [
+                        {"name": "node8", "subscribe": "topic7", "publish": "topic8", "payload": "128B"},
+                        {"name": "node9", "subscribe": "topic8", "publish": "topic9", "payload": "128B"},
+                        {"name": "node10", "subscribe": "topic9", "publish": "NONE", "payload": "128B"}
+                    ],
+                }
+            ]
+        },
+
+        {
+            "executors": [
+                {
+                    "name": "executor1",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node1", "subscribe": "NONE", "publish": "topic1", "payload": "128B"},
+                        {"name": "node2", "subscribe": "topic1", "publish": "topic2", "payload": "128B"},
+                        {"name": "node3", "subscribe": "topic2", "publish": "topic3", "payload": "128B"},
+                        {"name": "node4", "subscribe": "topic3", "publish": "topic4", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor2",
+                    "type": "single_threaded",
+                    "cores": [2],
+                    "nodes": [
+                        {"name": "node5", "subscribe": "topic4", "publish": "topic5", "payload": "128B"},
+                        {"name": "node6", "subscribe": "topic5", "publish": "topic6", "payload": "128B"},
+                        {"name": "node7", "subscribe": "topic6", "publish": "topic7", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor3",
+                    "type": "single_threaded",
+                    "cores": [2],
+                    "nodes": [
+                        {"name": "node8", "subscribe": "topic7", "publish": "topic8", "payload": "128B"},
+                        {"name": "node9", "subscribe": "topic8", "publish": "topic9", "payload": "128B"},
+                        {"name": "node10", "subscribe": "topic9", "publish": "NONE", "payload": "128B"}
+                    ],
+                }
+            ]
+        },
+
+        ##### 10 NODES - 3 exec - mmm - 1111222333
+        {
+            "executors": [
+                {
+                    "name": "executor1",
+                    "type": "multi_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node1", "subscribe": "NONE", "publish": "topic1", "payload": "128B"},
+                        {"name": "node2", "subscribe": "topic1", "publish": "topic2", "payload": "128B"},
+                        {"name": "node3", "subscribe": "topic2", "publish": "topic3", "payload": "128B"},
+                        {"name": "node4", "subscribe": "topic3", "publish": "topic4", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor2",
+                    "type": "multi_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node5", "subscribe": "topic4", "publish": "topic5", "payload": "128B"},
+                        {"name": "node6", "subscribe": "topic5", "publish": "topic6", "payload": "128B"},
+                        {"name": "node7", "subscribe": "topic6", "publish": "topic7", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor3",
+                    "type": "multi_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node8", "subscribe": "topic7", "publish": "topic8", "payload": "128B"},
+                        {"name": "node9", "subscribe": "topic8", "publish": "topic9", "payload": "128B"},
+                        {"name": "node10", "subscribe": "topic9", "publish": "NONE", "payload": "128B"}
+                    ],
+                }
+            ]
+        },
+
+        {
+            "executors": [
+                {
+                    "name": "executor1",
+                    "type": "multi_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node1", "subscribe": "NONE", "publish": "topic1", "payload": "128B"},
+                        {"name": "node2", "subscribe": "topic1", "publish": "topic2", "payload": "128B"},
+                        {"name": "node3", "subscribe": "topic2", "publish": "topic3", "payload": "128B"},
+                        {"name": "node4", "subscribe": "topic3", "publish": "topic4", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor2",
+                    "type": "multi_threaded",
+                    "cores": [2],
+                    "nodes": [
+                        {"name": "node5", "subscribe": "topic4", "publish": "topic5", "payload": "128B"},
+                        {"name": "node6", "subscribe": "topic5", "publish": "topic6", "payload": "128B"},
+                        {"name": "node7", "subscribe": "topic6", "publish": "topic7", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor3",
+                    "type": "multi_threaded",
+                    "cores": [3],
+                    "nodes": [
+                        {"name": "node8", "subscribe": "topic7", "publish": "topic8", "payload": "128B"},
+                        {"name": "node9", "subscribe": "topic8", "publish": "topic9", "payload": "128B"},
+                        {"name": "node10", "subscribe": "topic9", "publish": "NONE", "payload": "128B"}
+                    ],
+                }
+            ]
+        },
+
+        {
+            "executors": [
+                {
+                    "name": "executor1",
+                    "type": "multi_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node1", "subscribe": "NONE", "publish": "topic1", "payload": "128B"},
+                        {"name": "node2", "subscribe": "topic1", "publish": "topic2", "payload": "128B"},
+                        {"name": "node3", "subscribe": "topic2", "publish": "topic3", "payload": "128B"},
+                        {"name": "node4", "subscribe": "topic3", "publish": "topic4", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor2",
+                    "type": "multi_threaded",
+                    "cores": [2],
+                    "nodes": [
+                        {"name": "node5", "subscribe": "topic4", "publish": "topic5", "payload": "128B"},
+                        {"name": "node6", "subscribe": "topic5", "publish": "topic6", "payload": "128B"},
+                        {"name": "node7", "subscribe": "topic6", "publish": "topic7", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor3",
+                    "type": "multi_threaded",
+                    "cores": [2],
+                    "nodes": [
+                        {"name": "node8", "subscribe": "topic7", "publish": "topic8", "payload": "128B"},
+                        {"name": "node9", "subscribe": "topic8", "publish": "topic9", "payload": "128B"},
+                        {"name": "node10", "subscribe": "topic9", "publish": "NONE", "payload": "128B"}
+                    ],
+                }
+            ]
+        },
+
+        ##### 10 NODES - 3 exec - ssm - 1111222333
+        {
+            "executors": [
+                {
+                    "name": "executor1",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node1", "subscribe": "NONE", "publish": "topic1", "payload": "128B"},
+                        {"name": "node2", "subscribe": "topic1", "publish": "topic2", "payload": "128B"},
+                        {"name": "node3", "subscribe": "topic2", "publish": "topic3", "payload": "128B"},
+                        {"name": "node4", "subscribe": "topic3", "publish": "topic4", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor2",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node5", "subscribe": "topic4", "publish": "topic5", "payload": "128B"},
+                        {"name": "node6", "subscribe": "topic5", "publish": "topic6", "payload": "128B"},
+                        {"name": "node7", "subscribe": "topic6", "publish": "topic7", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor3",
+                    "type": "multi_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node8", "subscribe": "topic7", "publish": "topic8", "payload": "128B"},
+                        {"name": "node9", "subscribe": "topic8", "publish": "topic9", "payload": "128B"},
+                        {"name": "node10", "subscribe": "topic9", "publish": "NONE", "payload": "128B"}
+                    ],
+                }
+            ]
+        },
+
+        {
+            "executors": [
+                {
+                    "name": "executor1",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node1", "subscribe": "NONE", "publish": "topic1", "payload": "128B"},
+                        {"name": "node2", "subscribe": "topic1", "publish": "topic2", "payload": "128B"},
+                        {"name": "node3", "subscribe": "topic2", "publish": "topic3", "payload": "128B"},
+                        {"name": "node4", "subscribe": "topic3", "publish": "topic4", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor2",
+                    "type": "single_threaded",
+                    "cores": [2],
+                    "nodes": [
+                        {"name": "node5", "subscribe": "topic4", "publish": "topic5", "payload": "128B"},
+                        {"name": "node6", "subscribe": "topic5", "publish": "topic6", "payload": "128B"},
+                        {"name": "node7", "subscribe": "topic6", "publish": "topic7", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor3",
+                    "type": "multi_threaded",
+                    "cores": [3],
+                    "nodes": [
+                        {"name": "node8", "subscribe": "topic7", "publish": "topic8", "payload": "128B"},
+                        {"name": "node9", "subscribe": "topic8", "publish": "topic9", "payload": "128B"},
+                        {"name": "node10", "subscribe": "topic9", "publish": "NONE", "payload": "128B"}
+                    ],
+                }
+            ]
+        },
+
+        {
+            "executors": [
+                {
+                    "name": "executor1",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node1", "subscribe": "NONE", "publish": "topic1", "payload": "128B"},
+                        {"name": "node2", "subscribe": "topic1", "publish": "topic2", "payload": "128B"},
+                        {"name": "node3", "subscribe": "topic2", "publish": "topic3", "payload": "128B"},
+                        {"name": "node4", "subscribe": "topic3", "publish": "topic4", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor2",
+                    "type": "single_threaded",
+                    "cores": [2],
+                    "nodes": [
+                        {"name": "node5", "subscribe": "topic4", "publish": "topic5", "payload": "128B"},
+                        {"name": "node6", "subscribe": "topic5", "publish": "topic6", "payload": "128B"},
+                        {"name": "node7", "subscribe": "topic6", "publish": "topic7", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor3",
+                    "type": "multi_threaded",
+                    "cores": [2],
+                    "nodes": [
+                        {"name": "node8", "subscribe": "topic7", "publish": "topic8", "payload": "128B"},
+                        {"name": "node9", "subscribe": "topic8", "publish": "topic9", "payload": "128B"},
+                        {"name": "node10", "subscribe": "topic9", "publish": "NONE", "payload": "128B"}
+                    ],
+                }
+            ]
+        },
+
+        ##### 10 NODES - 3 exec - mms - 1111222333
+        {
+            "executors": [
+                {
+                    "name": "executor1",
+                    "type": "multi_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node1", "subscribe": "NONE", "publish": "topic1", "payload": "128B"},
+                        {"name": "node2", "subscribe": "topic1", "publish": "topic2", "payload": "128B"},
+                        {"name": "node3", "subscribe": "topic2", "publish": "topic3", "payload": "128B"},
+                        {"name": "node4", "subscribe": "topic3", "publish": "topic4", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor2",
+                    "type": "multi_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node5", "subscribe": "topic4", "publish": "topic5", "payload": "128B"},
+                        {"name": "node6", "subscribe": "topic5", "publish": "topic6", "payload": "128B"},
+                        {"name": "node7", "subscribe": "topic6", "publish": "topic7", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor3",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node8", "subscribe": "topic7", "publish": "topic8", "payload": "128B"},
+                        {"name": "node9", "subscribe": "topic8", "publish": "topic9", "payload": "128B"},
+                        {"name": "node10", "subscribe": "topic9", "publish": "NONE", "payload": "128B"}
+                    ],
+                }
+            ]
+        },
+
+        {
+            "executors": [
+                {
+                    "name": "executor1",
+                    "type": "multi_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node1", "subscribe": "NONE", "publish": "topic1", "payload": "128B"},
+                        {"name": "node2", "subscribe": "topic1", "publish": "topic2", "payload": "128B"},
+                        {"name": "node3", "subscribe": "topic2", "publish": "topic3", "payload": "128B"},
+                        {"name": "node4", "subscribe": "topic3", "publish": "topic4", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor2",
+                    "type": "multi_threaded",
+                    "cores": [2],
+                    "nodes": [
+                        {"name": "node5", "subscribe": "topic4", "publish": "topic5", "payload": "128B"},
+                        {"name": "node6", "subscribe": "topic5", "publish": "topic6", "payload": "128B"},
+                        {"name": "node7", "subscribe": "topic6", "publish": "topic7", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor3",
+                    "type": "single_threaded",
+                    "cores": [3],
+                    "nodes": [
+                        {"name": "node8", "subscribe": "topic7", "publish": "topic8", "payload": "128B"},
+                        {"name": "node9", "subscribe": "topic8", "publish": "topic9", "payload": "128B"},
+                        {"name": "node10", "subscribe": "topic9", "publish": "NONE", "payload": "128B"}
+                    ],
+                }
+            ]
+        },
+
+        {
+            "executors": [
+                {
+                    "name": "executor1",
+                    "type": "multi_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node1", "subscribe": "NONE", "publish": "topic1", "payload": "128B"},
+                        {"name": "node2", "subscribe": "topic1", "publish": "topic2", "payload": "128B"},
+                        {"name": "node3", "subscribe": "topic2", "publish": "topic3", "payload": "128B"},
+                        {"name": "node4", "subscribe": "topic3", "publish": "topic4", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor2",
+                    "type": "multi_threaded",
+                    "cores": [2],
+                    "nodes": [
+                        {"name": "node5", "subscribe": "topic4", "publish": "topic5", "payload": "128B"},
+                        {"name": "node6", "subscribe": "topic5", "publish": "topic6", "payload": "128B"},
+                        {"name": "node7", "subscribe": "topic6", "publish": "topic7", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor3",
+                    "type": "single_threaded",
+                    "cores": [2],
+                    "nodes": [
+                        {"name": "node8", "subscribe": "topic7", "publish": "topic8", "payload": "128B"},
+                        {"name": "node9", "subscribe": "topic8", "publish": "topic9", "payload": "128B"},
+                        {"name": "node10", "subscribe": "topic9", "publish": "NONE", "payload": "128B"}
+                    ],
+                }
+            ]
+        },
+
+        ##### 10 NODES - 3 exec - sss - 1111111123
+        {
+            "executors": [
+                {
+                    "name": "executor1",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node1", "subscribe": "NONE", "publish": "topic1", "payload": "128B"},
+                        {"name": "node2", "subscribe": "topic1", "publish": "topic2", "payload": "128B"},
+                        {"name": "node3", "subscribe": "topic2", "publish": "topic3", "payload": "128B"},
+                        {"name": "node4", "subscribe": "topic3", "publish": "topic4", "payload": "128B"},
+                        {"name": "node5", "subscribe": "topic4", "publish": "topic5", "payload": "128B"},
+                        {"name": "node6", "subscribe": "topic5", "publish": "topic6", "payload": "128B"},
+                        {"name": "node7", "subscribe": "topic6", "publish": "topic7", "payload": "128B"},
+                        {"name": "node8", "subscribe": "topic7", "publish": "topic8", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor2",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node9", "subscribe": "topic8", "publish": "topic9", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor3",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node10", "subscribe": "topic9", "publish": "NONE", "payload": "128B"}
+                    ],
+                }
+            ]
+        },
+
+        {
+            "executors": [
+                {
+                    "name": "executor1",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node1", "subscribe": "NONE", "publish": "topic1", "payload": "128B"},
+                        {"name": "node2", "subscribe": "topic1", "publish": "topic2", "payload": "128B"},
+                        {"name": "node3", "subscribe": "topic2", "publish": "topic3", "payload": "128B"},
+                        {"name": "node4", "subscribe": "topic3", "publish": "topic4", "payload": "128B"},
+                        {"name": "node5", "subscribe": "topic4", "publish": "topic5", "payload": "128B"},
+                        {"name": "node6", "subscribe": "topic5", "publish": "topic6", "payload": "128B"},
+                        {"name": "node7", "subscribe": "topic6", "publish": "topic7", "payload": "128B"},
+                        {"name": "node8", "subscribe": "topic7", "publish": "topic8", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor2",
+                    "type": "single_threaded",
+                    "cores": [2],
+                    "nodes": [
+                        {"name": "node9", "subscribe": "topic8", "publish": "topic9", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor3",
+                    "type": "single_threaded",
+                    "cores": [3],
+                    "nodes": [
+                        {"name": "node10", "subscribe": "topic9", "publish": "NONE", "payload": "128B"}
+                    ],
+                }
+            ]
+        },
+
+        {
+            "executors": [
+                {
+                    "name": "executor1",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node1", "subscribe": "NONE", "publish": "topic1", "payload": "128B"},
+                        {"name": "node2", "subscribe": "topic1", "publish": "topic2", "payload": "128B"},
+                        {"name": "node3", "subscribe": "topic2", "publish": "topic3", "payload": "128B"},
+                        {"name": "node4", "subscribe": "topic3", "publish": "topic4", "payload": "128B"},
+                        {"name": "node5", "subscribe": "topic4", "publish": "topic5", "payload": "128B"},
+                        {"name": "node6", "subscribe": "topic5", "publish": "topic6", "payload": "128B"},
+                        {"name": "node7", "subscribe": "topic6", "publish": "topic7", "payload": "128B"},
+                        {"name": "node8", "subscribe": "topic7", "publish": "topic8", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor2",
+                    "type": "single_threaded",
+                    "cores": [2],
+                    "nodes": [
+                        {"name": "node9", "subscribe": "topic8", "publish": "topic9", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor3",
+                    "type": "single_threaded",
+                    "cores": [2],
+                    "nodes": [
+                        {"name": "node10", "subscribe": "topic9", "publish": "NONE", "payload": "128B"}
+                    ],
+                }
+            ]
+        },
+
+        ##### 10 NODES - 3 exec - mmm - 1111111123
+        {
+            "executors": [
+                {
+                    "name": "executor1",
+                    "type": "multi_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node1", "subscribe": "NONE", "publish": "topic1", "payload": "128B"},
+                        {"name": "node2", "subscribe": "topic1", "publish": "topic2", "payload": "128B"},
+                        {"name": "node3", "subscribe": "topic2", "publish": "topic3", "payload": "128B"},
+                        {"name": "node4", "subscribe": "topic3", "publish": "topic4", "payload": "128B"},
+                        {"name": "node5", "subscribe": "topic4", "publish": "topic5", "payload": "128B"},
+                        {"name": "node6", "subscribe": "topic5", "publish": "topic6", "payload": "128B"},
+                        {"name": "node7", "subscribe": "topic6", "publish": "topic7", "payload": "128B"},
+                        {"name": "node8", "subscribe": "topic7", "publish": "topic8", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor2",
+                    "type": "multi_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node9", "subscribe": "topic8", "publish": "topic9", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor3",
+                    "type": "multi_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node10", "subscribe": "topic9", "publish": "NONE", "payload": "128B"}
+                    ],
+                }
+            ]
+        },
+
+        {
+            "executors": [
+                {
+                    "name": "executor1",
+                    "type": "multi_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node1", "subscribe": "NONE", "publish": "topic1", "payload": "128B"},
+                        {"name": "node2", "subscribe": "topic1", "publish": "topic2", "payload": "128B"},
+                        {"name": "node3", "subscribe": "topic2", "publish": "topic3", "payload": "128B"},
+                        {"name": "node4", "subscribe": "topic3", "publish": "topic4", "payload": "128B"},
+                        {"name": "node5", "subscribe": "topic4", "publish": "topic5", "payload": "128B"},
+                        {"name": "node6", "subscribe": "topic5", "publish": "topic6", "payload": "128B"},
+                        {"name": "node7", "subscribe": "topic6", "publish": "topic7", "payload": "128B"},
+                        {"name": "node8", "subscribe": "topic7", "publish": "topic8", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor2",
+                    "type": "multi_threaded",
+                    "cores": [2],
+                    "nodes": [
+                        {"name": "node9", "subscribe": "topic8", "publish": "topic9", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor3",
+                    "type": "multi_threaded",
+                    "cores": [3],
+                    "nodes": [
+                        {"name": "node10", "subscribe": "topic9", "publish": "NONE", "payload": "128B"}
+                    ],
+                }
+            ]
+        },
+
+        {
+            "executors": [
+                {
+                    "name": "executor1",
+                    "type": "multi_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node1", "subscribe": "NONE", "publish": "topic1", "payload": "128B"},
+                        {"name": "node2", "subscribe": "topic1", "publish": "topic2", "payload": "128B"},
+                        {"name": "node3", "subscribe": "topic2", "publish": "topic3", "payload": "128B"},
+                        {"name": "node4", "subscribe": "topic3", "publish": "topic4", "payload": "128B"},
+                        {"name": "node5", "subscribe": "topic4", "publish": "topic5", "payload": "128B"},
+                        {"name": "node6", "subscribe": "topic5", "publish": "topic6", "payload": "128B"},
+                        {"name": "node7", "subscribe": "topic6", "publish": "topic7", "payload": "128B"},
+                        {"name": "node8", "subscribe": "topic7", "publish": "topic8", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor2",
+                    "type": "multi_threaded",
+                    "cores": [2],
+                    "nodes": [
+                        {"name": "node9", "subscribe": "topic8", "publish": "topic9", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor3",
+                    "type": "multi_threaded",
+                    "cores": [2],
+                    "nodes": [
+                        {"name": "node10", "subscribe": "topic9", "publish": "NONE", "payload": "128B"}
+                    ],
+                }
+            ]
+        },
+
+        ##### 10 NODES - 3 exec - ssm - 1111111123
+        {
+            "executors": [
+                {
+                    "name": "executor1",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node1", "subscribe": "NONE", "publish": "topic1", "payload": "128B"},
+                        {"name": "node2", "subscribe": "topic1", "publish": "topic2", "payload": "128B"},
+                        {"name": "node3", "subscribe": "topic2", "publish": "topic3", "payload": "128B"},
+                        {"name": "node4", "subscribe": "topic3", "publish": "topic4", "payload": "128B"},
+                        {"name": "node5", "subscribe": "topic4", "publish": "topic5", "payload": "128B"},
+                        {"name": "node6", "subscribe": "topic5", "publish": "topic6", "payload": "128B"},
+                        {"name": "node7", "subscribe": "topic6", "publish": "topic7", "payload": "128B"},
+                        {"name": "node8", "subscribe": "topic7", "publish": "topic8", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor2",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node9", "subscribe": "topic8", "publish": "topic9", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor3",
+                    "type": "multi_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node10", "subscribe": "topic9", "publish": "NONE", "payload": "128B"}
+                    ],
+                }
+            ]
+        },
+
+        {
+            "executors": [
+                {
+                    "name": "executor1",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node1", "subscribe": "NONE", "publish": "topic1", "payload": "128B"},
+                        {"name": "node2", "subscribe": "topic1", "publish": "topic2", "payload": "128B"},
+                        {"name": "node3", "subscribe": "topic2", "publish": "topic3", "payload": "128B"},
+                        {"name": "node4", "subscribe": "topic3", "publish": "topic4", "payload": "128B"},
+                        {"name": "node5", "subscribe": "topic4", "publish": "topic5", "payload": "128B"},
+                        {"name": "node6", "subscribe": "topic5", "publish": "topic6", "payload": "128B"},
+                        {"name": "node7", "subscribe": "topic6", "publish": "topic7", "payload": "128B"},
+                        {"name": "node8", "subscribe": "topic7", "publish": "topic8", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor2",
+                    "type": "single_threaded",
+                    "cores": [2],
+                    "nodes": [
+                        {"name": "node9", "subscribe": "topic8", "publish": "topic9", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor3",
+                    "type": "multi_threaded",
+                    "cores": [3],
+                    "nodes": [
+                        {"name": "node10", "subscribe": "topic9", "publish": "NONE", "payload": "128B"}
+                    ],
+                }
+            ]
+        },
+
+        {
+            "executors": [
+                {
+                    "name": "executor1",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node1", "subscribe": "NONE", "publish": "topic1", "payload": "128B"},
+                        {"name": "node2", "subscribe": "topic1", "publish": "topic2", "payload": "128B"},
+                        {"name": "node3", "subscribe": "topic2", "publish": "topic3", "payload": "128B"},
+                        {"name": "node4", "subscribe": "topic3", "publish": "topic4", "payload": "128B"},
+                        {"name": "node5", "subscribe": "topic4", "publish": "topic5", "payload": "128B"},
+                        {"name": "node6", "subscribe": "topic5", "publish": "topic6", "payload": "128B"},
+                        {"name": "node7", "subscribe": "topic6", "publish": "topic7", "payload": "128B"},
+                        {"name": "node8", "subscribe": "topic7", "publish": "topic8", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor2",
+                    "type": "single_threaded",
+                    "cores": [2],
+                    "nodes": [
+                        {"name": "node9", "subscribe": "topic8", "publish": "topic9", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor3",
+                    "type": "multi_threaded",
+                    "cores": [2],
+                    "nodes": [
+                        {"name": "node10", "subscribe": "topic9", "publish": "NONE", "payload": "128B"}
+                    ],
+                }
+            ]
+        },
+
+        ##### 10 NODES - 3 exec - mms - 1111111123
+        {
+            "executors": [
+                {
+                    "name": "executor1",
+                    "type": "multi_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node1", "subscribe": "NONE", "publish": "topic1", "payload": "128B"},
+                        {"name": "node2", "subscribe": "topic1", "publish": "topic2", "payload": "128B"},
+                        {"name": "node3", "subscribe": "topic2", "publish": "topic3", "payload": "128B"},
+                        {"name": "node4", "subscribe": "topic3", "publish": "topic4", "payload": "128B"},
+                        {"name": "node5", "subscribe": "topic4", "publish": "topic5", "payload": "128B"},
+                        {"name": "node6", "subscribe": "topic5", "publish": "topic6", "payload": "128B"},
+                        {"name": "node7", "subscribe": "topic6", "publish": "topic7", "payload": "128B"},
+                        {"name": "node8", "subscribe": "topic7", "publish": "topic8", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor2",
+                    "type": "multi_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node9", "subscribe": "topic8", "publish": "topic9", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor3",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node10", "subscribe": "topic9", "publish": "NONE", "payload": "128B"}
+                    ],
+                }
+            ]
+        },
+
+        {
+            "executors": [
+                {
+                    "name": "executor1",
+                    "type": "multi_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node1", "subscribe": "NONE", "publish": "topic1", "payload": "128B"},
+                        {"name": "node2", "subscribe": "topic1", "publish": "topic2", "payload": "128B"},
+                        {"name": "node3", "subscribe": "topic2", "publish": "topic3", "payload": "128B"},
+                        {"name": "node4", "subscribe": "topic3", "publish": "topic4", "payload": "128B"},
+                        {"name": "node5", "subscribe": "topic4", "publish": "topic5", "payload": "128B"},
+                        {"name": "node6", "subscribe": "topic5", "publish": "topic6", "payload": "128B"},
+                        {"name": "node7", "subscribe": "topic6", "publish": "topic7", "payload": "128B"},
+                        {"name": "node8", "subscribe": "topic7", "publish": "topic8", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor2",
+                    "type": "multi_threaded",
+                    "cores": [2],
+                    "nodes": [
+                        {"name": "node9", "subscribe": "topic8", "publish": "topic9", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor3",
+                    "type": "single_threaded",
+                    "cores": [3],
+                    "nodes": [
+                        {"name": "node10", "subscribe": "topic9", "publish": "NONE", "payload": "128B"}
+                    ],
+                }
+            ]
+        },
+
+        {
+            "executors": [
+                {
+                    "name": "executor1",
+                    "type": "multi_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node1", "subscribe": "NONE", "publish": "topic1", "payload": "128B"},
+                        {"name": "node2", "subscribe": "topic1", "publish": "topic2", "payload": "128B"},
+                        {"name": "node3", "subscribe": "topic2", "publish": "topic3", "payload": "128B"},
+                        {"name": "node4", "subscribe": "topic3", "publish": "topic4", "payload": "128B"},
+                        {"name": "node5", "subscribe": "topic4", "publish": "topic5", "payload": "128B"},
+                        {"name": "node6", "subscribe": "topic5", "publish": "topic6", "payload": "128B"},
+                        {"name": "node7", "subscribe": "topic6", "publish": "topic7", "payload": "128B"},
+                        {"name": "node8", "subscribe": "topic7", "publish": "topic8", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor2",
+                    "type": "multi_threaded",
+                    "cores": [2],
+                    "nodes": [
+                        {"name": "node9", "subscribe": "topic8", "publish": "topic9", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor3",
+                    "type": "single_threaded",
+                    "cores": [2],
+                    "nodes": [
+                        {"name": "node10", "subscribe": "topic9", "publish": "NONE", "payload": "128B"}
+                    ],
+                }
+            ]
+        },
+
+        ##### 10 NODES - 3 exec - sss - 1111112223
+        {
+            "executors": [
+                {
+                    "name": "executor1",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node1", "subscribe": "NONE", "publish": "topic1", "payload": "128B"},
+                        {"name": "node2", "subscribe": "topic1", "publish": "topic2", "payload": "128B"},
+                        {"name": "node3", "subscribe": "topic2", "publish": "topic3", "payload": "128B"},
+                        {"name": "node4", "subscribe": "topic3", "publish": "topic4", "payload": "128B"},
+                        {"name": "node5", "subscribe": "topic4", "publish": "topic5", "payload": "128B"},
+                        {"name": "node6", "subscribe": "topic5", "publish": "topic6", "payload": "128B"},
+                    ],
+                },
+
+                {
+                    "name": "executor2",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node7", "subscribe": "topic6", "publish": "topic7", "payload": "128B"},
+                        {"name": "node8", "subscribe": "topic7", "publish": "topic8", "payload": "128B"},
+                        {"name": "node9", "subscribe": "topic8", "publish": "topic9", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor3",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node10", "subscribe": "topic9", "publish": "NONE", "payload": "128B"}
+                    ],
+                }
+            ]
+        },
+
+        {
+            "executors": [
+                {
+                    "name": "executor1",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node1", "subscribe": "NONE", "publish": "topic1", "payload": "128B"},
+                        {"name": "node2", "subscribe": "topic1", "publish": "topic2", "payload": "128B"},
+                        {"name": "node3", "subscribe": "topic2", "publish": "topic3", "payload": "128B"},
+                        {"name": "node4", "subscribe": "topic3", "publish": "topic4", "payload": "128B"},
+                        {"name": "node5", "subscribe": "topic4", "publish": "topic5", "payload": "128B"},
+                        {"name": "node6", "subscribe": "topic5", "publish": "topic6", "payload": "128B"},
+                    ],
+                },
+
+                {
+                    "name": "executor2",
+                    "type": "single_threaded",
+                    "cores": [2],
+                    "nodes": [
+                        {"name": "node7", "subscribe": "topic6", "publish": "topic7", "payload": "128B"},
+                        {"name": "node8", "subscribe": "topic7", "publish": "topic8", "payload": "128B"},
+                        {"name": "node9", "subscribe": "topic8", "publish": "topic9", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor3",
+                    "type": "single_threaded",
+                    "cores": [3],
+                    "nodes": [
+                        {"name": "node10", "subscribe": "topic9", "publish": "NONE", "payload": "128B"}
+                    ],
+                }
+            ]
+        },
+
+        {
+            "executors": [
+                {
+                    "name": "executor1",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node1", "subscribe": "NONE", "publish": "topic1", "payload": "128B"},
+                        {"name": "node2", "subscribe": "topic1", "publish": "topic2", "payload": "128B"},
+                        {"name": "node3", "subscribe": "topic2", "publish": "topic3", "payload": "128B"},
+                        {"name": "node4", "subscribe": "topic3", "publish": "topic4", "payload": "128B"},
+                        {"name": "node5", "subscribe": "topic4", "publish": "topic5", "payload": "128B"},
+                        {"name": "node6", "subscribe": "topic5", "publish": "topic6", "payload": "128B"},
+                    ],
+                },
+
+                {
+                    "name": "executor2",
+                    "type": "single_threaded",
+                    "cores": [2],
+                    "nodes": [
+                        {"name": "node7", "subscribe": "topic6", "publish": "topic7", "payload": "128B"},
+                        {"name": "node8", "subscribe": "topic7", "publish": "topic8", "payload": "128B"},
+                        {"name": "node9", "subscribe": "topic8", "publish": "topic9", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor3",
+                    "type": "single_threaded",
+                    "cores": [2],
+                    "nodes": [
+                        {"name": "node10", "subscribe": "topic9", "publish": "NONE", "payload": "128B"}
+                    ],
+                }
+            ]
+        },
+
+        ##### 10 NODES - 3 exec - mmm - 1111112223
+        {
+            "executors": [
+                {
+                    "name": "executor1",
+                    "type": "multi_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node1", "subscribe": "NONE", "publish": "topic1", "payload": "128B"},
+                        {"name": "node2", "subscribe": "topic1", "publish": "topic2", "payload": "128B"},
+                        {"name": "node3", "subscribe": "topic2", "publish": "topic3", "payload": "128B"},
+                        {"name": "node4", "subscribe": "topic3", "publish": "topic4", "payload": "128B"},
+                        {"name": "node5", "subscribe": "topic4", "publish": "topic5", "payload": "128B"},
+                        {"name": "node6", "subscribe": "topic5", "publish": "topic6", "payload": "128B"},
+                    ],
+                },
+
+                {
+                    "name": "executor2",
+                    "type": "multi_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node7", "subscribe": "topic6", "publish": "topic7", "payload": "128B"},
+                        {"name": "node8", "subscribe": "topic7", "publish": "topic8", "payload": "128B"},
+                        {"name": "node9", "subscribe": "topic8", "publish": "topic9", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor3",
+                    "type": "multi_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node10", "subscribe": "topic9", "publish": "NONE", "payload": "128B"}
+                    ],
+                }
+            ]
+        },
+
+        {
+            "executors": [
+                {
+                    "name": "executor1",
+                    "type": "multi_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node1", "subscribe": "NONE", "publish": "topic1", "payload": "128B"},
+                        {"name": "node2", "subscribe": "topic1", "publish": "topic2", "payload": "128B"},
+                        {"name": "node3", "subscribe": "topic2", "publish": "topic3", "payload": "128B"},
+                        {"name": "node4", "subscribe": "topic3", "publish": "topic4", "payload": "128B"},
+                        {"name": "node5", "subscribe": "topic4", "publish": "topic5", "payload": "128B"},
+                        {"name": "node6", "subscribe": "topic5", "publish": "topic6", "payload": "128B"},
+                    ],
+                },
+
+                {
+                    "name": "executor2",
+                    "type": "multi_threaded",
+                    "cores": [2],
+                    "nodes": [
+                        {"name": "node7", "subscribe": "topic6", "publish": "topic7", "payload": "128B"},
+                        {"name": "node8", "subscribe": "topic7", "publish": "topic8", "payload": "128B"},
+                        {"name": "node9", "subscribe": "topic8", "publish": "topic9", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor3",
+                    "type": "multi_threaded",
+                    "cores": [3],
+                    "nodes": [
+                        {"name": "node10", "subscribe": "topic9", "publish": "NONE", "payload": "128B"}
+                    ],
+                }
+            ]
+        },
+
+        {
+            "executors": [
+                {
+                    "name": "executor1",
+                    "type": "multi_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node1", "subscribe": "NONE", "publish": "topic1", "payload": "128B"},
+                        {"name": "node2", "subscribe": "topic1", "publish": "topic2", "payload": "128B"},
+                        {"name": "node3", "subscribe": "topic2", "publish": "topic3", "payload": "128B"},
+                        {"name": "node4", "subscribe": "topic3", "publish": "topic4", "payload": "128B"},
+                        {"name": "node5", "subscribe": "topic4", "publish": "topic5", "payload": "128B"},
+                        {"name": "node6", "subscribe": "topic5", "publish": "topic6", "payload": "128B"},
+                    ],
+                },
+
+                {
+                    "name": "executor2",
+                    "type": "multi_threaded",
+                    "cores": [2],
+                    "nodes": [
+                        {"name": "node7", "subscribe": "topic6", "publish": "topic7", "payload": "128B"},
+                        {"name": "node8", "subscribe": "topic7", "publish": "topic8", "payload": "128B"},
+                        {"name": "node9", "subscribe": "topic8", "publish": "topic9", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor3",
+                    "type": "multi_threaded",
+                    "cores": [2],
+                    "nodes": [
+                        {"name": "node10", "subscribe": "topic9", "publish": "NONE", "payload": "128B"}
+                    ],
+                }
+            ]
+        },
+
+        ##### 10 NODES - 3 exec - ssm - 1111112223
+        {
+            "executors": [
+                {
+                    "name": "executor1",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node1", "subscribe": "NONE", "publish": "topic1", "payload": "128B"},
+                        {"name": "node2", "subscribe": "topic1", "publish": "topic2", "payload": "128B"},
+                        {"name": "node3", "subscribe": "topic2", "publish": "topic3", "payload": "128B"},
+                        {"name": "node4", "subscribe": "topic3", "publish": "topic4", "payload": "128B"},
+                        {"name": "node5", "subscribe": "topic4", "publish": "topic5", "payload": "128B"},
+                        {"name": "node6", "subscribe": "topic5", "publish": "topic6", "payload": "128B"},
+                    ],
+                },
+
+                {
+                    "name": "executor2",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node7", "subscribe": "topic6", "publish": "topic7", "payload": "128B"},
+                        {"name": "node8", "subscribe": "topic7", "publish": "topic8", "payload": "128B"},
+                        {"name": "node9", "subscribe": "topic8", "publish": "topic9", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor3",
+                    "type": "multi_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node10", "subscribe": "topic9", "publish": "NONE", "payload": "128B"}
+                    ],
+                }
+            ]
+        },
+
+        {
+            "executors": [
+                {
+                    "name": "executor1",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node1", "subscribe": "NONE", "publish": "topic1", "payload": "128B"},
+                        {"name": "node2", "subscribe": "topic1", "publish": "topic2", "payload": "128B"},
+                        {"name": "node3", "subscribe": "topic2", "publish": "topic3", "payload": "128B"},
+                        {"name": "node4", "subscribe": "topic3", "publish": "topic4", "payload": "128B"},
+                        {"name": "node5", "subscribe": "topic4", "publish": "topic5", "payload": "128B"},
+                        {"name": "node6", "subscribe": "topic5", "publish": "topic6", "payload": "128B"},
+                    ],
+                },
+
+                {
+                    "name": "executor2",
+                    "type": "single_threaded",
+                    "cores": [2],
+                    "nodes": [
+                        {"name": "node7", "subscribe": "topic6", "publish": "topic7", "payload": "128B"},
+                        {"name": "node8", "subscribe": "topic7", "publish": "topic8", "payload": "128B"},
+                        {"name": "node9", "subscribe": "topic8", "publish": "topic9", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor3",
+                    "type": "multi_threaded",
+                    "cores": [3],
+                    "nodes": [
+                        {"name": "node10", "subscribe": "topic9", "publish": "NONE", "payload": "128B"}
+                    ],
+                }
+            ]
+        },
+
+        {
+            "executors": [
+                {
+                    "name": "executor1",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node1", "subscribe": "NONE", "publish": "topic1", "payload": "128B"},
+                        {"name": "node2", "subscribe": "topic1", "publish": "topic2", "payload": "128B"},
+                        {"name": "node3", "subscribe": "topic2", "publish": "topic3", "payload": "128B"},
+                        {"name": "node4", "subscribe": "topic3", "publish": "topic4", "payload": "128B"},
+                        {"name": "node5", "subscribe": "topic4", "publish": "topic5", "payload": "128B"},
+                        {"name": "node6", "subscribe": "topic5", "publish": "topic6", "payload": "128B"},
+                    ],
+                },
+
+                {
+                    "name": "executor2",
+                    "type": "single_threaded",
+                    "cores": [2],
+                    "nodes": [
+                        {"name": "node7", "subscribe": "topic6", "publish": "topic7", "payload": "128B"},
+                        {"name": "node8", "subscribe": "topic7", "publish": "topic8", "payload": "128B"},
+                        {"name": "node9", "subscribe": "topic8", "publish": "topic9", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor3",
+                    "type": "multi_threaded",
+                    "cores": [2],
+                    "nodes": [
+                        {"name": "node10", "subscribe": "topic9", "publish": "NONE", "payload": "128B"}
+                    ],
+                }
+            ]
+        },
+
+        ##### 10 NODES - 3 exec - mms - 1111112223
+        {
+            "executors": [
+                {
+                    "name": "executor1",
+                    "type": "multi_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node1", "subscribe": "NONE", "publish": "topic1", "payload": "128B"},
+                        {"name": "node2", "subscribe": "topic1", "publish": "topic2", "payload": "128B"},
+                        {"name": "node3", "subscribe": "topic2", "publish": "topic3", "payload": "128B"},
+                        {"name": "node4", "subscribe": "topic3", "publish": "topic4", "payload": "128B"},
+                        {"name": "node5", "subscribe": "topic4", "publish": "topic5", "payload": "128B"},
+                        {"name": "node6", "subscribe": "topic5", "publish": "topic6", "payload": "128B"},
+                    ],
+                },
+
+                {
+                    "name": "executor2",
+                    "type": "multi_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node7", "subscribe": "topic6", "publish": "topic7", "payload": "128B"},
+                        {"name": "node8", "subscribe": "topic7", "publish": "topic8", "payload": "128B"},
+                        {"name": "node9", "subscribe": "topic8", "publish": "topic9", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor3",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node10", "subscribe": "topic9", "publish": "NONE", "payload": "128B"}
+                    ],
+                }
+            ]
+        },
+
+        {
+            "executors": [
+                {
+                    "name": "executor1",
+                    "type": "multi_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node1", "subscribe": "NONE", "publish": "topic1", "payload": "128B"},
+                        {"name": "node2", "subscribe": "topic1", "publish": "topic2", "payload": "128B"},
+                        {"name": "node3", "subscribe": "topic2", "publish": "topic3", "payload": "128B"},
+                        {"name": "node4", "subscribe": "topic3", "publish": "topic4", "payload": "128B"},
+                        {"name": "node5", "subscribe": "topic4", "publish": "topic5", "payload": "128B"},
+                        {"name": "node6", "subscribe": "topic5", "publish": "topic6", "payload": "128B"},
+                    ],
+                },
+
+                {
+                    "name": "executor2",
+                    "type": "multi_threaded",
+                    "cores": [2],
+                    "nodes": [
+                        {"name": "node7", "subscribe": "topic6", "publish": "topic7", "payload": "128B"},
+                        {"name": "node8", "subscribe": "topic7", "publish": "topic8", "payload": "128B"},
+                        {"name": "node9", "subscribe": "topic8", "publish": "topic9", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor3",
+                    "type": "single_threaded",
+                    "cores": [3],
+                    "nodes": [
+                        {"name": "node10", "subscribe": "topic9", "publish": "NONE", "payload": "128B"}
+                    ],
+                }
+            ]
+        },
+
+        {
+            "executors": [
+                {
+                    "name": "executor1",
+                    "type": "multi_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node1", "subscribe": "NONE", "publish": "topic1", "payload": "128B"},
+                        {"name": "node2", "subscribe": "topic1", "publish": "topic2", "payload": "128B"},
+                        {"name": "node3", "subscribe": "topic2", "publish": "topic3", "payload": "128B"},
+                        {"name": "node4", "subscribe": "topic3", "publish": "topic4", "payload": "128B"},
+                        {"name": "node5", "subscribe": "topic4", "publish": "topic5", "payload": "128B"},
+                        {"name": "node6", "subscribe": "topic5", "publish": "topic6", "payload": "128B"},
+                    ],
+                },
+
+                {
+                    "name": "executor2",
+                    "type": "multi_threaded",
+                    "cores": [2],
+                    "nodes": [
+                        {"name": "node7", "subscribe": "topic6", "publish": "topic7", "payload": "128B"},
+                        {"name": "node8", "subscribe": "topic7", "publish": "topic8", "payload": "128B"},
+                        {"name": "node9", "subscribe": "topic8", "publish": "topic9", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor3",
+                    "type": "single_threaded",
+                    "cores": [2],
+                    "nodes": [
+                        {"name": "node10", "subscribe": "topic9", "publish": "NONE", "payload": "128B"}
+                    ],
+                }
+            ]
+        },
+
+        ##### 10 NODES - 5 exec - sssss - 1122334455
+        {
+            "executors": [
+                {
+                    "name": "executor1",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node1", "subscribe": "NONE", "publish": "topic1", "payload": "128B"},
+                        {"name": "node2", "subscribe": "topic1", "publish": "topic2", "payload": "128B"},
+                    ],
+                },
+
+                {
+                    "name": "executor2",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node3", "subscribe": "topic2", "publish": "topic3", "payload": "128B"},
+                        {"name": "node4", "subscribe": "topic3", "publish": "topic4", "payload": "128B"},
+                    ],
+                },
+
+                {
+                    "name": "executor3",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node5", "subscribe": "topic4", "publish": "topic5", "payload": "128B"},
+                        {"name": "node6", "subscribe": "topic5", "publish": "topic6", "payload": "128B"},
+                    ],
+                },
+
+                {
+                    "name": "executor4",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node7", "subscribe": "topic6", "publish": "topic7", "payload": "128B"},
+                        {"name": "node8", "subscribe": "topic7", "publish": "topic8", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor5",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node9", "subscribe": "topic8", "publish": "topic9", "payload": "128B"},
+                        {"name": "node10", "subscribe": "topic9", "publish": "NONE", "payload": "128B"}
+                    ],
+                }
+            ]
+        },
+
+        {
+            "executors": [
+                {
+                    "name": "executor1",
+                    "type": "single_threaded",
+                    "cores": [0],
+                    "nodes": [
+                        {"name": "node1", "subscribe": "NONE", "publish": "topic1", "payload": "128B"},
+                        {"name": "node2", "subscribe": "topic1", "publish": "topic2", "payload": "128B"},
+                    ],
+                },
+
+                {
+                    "name": "executor2",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node3", "subscribe": "topic2", "publish": "topic3", "payload": "128B"},
+                        {"name": "node4", "subscribe": "topic3", "publish": "topic4", "payload": "128B"},
+                    ],
+                },
+
+                {
+                    "name": "executor3",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node5", "subscribe": "topic4", "publish": "topic5", "payload": "128B"},
+                        {"name": "node6", "subscribe": "topic5", "publish": "topic6", "payload": "128B"},
+                    ],
+                },
+
+                {
+                    "name": "executor4",
+                    "type": "single_threaded",
+                    "cores": [2],
+                    "nodes": [
+                        {"name": "node7", "subscribe": "topic6", "publish": "topic7", "payload": "128B"},
+                        {"name": "node8", "subscribe": "topic7", "publish": "topic8", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor5",
+                    "type": "single_threaded",
+                    "cores": [3],
+                    "nodes": [
+                        {"name": "node9", "subscribe": "topic8", "publish": "topic9", "payload": "128B"},
+                        {"name": "node10", "subscribe": "topic9", "publish": "NONE", "payload": "128B"}
+                    ],
+                }
+            ]
+        },
+
+        ##### 10 NODES - 5 exec - mmmmm - 1122334455
+        {
+            "executors": [
+                {
+                    "name": "executor1",
+                    "type": "multi_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node1", "subscribe": "NONE", "publish": "topic1", "payload": "128B"},
+                        {"name": "node2", "subscribe": "topic1", "publish": "topic2", "payload": "128B"},
+                    ],
+                },
+
+                {
+                    "name": "executor2",
+                    "type": "multi_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node3", "subscribe": "topic2", "publish": "topic3", "payload": "128B"},
+                        {"name": "node4", "subscribe": "topic3", "publish": "topic4", "payload": "128B"},
+                    ],
+                },
+
+                {
+                    "name": "executor3",
+                    "type": "multi_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node5", "subscribe": "topic4", "publish": "topic5", "payload": "128B"},
+                        {"name": "node6", "subscribe": "topic5", "publish": "topic6", "payload": "128B"},
+                    ],
+                },
+
+                {
+                    "name": "executor4",
+                    "type": "multi_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node7", "subscribe": "topic6", "publish": "topic7", "payload": "128B"},
+                        {"name": "node8", "subscribe": "topic7", "publish": "topic8", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor5",
+                    "type": "multi_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node9", "subscribe": "topic8", "publish": "topic9", "payload": "128B"},
+                        {"name": "node10", "subscribe": "topic9", "publish": "NONE", "payload": "128B"}
+                    ],
+                }
+            ]
+        },
+
+        {
+            "executors": [
+                {
+                    "name": "executor1",
+                    "type": "multi_threaded",
+                    "cores": [0],
+                    "nodes": [
+                        {"name": "node1", "subscribe": "NONE", "publish": "topic1", "payload": "128B"},
+                        {"name": "node2", "subscribe": "topic1", "publish": "topic2", "payload": "128B"},
+                    ],
+                },
+
+                {
+                    "name": "executor2",
+                    "type": "multi_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node3", "subscribe": "topic2", "publish": "topic3", "payload": "128B"},
+                        {"name": "node4", "subscribe": "topic3", "publish": "topic4", "payload": "128B"},
+                    ],
+                },
+
+                {
+                    "name": "executor3",
+                    "type": "multi_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node5", "subscribe": "topic4", "publish": "topic5", "payload": "128B"},
+                        {"name": "node6", "subscribe": "topic5", "publish": "topic6", "payload": "128B"},
+                    ],
+                },
+
+                {
+                    "name": "executor4",
+                    "type": "multi_threaded",
+                    "cores": [2],
+                    "nodes": [
+                        {"name": "node7", "subscribe": "topic6", "publish": "topic7", "payload": "128B"},
+                        {"name": "node8", "subscribe": "topic7", "publish": "topic8", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor5",
+                    "type": "multi_threaded",
+                    "cores": [3],
+                    "nodes": [
+                        {"name": "node9", "subscribe": "topic8", "publish": "topic9", "payload": "128B"},
+                        {"name": "node10", "subscribe": "topic9", "publish": "NONE", "payload": "128B"}
+                    ],
+                }
+            ]
+        },
+
+        ##### 10 NODES - 5 exec - sssmm - 1122334455
+        {
+            "executors": [
+                {
+                    "name": "executor1",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node1", "subscribe": "NONE", "publish": "topic1", "payload": "128B"},
+                        {"name": "node2", "subscribe": "topic1", "publish": "topic2", "payload": "128B"},
+                    ],
+                },
+
+                {
+                    "name": "executor2",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node3", "subscribe": "topic2", "publish": "topic3", "payload": "128B"},
+                        {"name": "node4", "subscribe": "topic3", "publish": "topic4", "payload": "128B"},
+                    ],
+                },
+
+                {
+                    "name": "executor3",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node5", "subscribe": "topic4", "publish": "topic5", "payload": "128B"},
+                        {"name": "node6", "subscribe": "topic5", "publish": "topic6", "payload": "128B"},
+                    ],
+                },
+
+                {
+                    "name": "executor4",
+                    "type": "multi_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node7", "subscribe": "topic6", "publish": "topic7", "payload": "128B"},
+                        {"name": "node8", "subscribe": "topic7", "publish": "topic8", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor5",
+                    "type": "multi_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node9", "subscribe": "topic8", "publish": "topic9", "payload": "128B"},
+                        {"name": "node10", "subscribe": "topic9", "publish": "NONE", "payload": "128B"}
+                    ],
+                }
+            ]
+        },
+
+        {
+            "executors": [
+                {
+                    "name": "executor1",
+                    "type": "single_threaded",
+                    "cores": [0],
+                    "nodes": [
+                        {"name": "node1", "subscribe": "NONE", "publish": "topic1", "payload": "128B"},
+                        {"name": "node2", "subscribe": "topic1", "publish": "topic2", "payload": "128B"},
+                    ],
+                },
+
+                {
+                    "name": "executor2",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node3", "subscribe": "topic2", "publish": "topic3", "payload": "128B"},
+                        {"name": "node4", "subscribe": "topic3", "publish": "topic4", "payload": "128B"},
+                    ],
+                },
+
+                {
+                    "name": "executor3",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node5", "subscribe": "topic4", "publish": "topic5", "payload": "128B"},
+                        {"name": "node6", "subscribe": "topic5", "publish": "topic6", "payload": "128B"},
+                    ],
+                },
+
+                {
+                    "name": "executor4",
+                    "type": "multi_threaded",
+                    "cores": [2],
+                    "nodes": [
+                        {"name": "node7", "subscribe": "topic6", "publish": "topic7", "payload": "128B"},
+                        {"name": "node8", "subscribe": "topic7", "publish": "topic8", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor5",
+                    "type": "multi_threaded",
+                    "cores": [3],
+                    "nodes": [
+                        {"name": "node9", "subscribe": "topic8", "publish": "topic9", "payload": "128B"},
+                        {"name": "node10", "subscribe": "topic9", "publish": "NONE", "payload": "128B"}
+                    ],
+                }
+            ]
+        },
+
+        ##### 10 NODES - 5 exec - sssss - 1111112345
+        {
+            "executors": [
+                {
+                    "name": "executor1",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node1", "subscribe": "NONE", "publish": "topic1", "payload": "128B"},
+                        {"name": "node2", "subscribe": "topic1", "publish": "topic2", "payload": "128B"},
+                        {"name": "node3", "subscribe": "topic2", "publish": "topic3", "payload": "128B"},
+                        {"name": "node4", "subscribe": "topic3", "publish": "topic4", "payload": "128B"},
+                        {"name": "node5", "subscribe": "topic4", "publish": "topic5", "payload": "128B"},
+                        {"name": "node6", "subscribe": "topic5", "publish": "topic6", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor2",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node7", "subscribe": "topic6", "publish": "topic7", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor3",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node8", "subscribe": "topic7", "publish": "topic8", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor4",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node9", "subscribe": "topic8", "publish": "topic9", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor5",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node10", "subscribe": "topic9", "publish": "NONE", "payload": "128B"}
+                    ],
+                }
+            ]
+        },
+
+        {
+            "executors": [
+                {
+                    "name": "executor1",
+                    "type": "single_threaded",
+                    "cores": [0],
+                    "nodes": [
+                        {"name": "node1", "subscribe": "NONE", "publish": "topic1", "payload": "128B"},
+                        {"name": "node2", "subscribe": "topic1", "publish": "topic2", "payload": "128B"},
+                        {"name": "node3", "subscribe": "topic2", "publish": "topic3", "payload": "128B"},
+                        {"name": "node4", "subscribe": "topic3", "publish": "topic4", "payload": "128B"},
+                        {"name": "node5", "subscribe": "topic4", "publish": "topic5", "payload": "128B"},
+                        {"name": "node6", "subscribe": "topic5", "publish": "topic6", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor2",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node7", "subscribe": "topic6", "publish": "topic7", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor3",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node8", "subscribe": "topic7", "publish": "topic8", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor4",
+                    "type": "single_threaded",
+                    "cores": [2],
+                    "nodes": [
+                        {"name": "node9", "subscribe": "topic8", "publish": "topic9", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor5",
+                    "type": "single_threaded",
+                    "cores": [3],
+                    "nodes": [
+                        {"name": "node10", "subscribe": "topic9", "publish": "NONE", "payload": "128B"}
+                    ],
+                }
+            ]
+        },
+
+        {
+            "executors": [
+                {
+                    "name": "executor1",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node1", "subscribe": "NONE", "publish": "topic1", "payload": "128B"},
+                        {"name": "node2", "subscribe": "topic1", "publish": "topic2", "payload": "128B"},
+                        {"name": "node3", "subscribe": "topic2", "publish": "topic3", "payload": "128B"},
+                        {"name": "node4", "subscribe": "topic3", "publish": "topic4", "payload": "128B"},
+                        {"name": "node5", "subscribe": "topic4", "publish": "topic5", "payload": "128B"},
+                        {"name": "node6", "subscribe": "topic5", "publish": "topic6", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor2",
+                    "type": "single_threaded",
+                    "cores": [2],
+                    "nodes": [
+                        {"name": "node7", "subscribe": "topic6", "publish": "topic7", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor3",
+                    "type": "single_threaded",
+                    "cores": [2],
+                    "nodes": [
+                        {"name": "node8", "subscribe": "topic7", "publish": "topic8", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor4",
+                    "type": "single_threaded",
+                    "cores": [2],
+                    "nodes": [
+                        {"name": "node9", "subscribe": "topic8", "publish": "topic9", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor5",
+                    "type": "single_threaded",
+                    "cores": [2],
+                    "nodes": [
+                        {"name": "node10", "subscribe": "topic9", "publish": "NONE", "payload": "128B"}
+                    ],
+                }
+            ]
+        },
+
+        ##### 10 NODES - 5 exec - mmmmm - 1111112345
+        {
+            "executors": [
+                {
+                    "name": "executor1",
+                    "type": "multi_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node1", "subscribe": "NONE", "publish": "topic1", "payload": "128B"},
+                        {"name": "node2", "subscribe": "topic1", "publish": "topic2", "payload": "128B"},
+                        {"name": "node3", "subscribe": "topic2", "publish": "topic3", "payload": "128B"},
+                        {"name": "node4", "subscribe": "topic3", "publish": "topic4", "payload": "128B"},
+                        {"name": "node5", "subscribe": "topic4", "publish": "topic5", "payload": "128B"},
+                        {"name": "node6", "subscribe": "topic5", "publish": "topic6", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor2",
+                    "type": "multi_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node7", "subscribe": "topic6", "publish": "topic7", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor3",
+                    "type": "multi_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node8", "subscribe": "topic7", "publish": "topic8", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor4",
+                    "type": "multi_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node9", "subscribe": "topic8", "publish": "topic9", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor5",
+                    "type": "multi_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node10", "subscribe": "topic9", "publish": "NONE", "payload": "128B"}
+                    ],
+                }
+            ]
+        },
+
+        {
+            "executors": [
+                {
+                    "name": "executor1",
+                    "type": "multi_threaded",
+                    "cores": [0],
+                    "nodes": [
+                        {"name": "node1", "subscribe": "NONE", "publish": "topic1", "payload": "128B"},
+                        {"name": "node2", "subscribe": "topic1", "publish": "topic2", "payload": "128B"},
+                        {"name": "node3", "subscribe": "topic2", "publish": "topic3", "payload": "128B"},
+                        {"name": "node4", "subscribe": "topic3", "publish": "topic4", "payload": "128B"},
+                        {"name": "node5", "subscribe": "topic4", "publish": "topic5", "payload": "128B"},
+                        {"name": "node6", "subscribe": "topic5", "publish": "topic6", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor2",
+                    "type": "multi_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node7", "subscribe": "topic6", "publish": "topic7", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor3",
+                    "type": "multi_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node8", "subscribe": "topic7", "publish": "topic8", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor4",
+                    "type": "multi_threaded",
+                    "cores": [2],
+                    "nodes": [
+                        {"name": "node9", "subscribe": "topic8", "publish": "topic9", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor5",
+                    "type": "multi_threaded",
+                    "cores": [3],
+                    "nodes": [
+                        {"name": "node10", "subscribe": "topic9", "publish": "NONE", "payload": "128B"}
+                    ],
+                }
+            ]
+        },
+
+        {
+            "executors": [
+                {
+                    "name": "executor1",
+                    "type": "multi_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node1", "subscribe": "NONE", "publish": "topic1", "payload": "128B"},
+                        {"name": "node2", "subscribe": "topic1", "publish": "topic2", "payload": "128B"},
+                        {"name": "node3", "subscribe": "topic2", "publish": "topic3", "payload": "128B"},
+                        {"name": "node4", "subscribe": "topic3", "publish": "topic4", "payload": "128B"},
+                        {"name": "node5", "subscribe": "topic4", "publish": "topic5", "payload": "128B"},
+                        {"name": "node6", "subscribe": "topic5", "publish": "topic6", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor2",
+                    "type": "multi_threaded",
+                    "cores": [2],
+                    "nodes": [
+                        {"name": "node7", "subscribe": "topic6", "publish": "topic7", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor3",
+                    "type": "multi_threaded",
+                    "cores": [2],
+                    "nodes": [
+                        {"name": "node8", "subscribe": "topic7", "publish": "topic8", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor4",
+                    "type": "multi_threaded",
+                    "cores": [2],
+                    "nodes": [
+                        {"name": "node9", "subscribe": "topic8", "publish": "topic9", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor5",
+                    "type": "multi_threaded",
+                    "cores": [2],
+                    "nodes": [
+                        {"name": "node10", "subscribe": "topic9", "publish": "NONE", "payload": "128B"}
+                    ],
+                }
+            ]
+        },
+
+        ##### 10 NODES - 5 exec - sssmm - 1111112345
+        {
+            "executors": [
+                {
+                    "name": "executor1",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node1", "subscribe": "NONE", "publish": "topic1", "payload": "128B"},
+                        {"name": "node2", "subscribe": "topic1", "publish": "topic2", "payload": "128B"},
+                        {"name": "node3", "subscribe": "topic2", "publish": "topic3", "payload": "128B"},
+                        {"name": "node4", "subscribe": "topic3", "publish": "topic4", "payload": "128B"},
+                        {"name": "node5", "subscribe": "topic4", "publish": "topic5", "payload": "128B"},
+                        {"name": "node6", "subscribe": "topic5", "publish": "topic6", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor2",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node7", "subscribe": "topic6", "publish": "topic7", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor3",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node8", "subscribe": "topic7", "publish": "topic8", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor4",
+                    "type": "multi_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node9", "subscribe": "topic8", "publish": "topic9", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor5",
+                    "type": "multi_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node10", "subscribe": "topic9", "publish": "NONE", "payload": "128B"}
+                    ],
+                }
+            ]
+        },
+
+        {
+            "executors": [
+                {
+                    "name": "executor1",
+                    "type": "single_threaded",
+                    "cores": [0],
+                    "nodes": [
+                        {"name": "node1", "subscribe": "NONE", "publish": "topic1", "payload": "128B"},
+                        {"name": "node2", "subscribe": "topic1", "publish": "topic2", "payload": "128B"},
+                        {"name": "node3", "subscribe": "topic2", "publish": "topic3", "payload": "128B"},
+                        {"name": "node4", "subscribe": "topic3", "publish": "topic4", "payload": "128B"},
+                        {"name": "node5", "subscribe": "topic4", "publish": "topic5", "payload": "128B"},
+                        {"name": "node6", "subscribe": "topic5", "publish": "topic6", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor2",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node7", "subscribe": "topic6", "publish": "topic7", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor3",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node8", "subscribe": "topic7", "publish": "topic8", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor4",
+                    "type": "multi_threaded",
+                    "cores": [2],
+                    "nodes": [
+                        {"name": "node9", "subscribe": "topic8", "publish": "topic9", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor5",
+                    "type": "multi_threaded",
+                    "cores": [3],
+                    "nodes": [
+                        {"name": "node10", "subscribe": "topic9", "publish": "NONE", "payload": "128B"}
+                    ],
+                }
+            ]
+        },
+
+        {
+            "executors": [
+                {
+                    "name": "executor1",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node1", "subscribe": "NONE", "publish": "topic1", "payload": "128B"},
+                        {"name": "node2", "subscribe": "topic1", "publish": "topic2", "payload": "128B"},
+                        {"name": "node3", "subscribe": "topic2", "publish": "topic3", "payload": "128B"},
+                        {"name": "node4", "subscribe": "topic3", "publish": "topic4", "payload": "128B"},
+                        {"name": "node5", "subscribe": "topic4", "publish": "topic5", "payload": "128B"},
+                        {"name": "node6", "subscribe": "topic5", "publish": "topic6", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor2",
+                    "type": "single_threaded",
+                    "cores": [2],
+                    "nodes": [
+                        {"name": "node7", "subscribe": "topic6", "publish": "topic7", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor3",
+                    "type": "single_threaded",
+                    "cores": [2],
+                    "nodes": [
+                        {"name": "node8", "subscribe": "topic7", "publish": "topic8", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor4",
+                    "type": "multi_threaded",
+                    "cores": [2],
+                    "nodes": [
+                        {"name": "node9", "subscribe": "topic8", "publish": "topic9", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor5",
+                    "type": "multi_threaded",
+                    "cores": [2],
+                    "nodes": [
+                        {"name": "node10", "subscribe": "topic9", "publish": "NONE", "payload": "128B"}
+                    ],
+                }
+            ]
+        },
+
+        ##### 10 NODES - 5 exec - mmmss - 1111112345
+        {
+            "executors": [
+                {
+                    "name": "executor1",
+                    "type": "multi_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node1", "subscribe": "NONE", "publish": "topic1", "payload": "128B"},
+                        {"name": "node2", "subscribe": "topic1", "publish": "topic2", "payload": "128B"},
+                        {"name": "node3", "subscribe": "topic2", "publish": "topic3", "payload": "128B"},
+                        {"name": "node4", "subscribe": "topic3", "publish": "topic4", "payload": "128B"},
+                        {"name": "node5", "subscribe": "topic4", "publish": "topic5", "payload": "128B"},
+                        {"name": "node6", "subscribe": "topic5", "publish": "topic6", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor2",
+                    "type": "multi_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node7", "subscribe": "topic6", "publish": "topic7", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor3",
+                    "type": "multi_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node8", "subscribe": "topic7", "publish": "topic8", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor4",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node9", "subscribe": "topic8", "publish": "topic9", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor5",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node10", "subscribe": "topic9", "publish": "NONE", "payload": "128B"}
+                    ],
+                }
+            ]
+        },
+
+        {
+            "executors": [
+                {
+                    "name": "executor1",
+                    "type": "multi_threaded",
+                    "cores": [0],
+                    "nodes": [
+                        {"name": "node1", "subscribe": "NONE", "publish": "topic1", "payload": "128B"},
+                        {"name": "node2", "subscribe": "topic1", "publish": "topic2", "payload": "128B"},
+                        {"name": "node3", "subscribe": "topic2", "publish": "topic3", "payload": "128B"},
+                        {"name": "node4", "subscribe": "topic3", "publish": "topic4", "payload": "128B"},
+                        {"name": "node5", "subscribe": "topic4", "publish": "topic5", "payload": "128B"},
+                        {"name": "node6", "subscribe": "topic5", "publish": "topic6", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor2",
+                    "type": "multi_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node7", "subscribe": "topic6", "publish": "topic7", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor3",
+                    "type": "multi_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node8", "subscribe": "topic7", "publish": "topic8", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor4",
+                    "type": "single_threaded",
+                    "cores": [2],
+                    "nodes": [
+                        {"name": "node9", "subscribe": "topic8", "publish": "topic9", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor5",
+                    "type": "single_threaded",
+                    "cores": [3],
+                    "nodes": [
+                        {"name": "node10", "subscribe": "topic9", "publish": "NONE", "payload": "128B"}
+                    ],
+                }
+            ]
+        },
+
+        {
+            "executors": [
+                {
+                    "name": "executor1",
+                    "type": "multi_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node1", "subscribe": "NONE", "publish": "topic1", "payload": "128B"},
+                        {"name": "node2", "subscribe": "topic1", "publish": "topic2", "payload": "128B"},
+                        {"name": "node3", "subscribe": "topic2", "publish": "topic3", "payload": "128B"},
+                        {"name": "node4", "subscribe": "topic3", "publish": "topic4", "payload": "128B"},
+                        {"name": "node5", "subscribe": "topic4", "publish": "topic5", "payload": "128B"},
+                        {"name": "node6", "subscribe": "topic5", "publish": "topic6", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor2",
+                    "type": "multi_threaded",
+                    "cores": [2],
+                    "nodes": [
+                        {"name": "node7", "subscribe": "topic6", "publish": "topic7", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor3",
+                    "type": "multi_threaded",
+                    "cores": [2],
+                    "nodes": [
+                        {"name": "node8", "subscribe": "topic7", "publish": "topic8", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor4",
+                    "type": "single_threaded",
+                    "cores": [2],
+                    "nodes": [
+                        {"name": "node9", "subscribe": "topic8", "publish": "topic9", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor5",
+                    "type": "single_threaded",
+                    "cores": [2],
+                    "nodes": [
+                        {"name": "node10", "subscribe": "topic9", "publish": "NONE", "payload": "128B"}
+                    ],
+                }
+            ]
+        },
+
+        ##### 10 NODES - 7 exec - sssssss - 1122334567
+        {
+            "executors": [
+                {
+                    "name": "executor1",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node1", "subscribe": "NONE", "publish": "topic1", "payload": "128B"},
+                        {"name": "node2", "subscribe": "topic1", "publish": "topic2", "payload": "128B"},
+                    ],
+                },
+
+                {
+                    "name": "executor2",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node3", "subscribe": "topic2", "publish": "topic3", "payload": "128B"},
+                        {"name": "node4", "subscribe": "topic3", "publish": "topic4", "payload": "128B"},
+                    ],
+                },
+
+                {
+                    "name": "executor3",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node5", "subscribe": "topic4", "publish": "topic5", "payload": "128B"},
+                        {"name": "node6", "subscribe": "topic5", "publish": "topic6", "payload": "128B"},
+                    ],
+                },
+
+                {
+                    "name": "executor4",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node7", "subscribe": "topic6", "publish": "topic7", "payload": "128B"},
+                    ],
+                },
+
+                {
+                    "name": "executor5",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node8", "subscribe": "topic7", "publish": "topic8", "payload": "128B"},
+                    ],
+                },
+
+                {
+                    "name": "executor6",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node9", "subscribe": "topic8", "publish": "topic9", "payload": "128B"},
+                    ],
+                },
+
+                {
+                    "name": "executor7",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node10", "subscribe": "topic9", "publish": "NONE", "payload": "128B"}
+                    ],
+                }
+            ]
+        },
+
+        {
+            "executors": [
+                {
+                    "name": "executor1",
+                    "type": "single_threaded",
+                    "cores": [0],
+                    "nodes": [
+                        {"name": "node1", "subscribe": "NONE", "publish": "topic1", "payload": "128B"},
+                        {"name": "node2", "subscribe": "topic1", "publish": "topic2", "payload": "128B"},
+                    ],
+                },
+
+                {
+                    "name": "executor2",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node3", "subscribe": "topic2", "publish": "topic3", "payload": "128B"},
+                        {"name": "node4", "subscribe": "topic3", "publish": "topic4", "payload": "128B"},
+                    ],
+                },
+
+                {
+                    "name": "executor3",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node5", "subscribe": "topic4", "publish": "topic5", "payload": "128B"},
+                        {"name": "node6", "subscribe": "topic5", "publish": "topic6", "payload": "128B"},
+                    ],
+                },
+
+                {
+                    "name": "executor4",
+                    "type": "single_threaded",
+                    "cores": [2],
+                    "nodes": [
+                        {"name": "node7", "subscribe": "topic6", "publish": "topic7", "payload": "128B"},
+                    ],
+                },
+
+                {
+                    "name": "executor5",
+                    "type": "single_threaded",
+                    "cores": [2],
+                    "nodes": [
+                        {"name": "node8", "subscribe": "topic7", "publish": "topic8", "payload": "128B"},
+                    ],
+                },
+
+                {
+                    "name": "executor6",
+                    "type": "single_threaded",
+                    "cores": [3],
+                    "nodes": [
+                        {"name": "node9", "subscribe": "topic8", "publish": "topic9", "payload": "128B"},
+                    ],
+                },
+
+                {
+                    "name": "executor7",
+                    "type": "single_threaded",
+                    "cores": [3],
+                    "nodes": [
+                        {"name": "node10", "subscribe": "topic9", "publish": "NONE", "payload": "128B"}
+                    ],
+                }
+            ]
+        },
+
+        ##### 10 NODES - 7 exec - mmmmmmm - 1122334567
+        {
+            "executors": [
+                {
+                    "name": "executor1",
+                    "type": "multi_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node1", "subscribe": "NONE", "publish": "topic1", "payload": "128B"},
+                        {"name": "node2", "subscribe": "topic1", "publish": "topic2", "payload": "128B"},
+                    ],
+                },
+
+                {
+                    "name": "executor2",
+                    "type": "multi_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node3", "subscribe": "topic2", "publish": "topic3", "payload": "128B"},
+                        {"name": "node4", "subscribe": "topic3", "publish": "topic4", "payload": "128B"},
+                    ],
+                },
+
+                {
+                    "name": "executor3",
+                    "type": "multi_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node5", "subscribe": "topic4", "publish": "topic5", "payload": "128B"},
+                        {"name": "node6", "subscribe": "topic5", "publish": "topic6", "payload": "128B"},
+                    ],
+                },
+
+                {
+                    "name": "executor4",
+                    "type": "multi_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node7", "subscribe": "topic6", "publish": "topic7", "payload": "128B"},
+                    ],
+                },
+
+                {
+                    "name": "executor5",
+                    "type": "multi_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node8", "subscribe": "topic7", "publish": "topic8", "payload": "128B"},
+                    ],
+                },
+
+                {
+                    "name": "executor6",
+                    "type": "multi_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node9", "subscribe": "topic8", "publish": "topic9", "payload": "128B"},
+                    ],
+                },
+
+                {
+                    "name": "executor7",
+                    "type": "multi_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node10", "subscribe": "topic9", "publish": "NONE", "payload": "128B"}
+                    ],
+                }
+            ]
+        },
+
+        {
+            "executors": [
+                {
+                    "name": "executor1",
+                    "type": "multi_threaded",
+                    "cores": [0],
+                    "nodes": [
+                        {"name": "node1", "subscribe": "NONE", "publish": "topic1", "payload": "128B"},
+                        {"name": "node2", "subscribe": "topic1", "publish": "topic2", "payload": "128B"},
+                    ],
+                },
+
+                {
+                    "name": "executor2",
+                    "type": "multi_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node3", "subscribe": "topic2", "publish": "topic3", "payload": "128B"},
+                        {"name": "node4", "subscribe": "topic3", "publish": "topic4", "payload": "128B"},
+                    ],
+                },
+
+                {
+                    "name": "executor3",
+                    "type": "multi_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node5", "subscribe": "topic4", "publish": "topic5", "payload": "128B"},
+                        {"name": "node6", "subscribe": "topic5", "publish": "topic6", "payload": "128B"},
+                    ],
+                },
+
+                {
+                    "name": "executor4",
+                    "type": "multi_threaded",
+                    "cores": [2],
+                    "nodes": [
+                        {"name": "node7", "subscribe": "topic6", "publish": "topic7", "payload": "128B"},
+                    ],
+                },
+
+                {
+                    "name": "executor5",
+                    "type": "multi_threaded",
+                    "cores": [2],
+                    "nodes": [
+                        {"name": "node8", "subscribe": "topic7", "publish": "topic8", "payload": "128B"},
+                    ],
+                },
+
+                {
+                    "name": "executor6",
+                    "type": "multi_threaded",
+                    "cores": [3],
+                    "nodes": [
+                        {"name": "node9", "subscribe": "topic8", "publish": "topic9", "payload": "128B"},
+                    ],
+                },
+
+                {
+                    "name": "executor7",
+                    "type": "multi_threaded",
+                    "cores": [3],
+                    "nodes": [
+                        {"name": "node10", "subscribe": "topic9", "publish": "NONE", "payload": "128B"}
+                    ],
+                }
+            ]
+        },
+
+        ##### 10 NODES - 7 exec - ssssmmm - 1122334567
+        {
+            "executors": [
+                {
+                    "name": "executor1",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node1", "subscribe": "NONE", "publish": "topic1", "payload": "128B"},
+                        {"name": "node2", "subscribe": "topic1", "publish": "topic2", "payload": "128B"},
+                    ],
+                },
+
+                {
+                    "name": "executor2",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node3", "subscribe": "topic2", "publish": "topic3", "payload": "128B"},
+                        {"name": "node4", "subscribe": "topic3", "publish": "topic4", "payload": "128B"},
+                    ],
+                },
+
+                {
+                    "name": "executor3",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node5", "subscribe": "topic4", "publish": "topic5", "payload": "128B"},
+                        {"name": "node6", "subscribe": "topic5", "publish": "topic6", "payload": "128B"},
+                    ],
+                },
+
+                {
+                    "name": "executor4",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node7", "subscribe": "topic6", "publish": "topic7", "payload": "128B"},
+                    ],
+                },
+
+                {
+                    "name": "executor5",
+                    "type": "multi_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node8", "subscribe": "topic7", "publish": "topic8", "payload": "128B"},
+                    ],
+                },
+
+                {
+                    "name": "executor6",
+                    "type": "multi_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node9", "subscribe": "topic8", "publish": "topic9", "payload": "128B"},
+                    ],
+                },
+
+                {
+                    "name": "executor7",
+                    "type": "multi_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node10", "subscribe": "topic9", "publish": "NONE", "payload": "128B"}
+                    ],
+                }
+            ]
+        },
+
+        {
+            "executors": [
+                {
+                    "name": "executor1",
+                    "type": "single_threaded",
+                    "cores": [0],
+                    "nodes": [
+                        {"name": "node1", "subscribe": "NONE", "publish": "topic1", "payload": "128B"},
+                        {"name": "node2", "subscribe": "topic1", "publish": "topic2", "payload": "128B"},
+                    ],
+                },
+
+                {
+                    "name": "executor2",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node3", "subscribe": "topic2", "publish": "topic3", "payload": "128B"},
+                        {"name": "node4", "subscribe": "topic3", "publish": "topic4", "payload": "128B"},
+                    ],
+                },
+
+                {
+                    "name": "executor3",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node5", "subscribe": "topic4", "publish": "topic5", "payload": "128B"},
+                        {"name": "node6", "subscribe": "topic5", "publish": "topic6", "payload": "128B"},
+                    ],
+                },
+
+                {
+                    "name": "executor4",
+                    "type": "single_threaded",
+                    "cores": [2],
+                    "nodes": [
+                        {"name": "node7", "subscribe": "topic6", "publish": "topic7", "payload": "128B"},
+                    ],
+                },
+
+                {
+                    "name": "executor5",
+                    "type": "multi_threaded",
+                    "cores": [2],
+                    "nodes": [
+                        {"name": "node8", "subscribe": "topic7", "publish": "topic8", "payload": "128B"},
+                    ],
+                },
+
+                {
+                    "name": "executor6",
+                    "type": "multi_threaded",
+                    "cores": [3],
+                    "nodes": [
+                        {"name": "node9", "subscribe": "topic8", "publish": "topic9", "payload": "128B"},
+                    ],
+                },
+
+                {
+                    "name": "executor7",
+                    "type": "multi_threaded",
+                    "cores": [3],
+                    "nodes": [
+                        {"name": "node10", "subscribe": "topic9", "publish": "NONE", "payload": "128B"}
+                    ],
+                }
+            ]
+        },
+
+        ##### 10 NODES - 7 exec - sssssss - 1111234567
+        {
+            "executors": [
+                {
+                    "name": "executor1",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node1", "subscribe": "NONE", "publish": "topic1", "payload": "128B"},
+                        {"name": "node2", "subscribe": "topic1", "publish": "topic2", "payload": "128B"},
+                        {"name": "node3", "subscribe": "topic2", "publish": "topic3", "payload": "128B"},
+                        {"name": "node4", "subscribe": "topic3", "publish": "topic4", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor2",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node5", "subscribe": "topic4", "publish": "topic5", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor3",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node6", "subscribe": "topic5", "publish": "topic6", "payload": "128B"},
+                    ],
+                },
+
+                {
+                    "name": "executor4",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node7", "subscribe": "topic6", "publish": "topic7", "payload": "128B"},
+                    ],
+                },
+
+                {
+                    "name": "executor5",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node8", "subscribe": "topic7", "publish": "topic8", "payload": "128B"},
+                    ],
+                },
+
+                {
+                    "name": "executor6",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node9", "subscribe": "topic8", "publish": "topic9", "payload": "128B"},
+                    ],
+                },
+
+                {
+                    "name": "executor7",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node10", "subscribe": "topic9", "publish": "NONE", "payload": "128B"}
+                    ],
+                }
+            ]
+        },
+
+        {
+            "executors": [
+                {
+                    "name": "executor1",
+                    "type": "single_threaded",
+                    "cores": [0],
+                    "nodes": [
+                        {"name": "node1", "subscribe": "NONE", "publish": "topic1", "payload": "128B"},
+                        {"name": "node2", "subscribe": "topic1", "publish": "topic2", "payload": "128B"},
+                        {"name": "node3", "subscribe": "topic2", "publish": "topic3", "payload": "128B"},
+                        {"name": "node4", "subscribe": "topic3", "publish": "topic4", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor2",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node5", "subscribe": "topic4", "publish": "topic5", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor3",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node6", "subscribe": "topic5", "publish": "topic6", "payload": "128B"},
+                    ],
+                },
+
+                {
+                    "name": "executor4",
+                    "type": "single_threaded",
+                    "cores": [2],
+                    "nodes": [
+                        {"name": "node7", "subscribe": "topic6", "publish": "topic7", "payload": "128B"},
+                    ],
+                },
+
+                {
+                    "name": "executor5",
+                    "type": "single_threaded",
+                    "cores": [2],
+                    "nodes": [
+                        {"name": "node8", "subscribe": "topic7", "publish": "topic8", "payload": "128B"},
+                    ],
+                },
+
+                {
+                    "name": "executor6",
+                    "type": "single_threaded",
+                    "cores": [3],
+                    "nodes": [
+                        {"name": "node9", "subscribe": "topic8", "publish": "topic9", "payload": "128B"},
+                    ],
+                },
+
+                {
+                    "name": "executor7",
+                    "type": "single_threaded",
+                    "cores": [3],
+                    "nodes": [
+                        {"name": "node10", "subscribe": "topic9", "publish": "NONE", "payload": "128B"}
+                    ],
+                }
+            ]
+        },
+
+        {
+            "executors": [
+                {
+                    "name": "executor1",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node1", "subscribe": "NONE", "publish": "topic1", "payload": "128B"},
+                        {"name": "node2", "subscribe": "topic1", "publish": "topic2", "payload": "128B"},
+                        {"name": "node3", "subscribe": "topic2", "publish": "topic3", "payload": "128B"},
+                        {"name": "node4", "subscribe": "topic3", "publish": "topic4", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor2",
+                    "type": "single_threaded",
+                    "cores": [2],
+                    "nodes": [
+                        {"name": "node5", "subscribe": "topic4", "publish": "topic5", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor3",
+                    "type": "single_threaded",
+                    "cores": [2],
+                    "nodes": [
+                        {"name": "node6", "subscribe": "topic5", "publish": "topic6", "payload": "128B"},
+                    ],
+                },
+
+                {
+                    "name": "executor4",
+                    "type": "single_threaded",
+                    "cores": [2],
+                    "nodes": [
+                        {"name": "node7", "subscribe": "topic6", "publish": "topic7", "payload": "128B"},
+                    ],
+                },
+
+                {
+                    "name": "executor5",
+                    "type": "single_threaded",
+                    "cores": [2],
+                    "nodes": [
+                        {"name": "node8", "subscribe": "topic7", "publish": "topic8", "payload": "128B"},
+                    ],
+                },
+
+                {
+                    "name": "executor6",
+                    "type": "single_threaded",
+                    "cores": [2],
+                    "nodes": [
+                        {"name": "node9", "subscribe": "topic8", "publish": "topic9", "payload": "128B"},
+                    ],
+                },
+
+                {
+                    "name": "executor7",
+                    "type": "single_threaded",
+                    "cores": [2],
+                    "nodes": [
+                        {"name": "node10", "subscribe": "topic9", "publish": "NONE", "payload": "128B"}
+                    ],
+                }
+            ]
+        },
+
+        ##### 10 NODES - 7 exec - mmmmmmm - 1111234567
+        {
+            "executors": [
+                {
+                    "name": "executor1",
+                    "type": "multi_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node1", "subscribe": "NONE", "publish": "topic1", "payload": "128B"},
+                        {"name": "node2", "subscribe": "topic1", "publish": "topic2", "payload": "128B"},
+                        {"name": "node3", "subscribe": "topic2", "publish": "topic3", "payload": "128B"},
+                        {"name": "node4", "subscribe": "topic3", "publish": "topic4", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor2",
+                    "type": "multi_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node5", "subscribe": "topic4", "publish": "topic5", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor3",
+                    "type": "multi_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node6", "subscribe": "topic5", "publish": "topic6", "payload": "128B"},
+                    ],
+                },
+
+                {
+                    "name": "executor4",
+                    "type": "multi_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node7", "subscribe": "topic6", "publish": "topic7", "payload": "128B"},
+                    ],
+                },
+
+                {
+                    "name": "executor5",
+                    "type": "multi_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node8", "subscribe": "topic7", "publish": "topic8", "payload": "128B"},
+                    ],
+                },
+
+                {
+                    "name": "executor6",
+                    "type": "multi_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node9", "subscribe": "topic8", "publish": "topic9", "payload": "128B"},
+                    ],
+                },
+
+                {
+                    "name": "executor7",
+                    "type": "multi_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node10", "subscribe": "topic9", "publish": "NONE", "payload": "128B"}
+                    ],
+                }
+            ]
+        },
+
+        {
+            "executors": [
+                {
+                    "name": "executor1",
+                    "type": "multi_threaded",
+                    "cores": [0],
+                    "nodes": [
+                        {"name": "node1", "subscribe": "NONE", "publish": "topic1", "payload": "128B"},
+                        {"name": "node2", "subscribe": "topic1", "publish": "topic2", "payload": "128B"},
+                        {"name": "node3", "subscribe": "topic2", "publish": "topic3", "payload": "128B"},
+                        {"name": "node4", "subscribe": "topic3", "publish": "topic4", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor2",
+                    "type": "multi_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node5", "subscribe": "topic4", "publish": "topic5", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor3",
+                    "type": "multi_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node6", "subscribe": "topic5", "publish": "topic6", "payload": "128B"},
+                    ],
+                },
+
+                {
+                    "name": "executor4",
+                    "type": "multi_threaded",
+                    "cores": [2],
+                    "nodes": [
+                        {"name": "node7", "subscribe": "topic6", "publish": "topic7", "payload": "128B"},
+                    ],
+                },
+
+                {
+                    "name": "executor5",
+                    "type": "multi_threaded",
+                    "cores": [2],
+                    "nodes": [
+                        {"name": "node8", "subscribe": "topic7", "publish": "topic8", "payload": "128B"},
+                    ],
+                },
+
+                {
+                    "name": "executor6",
+                    "type": "multi_threaded",
+                    "cores": [3],
+                    "nodes": [
+                        {"name": "node9", "subscribe": "topic8", "publish": "topic9", "payload": "128B"},
+                    ],
+                },
+
+                {
+                    "name": "executor7",
+                    "type": "multi_threaded",
+                    "cores": [3],
+                    "nodes": [
+                        {"name": "node10", "subscribe": "topic9", "publish": "NONE", "payload": "128B"}
+                    ],
+                }
+            ]
+        },
+
+        {
+            "executors": [
+                {
+                    "name": "executor1",
+                    "type": "multi_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node1", "subscribe": "NONE", "publish": "topic1", "payload": "128B"},
+                        {"name": "node2", "subscribe": "topic1", "publish": "topic2", "payload": "128B"},
+                        {"name": "node3", "subscribe": "topic2", "publish": "topic3", "payload": "128B"},
+                        {"name": "node4", "subscribe": "topic3", "publish": "topic4", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor2",
+                    "type": "multi_threaded",
+                    "cores": [2],
+                    "nodes": [
+                        {"name": "node5", "subscribe": "topic4", "publish": "topic5", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor3",
+                    "type": "multi_threaded",
+                    "cores": [2],
+                    "nodes": [
+                        {"name": "node6", "subscribe": "topic5", "publish": "topic6", "payload": "128B"},
+                    ],
+                },
+
+                {
+                    "name": "executor4",
+                    "type": "multi_threaded",
+                    "cores": [2],
+                    "nodes": [
+                        {"name": "node7", "subscribe": "topic6", "publish": "topic7", "payload": "128B"},
+                    ],
+                },
+
+                {
+                    "name": "executor5",
+                    "type": "multi_threaded",
+                    "cores": [2],
+                    "nodes": [
+                        {"name": "node8", "subscribe": "topic7", "publish": "topic8", "payload": "128B"},
+                    ],
+                },
+
+                {
+                    "name": "executor6",
+                    "type": "multi_threaded",
+                    "cores": [2],
+                    "nodes": [
+                        {"name": "node9", "subscribe": "topic8", "publish": "topic9", "payload": "128B"},
+                    ],
+                },
+
+                {
+                    "name": "executor7",
+                    "type": "multi_threaded",
+                    "cores": [2],
+                    "nodes": [
+                        {"name": "node10", "subscribe": "topic9", "publish": "NONE", "payload": "128B"}
+                    ],
+                }
+            ]
+        },
+
+        ##### 10 NODES - 7 exec - ssssmmm - 1111234567
+        {
+            "executors": [
+                {
+                    "name": "executor1",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node1", "subscribe": "NONE", "publish": "topic1", "payload": "128B"},
+                        {"name": "node2", "subscribe": "topic1", "publish": "topic2", "payload": "128B"},
+                        {"name": "node3", "subscribe": "topic2", "publish": "topic3", "payload": "128B"},
+                        {"name": "node4", "subscribe": "topic3", "publish": "topic4", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor2",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node5", "subscribe": "topic4", "publish": "topic5", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor3",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node6", "subscribe": "topic5", "publish": "topic6", "payload": "128B"},
+                    ],
+                },
+
+                {
+                    "name": "executor4",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node7", "subscribe": "topic6", "publish": "topic7", "payload": "128B"},
+                    ],
+                },
+
+                {
+                    "name": "executor5",
+                    "type": "multi_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node8", "subscribe": "topic7", "publish": "topic8", "payload": "128B"},
+                    ],
+                },
+
+                {
+                    "name": "executor6",
+                    "type": "multi_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node9", "subscribe": "topic8", "publish": "topic9", "payload": "128B"},
+                    ],
+                },
+
+                {
+                    "name": "executor7",
+                    "type": "multi_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node10", "subscribe": "topic9", "publish": "NONE", "payload": "128B"}
+                    ],
+                }
+            ]
+        },
+
+        {
+            "executors": [
+                {
+                    "name": "executor1",
+                    "type": "single_threaded",
+                    "cores": [0],
+                    "nodes": [
+                        {"name": "node1", "subscribe": "NONE", "publish": "topic1", "payload": "128B"},
+                        {"name": "node2", "subscribe": "topic1", "publish": "topic2", "payload": "128B"},
+                        {"name": "node3", "subscribe": "topic2", "publish": "topic3", "payload": "128B"},
+                        {"name": "node4", "subscribe": "topic3", "publish": "topic4", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor2",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node5", "subscribe": "topic4", "publish": "topic5", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor3",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node6", "subscribe": "topic5", "publish": "topic6", "payload": "128B"},
+                    ],
+                },
+
+                {
+                    "name": "executor4",
+                    "type": "single_threaded",
+                    "cores": [2],
+                    "nodes": [
+                        {"name": "node7", "subscribe": "topic6", "publish": "topic7", "payload": "128B"},
+                    ],
+                },
+
+                {
+                    "name": "executor5",
+                    "type": "multi_threaded",
+                    "cores": [2],
+                    "nodes": [
+                        {"name": "node8", "subscribe": "topic7", "publish": "topic8", "payload": "128B"},
+                    ],
+                },
+
+                {
+                    "name": "executor6",
+                    "type": "multi_threaded",
+                    "cores": [3],
+                    "nodes": [
+                        {"name": "node9", "subscribe": "topic8", "publish": "topic9", "payload": "128B"},
+                    ],
+                },
+
+                {
+                    "name": "executor7",
+                    "type": "multi_threaded",
+                    "cores": [3],
+                    "nodes": [
+                        {"name": "node10", "subscribe": "topic9", "publish": "NONE", "payload": "128B"}
+                    ],
+                }
+            ]
+        },
+
+        {
+            "executors": [
+                {
+                    "name": "executor1",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node1", "subscribe": "NONE", "publish": "topic1", "payload": "128B"},
+                        {"name": "node2", "subscribe": "topic1", "publish": "topic2", "payload": "128B"},
+                        {"name": "node3", "subscribe": "topic2", "publish": "topic3", "payload": "128B"},
+                        {"name": "node4", "subscribe": "topic3", "publish": "topic4", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor2",
+                    "type": "single_threaded",
+                    "cores": [2],
+                    "nodes": [
+                        {"name": "node5", "subscribe": "topic4", "publish": "topic5", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor3",
+                    "type": "single_threaded",
+                    "cores": [2],
+                    "nodes": [
+                        {"name": "node6", "subscribe": "topic5", "publish": "topic6", "payload": "128B"},
+                    ],
+                },
+
+                {
+                    "name": "executor4",
+                    "type": "single_threaded",
+                    "cores": [2],
+                    "nodes": [
+                        {"name": "node7", "subscribe": "topic6", "publish": "topic7", "payload": "128B"},
+                    ],
+                },
+
+                {
+                    "name": "executor5",
+                    "type": "multi_threaded",
+                    "cores": [2],
+                    "nodes": [
+                        {"name": "node8", "subscribe": "topic7", "publish": "topic8", "payload": "128B"},
+                    ],
+                },
+
+                {
+                    "name": "executor6",
+                    "type": "multi_threaded",
+                    "cores": [2],
+                    "nodes": [
+                        {"name": "node9", "subscribe": "topic8", "publish": "topic9", "payload": "128B"},
+                    ],
+                },
+
+                {
+                    "name": "executor7",
+                    "type": "multi_threaded",
+                    "cores": [2],
+                    "nodes": [
+                        {"name": "node10", "subscribe": "topic9", "publish": "NONE", "payload": "128B"}
+                    ],
+                }
+            ]
+        },
+
+        ##### 10 NODES - 10 exec - ssssssssss
+        {
+            "executors": [
+                {
+                    "name": "executor1",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node1", "subscribe": "NONE", "publish": "topic1", "payload": "128B"},
+                    ],
+                },
+
+                {
+                    "name": "executor2",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node2", "subscribe": "topic1", "publish": "topic2", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor3",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node3", "subscribe": "topic2", "publish": "topic3", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor4",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node4", "subscribe": "topic3", "publish": "topic4", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor5",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node5", "subscribe": "topic4", "publish": "topic5", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor6",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node6", "subscribe": "topic5", "publish": "topic6", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor7",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node7", "subscribe": "topic6", "publish": "topic7", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor8",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node8", "subscribe": "topic7", "publish": "topic8", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor9",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node9", "subscribe": "topic8", "publish": "topic9", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor10",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node10", "subscribe": "topic9", "publish": "NONE", "payload": "128B"},
+                    ],
+                }
+            ]
+        },
+
+        {
+            "executors": [
+                {
+                    "name": "executor1",
+                    "type": "single_threaded",
+                    "cores": [0],
+                    "nodes": [
+                        {"name": "node1", "subscribe": "NONE", "publish": "topic1", "payload": "128B"},
+                    ],
+                },
+
+                {
+                    "name": "executor2",
+                    "type": "single_threaded",
+                    "cores": [0],
+                    "nodes": [
+                        {"name": "node2", "subscribe": "topic1", "publish": "topic2", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor3",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node3", "subscribe": "topic2", "publish": "topic3", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor4",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node4", "subscribe": "topic3", "publish": "topic4", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor5",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node5", "subscribe": "topic4", "publish": "topic5", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor6",
+                    "type": "single_threaded",
+                    "cores": [2],
+                    "nodes": [
+                        {"name": "node6", "subscribe": "topic5", "publish": "topic6", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor7",
+                    "type": "single_threaded",
+                    "cores": [2],
+                    "nodes": [
+                        {"name": "node7", "subscribe": "topic6", "publish": "topic7", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor8",
+                    "type": "single_threaded",
+                    "cores": [3],
+                    "nodes": [
+                        {"name": "node8", "subscribe": "topic7", "publish": "topic8", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor9",
+                    "type": "single_threaded",
+                    "cores": [3],
+                    "nodes": [
+                        {"name": "node9", "subscribe": "topic8", "publish": "topic9", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor10",
+                    "type": "single_threaded",
+                    "cores": [3],
+                    "nodes": [
+                        {"name": "node10", "subscribe": "topic9", "publish": "NONE", "payload": "128B"},
+                    ],
+                }
+            ]
+        },
+
+        {
+            "executors": [
+                {
+                    "name": "executor1",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node1", "subscribe": "NONE", "publish": "topic1", "payload": "128B"},
+                    ],
+                },
+
+                {
+                    "name": "executor2",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node2", "subscribe": "topic1", "publish": "topic2", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor3",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node3", "subscribe": "topic2", "publish": "topic3", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor4",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node4", "subscribe": "topic3", "publish": "topic4", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor5",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node5", "subscribe": "topic4", "publish": "topic5", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor6",
+                    "type": "single_threaded",
+                    "cores": [2],
+                    "nodes": [
+                        {"name": "node6", "subscribe": "topic5", "publish": "topic6", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor7",
+                    "type": "single_threaded",
+                    "cores": [2],
+                    "nodes": [
+                        {"name": "node7", "subscribe": "topic6", "publish": "topic7", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor8",
+                    "type": "single_threaded",
+                    "cores": [2],
+                    "nodes": [
+                        {"name": "node8", "subscribe": "topic7", "publish": "topic8", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor9",
+                    "type": "single_threaded",
+                    "cores": [2],
+                    "nodes": [
+                        {"name": "node9", "subscribe": "topic8", "publish": "topic9", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor10",
+                    "type": "single_threaded",
+                    "cores": [2],
+                    "nodes": [
+                        {"name": "node10", "subscribe": "topic9", "publish": "NONE", "payload": "128B"},
+                    ],
+                }
+            ]
+        },
+
+        ######## 10 NODES - 10 exec - mmmmmmmmmm
+        {
+            "executors": [
+                {
+                    "name": "executor1",
+                    "type": "multi_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node1", "subscribe": "NONE", "publish": "topic1", "payload": "128B"},
+                    ],
+                },
+
+                {
+                    "name": "executor2",
+                    "type": "multi_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node2", "subscribe": "topic1", "publish": "topic2", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor3",
+                    "type": "multi_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node3", "subscribe": "topic2", "publish": "topic3", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor4",
+                    "type": "multi_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node4", "subscribe": "topic3", "publish": "topic4", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor5",
+                    "type": "multi_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node5", "subscribe": "topic4", "publish": "topic5", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor6",
+                    "type": "multi_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node6", "subscribe": "topic5", "publish": "topic6", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor7",
+                    "type": "multi_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node7", "subscribe": "topic6", "publish": "topic7", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor8",
+                    "type": "multi_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node8", "subscribe": "topic7", "publish": "topic8", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor9",
+                    "type": "multi_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node9", "subscribe": "topic8", "publish": "topic9", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor10",
+                    "type": "multi_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node10", "subscribe": "topic9", "publish": "NONE", "payload": "128B"},
+                    ],
+                }
+            ]
+        },
+
+        {
+            "executors": [
+                {
+                    "name": "executor1",
+                    "type": "multi_threaded",
+                    "cores": [0],
+                    "nodes": [
+                        {"name": "node1", "subscribe": "NONE", "publish": "topic1", "payload": "128B"},
+                    ],
+                },
+
+                {
+                    "name": "executor2",
+                    "type": "multi_threaded",
+                    "cores": [0],
+                    "nodes": [
+                        {"name": "node2", "subscribe": "topic1", "publish": "topic2", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor3",
+                    "type": "multi_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node3", "subscribe": "topic2", "publish": "topic3", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor4",
+                    "type": "multi_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node4", "subscribe": "topic3", "publish": "topic4", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor5",
+                    "type": "multi_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node5", "subscribe": "topic4", "publish": "topic5", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor6",
+                    "type": "multi_threaded",
+                    "cores": [2],
+                    "nodes": [
+                        {"name": "node6", "subscribe": "topic5", "publish": "topic6", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor7",
+                    "type": "multi_threaded",
+                    "cores": [2],
+                    "nodes": [
+                        {"name": "node7", "subscribe": "topic6", "publish": "topic7", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor8",
+                    "type": "multi_threaded",
+                    "cores": [3],
+                    "nodes": [
+                        {"name": "node8", "subscribe": "topic7", "publish": "topic8", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor9",
+                    "type": "multi_threaded",
+                    "cores": [3],
+                    "nodes": [
+                        {"name": "node9", "subscribe": "topic8", "publish": "topic9", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor10",
+                    "type": "multi_threaded",
+                    "cores": [3],
+                    "nodes": [
+                        {"name": "node10", "subscribe": "topic9", "publish": "NONE", "payload": "128B"},
+                    ],
+                }
+            ]
+        },
+
+        {
+            "executors": [
+                {
+                    "name": "executor1",
+                    "type": "multi_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node1", "subscribe": "NONE", "publish": "topic1", "payload": "128B"},
+                    ],
+                },
+
+                {
+                    "name": "executor2",
+                    "type": "multi_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node2", "subscribe": "topic1", "publish": "topic2", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor3",
+                    "type": "multi_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node3", "subscribe": "topic2", "publish": "topic3", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor4",
+                    "type": "multi_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node4", "subscribe": "topic3", "publish": "topic4", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor5",
+                    "type": "multi_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node5", "subscribe": "topic4", "publish": "topic5", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor6",
+                    "type": "multi_threaded",
+                    "cores": [2],
+                    "nodes": [
+                        {"name": "node6", "subscribe": "topic5", "publish": "topic6", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor7",
+                    "type": "multi_threaded",
+                    "cores": [2],
+                    "nodes": [
+                        {"name": "node7", "subscribe": "topic6", "publish": "topic7", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor8",
+                    "type": "multi_threaded",
+                    "cores": [2],
+                    "nodes": [
+                        {"name": "node8", "subscribe": "topic7", "publish": "topic8", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor9",
+                    "type": "multi_threaded",
+                    "cores": [2],
+                    "nodes": [
+                        {"name": "node9", "subscribe": "topic8", "publish": "topic9", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor10",
+                    "type": "multi_threaded",
+                    "cores": [2],
+                    "nodes": [
+                        {"name": "node10", "subscribe": "topic9", "publish": "NONE", "payload": "128B"},
+                    ],
+                }
+            ]
+        },
+
+        ######## 10 NODES - 10 exec - sssssmmmmm
+        {
+            "executors": [
+                {
+                    "name": "executor1",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node1", "subscribe": "NONE", "publish": "topic1", "payload": "128B"},
+                    ],
+                },
+
+                {
+                    "name": "executor2",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node2", "subscribe": "topic1", "publish": "topic2", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor3",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node3", "subscribe": "topic2", "publish": "topic3", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor4",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node4", "subscribe": "topic3", "publish": "topic4", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor5",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node5", "subscribe": "topic4", "publish": "topic5", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor6",
+                    "type": "multi_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node6", "subscribe": "topic5", "publish": "topic6", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor7",
+                    "type": "multi_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node7", "subscribe": "topic6", "publish": "topic7", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor8",
+                    "type": "multi_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node8", "subscribe": "topic7", "publish": "topic8", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor9",
+                    "type": "multi_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node9", "subscribe": "topic8", "publish": "topic9", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor10",
+                    "type": "multi_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node10", "subscribe": "topic9", "publish": "NONE", "payload": "128B"},
+                    ],
+                }
+            ]
+        },
+
+        {
+            "executors": [
+                {
+                    "name": "executor1",
+                    "type": "single_threaded",
+                    "cores": [0],
+                    "nodes": [
+                        {"name": "node1", "subscribe": "NONE", "publish": "topic1", "payload": "128B"},
+                    ],
+                },
+
+                {
+                    "name": "executor2",
+                    "type": "single_threaded",
+                    "cores": [0],
+                    "nodes": [
+                        {"name": "node2", "subscribe": "topic1", "publish": "topic2", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor3",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node3", "subscribe": "topic2", "publish": "topic3", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor4",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node4", "subscribe": "topic3", "publish": "topic4", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor5",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node5", "subscribe": "topic4", "publish": "topic5", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor6",
+                    "type": "multi_threaded",
+                    "cores": [2],
+                    "nodes": [
+                        {"name": "node6", "subscribe": "topic5", "publish": "topic6", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor7",
+                    "type": "multi_threaded",
+                    "cores": [2],
+                    "nodes": [
+                        {"name": "node7", "subscribe": "topic6", "publish": "topic7", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor8",
+                    "type": "multi_threaded",
+                    "cores": [3],
+                    "nodes": [
+                        {"name": "node8", "subscribe": "topic7", "publish": "topic8", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor9",
+                    "type": "multi_threaded",
+                    "cores": [3],
+                    "nodes": [
+                        {"name": "node9", "subscribe": "topic8", "publish": "topic9", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor10",
+                    "type": "multi_threaded",
+                    "cores": [3],
+                    "nodes": [
+                        {"name": "node10", "subscribe": "topic9", "publish": "NONE", "payload": "128B"},
+                    ],
+                }
+            ]
+        },
+
+        {
+            "executors": [
+                {
+                    "name": "executor1",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node1", "subscribe": "NONE", "publish": "topic1", "payload": "128B"},
+                    ],
+                },
+
+                {
+                    "name": "executor2",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node2", "subscribe": "topic1", "publish": "topic2", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor3",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node3", "subscribe": "topic2", "publish": "topic3", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor4",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node4", "subscribe": "topic3", "publish": "topic4", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor5",
+                    "type": "single_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node5", "subscribe": "topic4", "publish": "topic5", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor6",
+                    "type": "multi_threaded",
+                    "cores": [2],
+                    "nodes": [
+                        {"name": "node6", "subscribe": "topic5", "publish": "topic6", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor7",
+                    "type": "multi_threaded",
+                    "cores": [2],
+                    "nodes": [
+                        {"name": "node7", "subscribe": "topic6", "publish": "topic7", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor8",
+                    "type": "multi_threaded",
+                    "cores": [2],
+                    "nodes": [
+                        {"name": "node8", "subscribe": "topic7", "publish": "topic8", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor9",
+                    "type": "multi_threaded",
+                    "cores": [2],
+                    "nodes": [
+                        {"name": "node9", "subscribe": "topic8", "publish": "topic9", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor10",
+                    "type": "multi_threaded",
+                    "cores": [2],
+                    "nodes": [
+                        {"name": "node10", "subscribe": "topic9", "publish": "NONE", "payload": "128B"},
+                    ],
+                }
+            ]
+        },
+
+        ######## 10 NODES - 10 exec - mmmmmsssss
+        {
+            "executors": [
+                {
+                    "name": "executor1",
+                    "type": "multi_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node1", "subscribe": "NONE", "publish": "topic1", "payload": "128B"},
+                    ],
+                },
+
+                {
+                    "name": "executor2",
+                    "type": "multi_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node2", "subscribe": "topic1", "publish": "topic2", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor3",
+                    "type": "multi_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node3", "subscribe": "topic2", "publish": "topic3", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor4",
+                    "type": "multi_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node4", "subscribe": "topic3", "publish": "topic4", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor5",
+                    "type": "multi_threaded",
+                    "cores": [1],
+                    "nodes": [
+                        {"name": "node5", "subscribe": "topic4", "publish": "topic5", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor6",
+                    "type": "single_threaded",
+                    "cores": [2],
+                    "nodes": [
+                        {"name": "node6", "subscribe": "topic5", "publish": "topic6", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor7",
+                    "type": "single_threaded",
+                    "cores": [2],
+                    "nodes": [
+                        {"name": "node7", "subscribe": "topic6", "publish": "topic7", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor8",
+                    "type": "single_threaded",
+                    "cores": [2],
+                    "nodes": [
+                        {"name": "node8", "subscribe": "topic7", "publish": "topic8", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor9",
+                    "type": "single_threaded",
+                    "cores": [2],
+                    "nodes": [
+                        {"name": "node9", "subscribe": "topic8", "publish": "topic9", "payload": "128B"}
+                    ],
+                },
+
+                {
+                    "name": "executor10",
+                    "type": "single_threaded",
+                    "cores": [2],
+                    "nodes": [
+                        {"name": "node10", "subscribe": "topic9", "publish": "NONE", "payload": "128B"},
                     ],
                 }
             ]
