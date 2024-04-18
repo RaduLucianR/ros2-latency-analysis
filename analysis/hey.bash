@@ -1,0 +1,2 @@
+# python3 add-path-archi.py /home/lucian/tracing /node1 /node25 target --subfolders True
+python3 get-plots.py /home/lucian/tracing target /home/lucian/simple-chain-ws/graphs/two-ten-nodes-all --subfolders True

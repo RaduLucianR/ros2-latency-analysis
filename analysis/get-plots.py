@@ -4,6 +4,7 @@ from caret_analyze.record import ResponseTime
 from bokeh.plotting import figure, show
 from bokeh.io import export_png
 from caret_analyze.exceptions import ItemNotFoundError
+from caret_analyze.exceptions import InvalidRecordsError
 
 import argparse
 import os
@@ -11,6 +12,7 @@ from caret_analyze import Architecture
 import subprocess
 
 def proc_folder(trace_folder_path, trace_path_name, destination_path):
+    print(trace_folder_path)
     lttng = Lttng(trace_folder_path)
     trace_folder_name = os.path.basename(trace_folder_path)
     archi_file = f"archi-{trace_folder_name}.yaml"
@@ -87,7 +89,10 @@ def main(trace_folder_path, trace_path_name, destination_path, subfolders):
             full_path = os.path.join(trace_folder_path, item)
 
             if os.path.isdir(full_path) and (os.path.basename(full_path) not in visited):
-                proc_folder(full_path, trace_path_name, destination_path)
+                try:
+                    proc_folder(full_path, trace_path_name, destination_path)
+                except InvalidRecordsError:
+                    continue
                 # print(os.path.basename(full_path))
     else:
         proc_folder(trace_folder_path, trace_path_name, destination_path)
