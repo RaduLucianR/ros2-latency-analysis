@@ -84,7 +84,7 @@ def process_and_plot(folder_path):
     plt.legend()
     plt.xticks(range(0, 1000, 10))  # Granularity of 20KB
     name = "two-ten-nodes-1mte2cores"
-    plt.savefig(f"/home/lucian/simple-chain-ws/src/ros2-latency-analysis/analysis/results/{name}.png")
+    # plt.savefig(f"/home/lucian/simple-chain-ws/src/ros2-latency-analysis/analysis/results/{name}.png")
     plt.show()
 
 # Replace 'your_folder_path' with the path to your folder containing the sub-folders
