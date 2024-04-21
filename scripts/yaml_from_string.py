@@ -62,5 +62,3 @@ def yaml_from_string(config):
             yaml_exec_list.append(exec)
 
     return yaml.dump({"executors": yaml_exec_list})
-
-print(yaml_from_string("t7e3_mmm_1111123_1-2-2"))

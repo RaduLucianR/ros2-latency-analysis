@@ -2,6 +2,7 @@ import subprocess
 import yaml
 import argparse
 from exec_architectures import exec_architectures
+from yaml_from_string import yaml_from_string
 
 def update_ps(file_path, yaml_obj, size):
     for exec in yaml_obj['executors']:
@@ -82,7 +83,104 @@ def run_experiment(executors, ros2_ws_name, name):
         print("Errors:\n", stderr)
 
 def main(config_path, ros2_ws_name, ps_start, ps_end, ps_step, overwrite_ps):
-    archis = exec_architectures()
+    exp_list = [
+        "t2e2_mm_12_1-2",
+        "t2e2_sm_12_1-2",
+        "t2e2_sm_12_1-2",
+        "t2e2_mm_12_1-2",
+        "t2e2_ss_12_1-2",
+        "t2e2_ss_12_1-2",
+        "t2e2_mm_12_1-2",
+        "t2e1_s_11_1",
+        "t2e2_sm_12_1-2",
+        "t2e2_ss_12_1-2",
+        "t3e2_ms_112_1-2",
+        "t3e2_mm_112_1-1",
+        "t3e3_ssm_123_1-2-3",
+        "t3e2_ss_112_1-1",
+        "t3e2_mm_112_1-1",
+        "t3e3_ssm_123_1-1-1",
+        "t3e3_ssm_123_1-1-1",
+        "t3e2_sm_112_1-2",
+        "t3e3_sss_123_1-1-1",
+        "t3e2_mm_112_1-1",
+        "t4e2_ss_1112_1-1",
+        "t4e2_ss_1112_1-2",
+        "t4e2_ss_1112_1-2",
+        "t4e2_mm_1112_1-2",
+        "t4e2_sm_1112_1-2",
+        "t4e2_ss_1122_1-1",
+        "t4e2_ms_1112_1-1",
+        "t4e1_m_1111_1",
+        "t4e2_sm_1122_1-2",
+        "t4e2_ss_1122_1-2",
+        "t5e3_mms_11223_1-1-1",
+        "t5e1_s_11111_1",
+        "t5e3_ssm_11123_1-2-3",
+        "t5e3_sss_11223_1-1-1",
+        "t5e3_ssm_11123_1-2-2",
+        "t5e3_mmm_11123_1-2-3",
+        "t5e3_ssm_11223_1-2-3",
+        "t5e3_ssm_11123_1-2-3",
+        "t5e1_m_11111_1",
+        "t5e1_s_11111_1",
+        "t6e3_mmm_112233_1-1-2",
+        "t6e2_sm_111112_1-1",
+        "t6e2_ss_111112_1-1",
+        "t6e3_mms_111123_1-2-2",
+        "t6e2_mm_111122_1-1",
+        "t6e2_ms_111122_1-1",
+        "t6e2_ms_111112_1-2",
+        "t6e2_ms_111122_1-1",
+        "t6e2_sm_111222_1-1",
+        "t6e3_ssm_111123_1-2-3",
+        "t7e3_mmm_1111123_1-2-2",
+        "t7e3_sss_1111123_1-2-3",
+        "t7e3_ssm_1111123_1-2-3",
+        "t7e1_s_1111111_1",
+        "t7e3_ssm_1111123_1-2-3",
+        "t7e5_mmmss_1122345_1-1-1-1-1",
+        "t7e1_m_1111111_1",
+        "t7e3_ssm_1111123_1-1-1",
+        "t7e3_sss_1111123_1-2-3",
+        "t7e3_sss_1111123_1-2-2",
+        "t8e4_ssss_11111234_1-1-2-3",
+        "t8e4_ssmm_11111234_1-1-2-3",
+        "t8e1_s_11111111_1",
+        "t8e2_mm_11112222_1-2",
+        "t8e2_sm_11111122_1-2",
+        "t8e2_ss_11111122_1-2",
+        "t8e1_m_11111111_1",
+        "t8e2_sm_11111122_1-2",
+        "t8e4_ssmm_11223344_1-1-1-1",
+        "t8e4_ssss_11111234_1-2-2-2",
+        "t9e3_mmm_111122233_1-1-1",
+        "t9e3_mmm_111111123_1-2-2",
+        "t9e1_m_111111111_1",
+        "t9e3_mms_111122233_1-2-3",
+        "t9e3_mmm_111111123_1-1-1",
+        "t9e3_sss_111111123_1-2-2",
+        "t9e1_s_111111111_1",
+        "t9e6_ssssss_111123456_1-1-2-2-2-2",
+        "t9e3_sss_111111123_1-2-3",
+        "t9e3_sss_111111123_1-2-3",
+        "t10e3_ssm_1111111123_1-1-1",
+        "t10e1_s_1111111111_1",
+        "t10e3_mms_1111111123_1-1-1",
+        "t10e3_sss_1111111123_1-2-2",
+        "t10e1_s_1111111111_1",
+        "t10e3_mmm_1111222333_1-2-3",
+        "t10e3_sss_1111111123_1-2-3",
+        "t10e3_ssm_1111111123_1-2-3",
+        "t10e1_s_1111111111_1",
+        "t10e3_sss_1111111123_1-2-2"
+    ]
+    # archis = exec_architectures()
+    archis = []
+
+    for exp in exp_list:
+        archis.append(yaml_from_string(exp))
+
     ps_start *= 1024
     ps_end *=  1024
     ps_step *= 1024
