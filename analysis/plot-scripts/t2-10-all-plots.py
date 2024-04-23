@@ -17,8 +17,8 @@ def extract_avg_latency(file_path):
         return float(match.group(1)) if match else None
 
 def filtr(latency):
-    if latency > 500:
-        return False
+    # if latency > 129 or latency < 126:
+    #     return False
 
     return True
     
@@ -38,11 +38,28 @@ def check_config(tasks, execs, etypes, t2e, e2c):
     #         if e2c == "1-1":
     #             return True
 
-    
+    tasks = int(tasks)
+    execs = int(execs)    
     stri = f"t{tasks}e{execs}_{etypes}_{t2e}_{e2c}"
 
-    if stri in ["t10e3_ssm_1111111123_1-2-3", "t10e3_ssm_1111222333_1-2-3"]:
+    # if stri in ["t10e3_ssm_1111111123_1-2-3", "t10e3_ssm_1111222333_1-2-3"]:
+    if stri in ["t10e3_mms_1111111123_1-1-1", "t10e1_s_1111111111_1", "t10e3_sss_1111111123_1-2-2"]:
         return True
+
+
+    # if tasks == 10:
+    #     for ch in e2c.split("-"):
+    #         if ch != "1":
+    #             return False
+        
+    #     for ch in etypes:
+    #         if ch != "s":
+    #             return False
+        
+    #     if t2e.count("1") > tasks / 2:
+    #         return True
+    #     else:
+    #         return False
     
     return False
 
