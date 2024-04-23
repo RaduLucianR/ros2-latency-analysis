@@ -1,5 +1,4 @@
 import re
-import yaml
 
 def yaml_from_string(config):
     regex = r"t(\d+)e(\d+)_([sm]+)_(\d+)_([\d-]+)"
@@ -61,6 +60,4 @@ def yaml_from_string(config):
 
             yaml_exec_list.append(exec)
 
-    return yaml.dump({"executors": yaml_exec_list})
-
-print(type(yaml_from_string("t4e2_sm_1112_1-2")))
+    return {"executors": yaml_exec_list}

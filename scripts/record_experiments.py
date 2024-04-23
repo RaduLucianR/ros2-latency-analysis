@@ -208,7 +208,7 @@ def main(config_path, ros2_ws_name, ps_start, ps_end, ps_step, overwrite_ps):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Records experiments.")
-    parser.add_argument("config_path", type=str, help="Config file path.")
+    parser.add_argument("config_path", type=str, help="Path to the YAML file that defines the Executor Architecture.")
     parser.add_argument("ros2_ws_name", type=str, help="Name of the ROS2 workspace, assuming it's in /home/$USER")
     parser.add_argument("--ps_start", type=int, default=10, help="Payload size (KB) start.")
     parser.add_argument("--ps_end", type=int, default=10, help="Payload size (KB) end.")
