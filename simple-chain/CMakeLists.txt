@@ -14,8 +14,8 @@ include_directories(include)
 
 add_executable(exec_archi
                src/exec_archi.cpp
-               src/tasks/templnode.cpp
-               src/utils/cpu_affinity_utils.cpp
+               src/templnode.cpp
+               src/cpu_affinity_utils.cpp
 )
 ament_target_dependencies(exec_archi rclcpp std_msgs)
 target_link_libraries(exec_archi yaml-cpp)
