@@ -100,4 +100,4 @@ def main(min_nrof_tasks : int, max_nrof_tasks : int):
     print(*sorted(configs), sep='\n')
 
 
-main(5, 10)
+main(2, 10)

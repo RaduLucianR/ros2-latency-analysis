@@ -2,7 +2,7 @@ import subprocess
 import yaml
 import argparse
 from exec_architectures import exec_architectures
-from yaml_from_string import yaml_from_string
+from execarchi_from_string import execarchi_from_string
 
 def update_ps(file_path, yaml_obj, size):
     for exec in yaml_obj['executors']:
@@ -55,14 +55,6 @@ def name_details(yaml_obj):
         e2c = e2c[0:-1]
 
     return f"t{nrof_nodes}e{nrof_execs}_{exec_str}_{t2e}_{e2c}"
-
-def cores_string(core_values):
-    concatenated_values = ""
-
-    for value in core_values.values():
-        concatenated_values += str(value)
-
-    return concatenated_values
 
 def run_experiment(executors, ros2_ws_name, name):
     commands = f"""
@@ -179,7 +171,7 @@ def main(config_path, ros2_ws_name, ps_start, ps_end, ps_step, overwrite_ps):
     archis = []
 
     for exp in exp_list:
-        archis.append(yaml_from_string(exp))
+        archis.append(execarchi_from_string(exp))
 
     ps_start *= 1024
     ps_end *=  1024

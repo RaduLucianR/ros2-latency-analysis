@@ -1,6 +1,6 @@
 import re
 
-def yaml_from_string(config):
+def execarchi_from_string(config):
     regex = r"t(\d+)e(\d+)_([sm]+)_(\d+)_([\d-]+)"
     match = re.match(regex, config)
     yaml_exec_list = []
