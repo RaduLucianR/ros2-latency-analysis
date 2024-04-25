@@ -9,7 +9,7 @@ default_folders="latest"
 
 # Function to display usage
 usage() {
-    echo "Retrieve trace folder from a Raspberry Pi and create CARET architecture file"
+    echo "Retrieve trace folder from a Raspberry Pi"
     echo "Usage: $0 -i <IP address> [-s <source folder>] [-d <destination folder>]"
     echo "  -i IP address (mandatory): string with format xxx.xxx.xxx.xxx"
     echo "  -s source folder (optional): path as string, default is $default_source_folder"
@@ -96,8 +96,6 @@ case $folder_option in
     sshpass -p "${password}" scp "${user}"@"${IP}":"${source_folder}/${folder_name}.tar.gz" ${destination_folder}
     sshpass -p "${password}" ssh "${user}"@"${IP}" "rm -rf ${source_folder}/${folder_name}.tar.gz"
     tar -xzvf ${destination_folder}/${folder_name}.tar.gz -C ${destination_folder}
-    rm -rf ${destination_folder}/${folder_name}.tar.gz
-    ros2 caret create_architecture_file ${destination_folder}/${folder_name} -o ${destination_folder}/archi-${folder_name}.yaml
     exit 0
     ;;
 
@@ -111,8 +109,6 @@ case $folder_option in
     sshpass -p "${password}" scp "${user}"@"${IP}":"${source_folder}/${folder_name}.tar.gz" ${destination_folder}
     sshpass -p "${password}" ssh "${user}"@"${IP}" "rm -rf ${source_folder}/${folder_name}.tar.gz"
     tar -xzvf ${destination_folder}/${folder_name}.tar.gz -C ${destination_folder}
-    rm -rf ${destination_folder}/${folder_name}.tar.gz
-    ros2 caret create_architecture_file ${destination_folder}/${folder_name} -o ${destination_folder}/archi-${folder_name}.yaml
     exit 0
     ;;
 
@@ -122,17 +118,6 @@ case $folder_option in
     sshpass -p "${password}" scp "${user}"@"${IP}":"${source_folder}/${archive_name}" ${destination_folder}
     sshpass -p "${password}" ssh "${user}"@"${IP}" "rm -rf ${source_folder}/${archive_name}"
     tar -xzvf ${destination_folder}/${archive_name} -C ${destination_folder}
-    rm -rf ${destination_folder}/${archive_name}
-
-    for subdir in "$destination_folder"/*; do
-      # Check if the item is a directory
-      if [ -d "$subdir" ]; then
-          echo "Processing trace folder: $subdir"
-          subdir_f="${subdir##*/}"
-          ros2 caret create_architecture_file ${subdir} -o ${destination_folder}/archi-${subdir_f}.yaml
-      fi
-    done
-
     exit 0
     ;;
   *)

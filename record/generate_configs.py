@@ -1,4 +1,5 @@
 import math
+import argparse
 
 def nrof_execs(nrof_tasks : int):
     if nrof_tasks <= 1:
@@ -31,14 +32,25 @@ def nrof_execs(nrof_tasks : int):
 
     return sorted(execs)
 
-def exec_types(nrof_execs : int):
-    types = ["s" * nrof_execs, 
+def majority_executor(ttoe : str):
+    if ttoe.count("1") > len(ttoe) // 2 - 1:
+        return True
+
+    return False
+
+
+def exec_types(nrof_execs : int, ttoe : str):
+    types = set()
+    types_list = ["s" * nrof_execs, 
              "m" * nrof_execs,
              "s" * math.ceil(nrof_execs / 2) + "m" * math.floor(nrof_execs / 2),
              "m" * math.ceil(nrof_execs / 2) + "s" * math.floor(nrof_execs / 2)
     ]
 
-    return types
+    for t in types_list:
+        types.add(t)
+
+    return sorted(types)
 
 def t2e(nrof_tasks : int, nrof_execs : int):
     if nrof_execs > nrof_tasks:
@@ -63,7 +75,7 @@ def t2e(nrof_tasks : int, nrof_execs : int):
 
     return sorted(task_to_exec)
 
-def e2c(nrof_execs):
+def e2c(nrof_execs : int, ttoe : str):
     nrof_cores = 4
     cores = set()
 
@@ -78,6 +90,19 @@ def e2c(nrof_execs):
         )
     cores.add(distribute_cores[0:-1])
 
+    if nrof_execs >= 4:
+        half_cores = ""
+
+        if nrof_execs % 2 == 0:
+            half_cores = "0-" * (nrof_execs // 2)
+            half_cores += "1-" * (nrof_execs // 2)
+        else:
+            half_cores = "0-" * ((nrof_execs + 1) // 2)
+            half_cores += "1-" * ((nrof_execs - 1) // 2)
+        
+        half_cores = half_cores[0:-1]
+        cores.add(half_cores)
+
     return cores
 
 def main(min_nrof_tasks : int, max_nrof_tasks : int):
@@ -88,9 +113,21 @@ def main(min_nrof_tasks : int, max_nrof_tasks : int):
         
         for e in nrofexecs:
             t = nrof_tasks
-            sm = exec_types(e)
             ttoe = t2e(t, e)
+            sm = exec_types(e)
             etoc = e2c(e)
+
+            # print(ttoe, majority_executor(ttoe))
+            # if majority_executor(ttoe):
+            #     c = "0-" + "1-" * (nrof_execs - 1)
+            #     c = c[0:-1]
+            #     etoc.add(c)
+
+            # if majority_executor(ttoe):
+            #     s = "s" + "m" * (nrof_execs - 1)
+            #     types.add(s)
+            #     s = "m" + "s" * (nrof_execs - 1)
+            #     types.add(s)
 
             for seq in sm:
                 for te in ttoe:
@@ -100,4 +137,11 @@ def main(min_nrof_tasks : int, max_nrof_tasks : int):
     print(*sorted(configs), sep='\n')
 
 
-main(2, 10)
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser(description="Generate Executor Architecture names.")
+    parser.add_argument("min_nrof_nodes", type=int, help="Minimum number of tasks in the node chain.")
+    parser.add_argument("max_nrof_nodes", type=int, help="Maximum number of tasks in the node chain.")
+
+    args = parser.parse_args()
+
+    main(args.min_nrof_nodes, args.max_nrof_nodes)
