@@ -23,7 +23,7 @@ def filtr(latency):
     if latency > 180:
         return False
     
-    if latency > 95:
+    if latency > 60:
         return False
 
     return True
@@ -39,7 +39,7 @@ def check_config(tasks, execs, etypes, t2e, e2c):
     # if stri in ["t3e2_ms_112_1-2", "t3e3_sss_123_1-1-1"]:
     # if tasks == 4 and execs == 2 and etypes == "ss" and e2c == "1-1":
     # if tasks == 10:
-    # if tasks == 5 and execs == 1:
+    if tasks == 5:
     # if tasks == 6 and execs == 2 and e2c == "1-1":
     # if stri in ["t6e2_ms_111122_1-1", "t6e2_sm_111112_1-1", "t6e2_sm_111222_1-1"]:
     # if tasks == 7 and all(char == 's' for char in etypes) and execs == 3:
@@ -53,11 +53,11 @@ def check_config(tasks, execs, etypes, t2e, e2c):
     # if tasks == 10 and (execs == 1 or etypes == "ssm"):
     # if stri in ["t10e1_s_1111111111_1", "t10e3_mms_1111111123_1-1-1"]:
     # if stri in ["t10e3_ssm_1111111123_1-2-3", "t10e3_mms_1111111123_1-1-1"]:
-    if stri in [
-        "t7e1_m_1111111_1",
-        "t7e3_ssm_1111123_1-2-3",
-        "t7e1_s_1111111_1",
-    ]:
+    # if stri in [
+    #     "t7e1_m_1111111_1",
+    #     "t7e3_ssm_1111123_1-2-3",
+    #     "t7e1_s_1111111_1",
+    # ]:
         return True
     
     return False
