@@ -21,7 +21,7 @@ def is_valid_folder(folder_name):
             # Check for only s or m in etypes and exactly 'tasks' tasks
         stri = f"t{tasks}e{execs}_{etypes}_{t2e}_{e2c}"
 
-        if tasks == 9 and execs == 3 and etypes == "sss" and t2e == "111111123":
+        # if tasks == 9 and execs == 3 and etypes == "sss" and t2e == "111111123":
         # if stri in [
         #     #### GOOD CONFIGS
         #     "t8e4_ssss_11111234_1-1-2-3",
@@ -38,6 +38,7 @@ def is_valid_folder(folder_name):
         #     #### BAD CONFIGS
         #     "t8e8_mmmmmmmm_12345678_1-1-1-1-2-2-2-2"
         # ]:
+        if tasks == 8:
             return True, payload
             
     return False, None
@@ -110,8 +111,8 @@ def plot_3d_histogram(base_path, folders_by_payload):
     t9: [121, 127]
     t10: [140, 150]
     '''
-    min_latency = 121  # Minimum response time in ms to display
-    max_latency = 140 # Maximum response time in ms to display
+    min_latency = 100  # Minimum response time in ms to display
+    max_latency = 120 # Maximum response time in ms to display
 
     legend_handles = {}
 
