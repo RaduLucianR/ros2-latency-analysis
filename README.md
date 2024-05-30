@@ -1,4 +1,4 @@
-# Latency analysis library for ROS2
+# Latency experimenting and analysis library for ROS2
 
 ### Introduction
 This library uses CARET (repository [here](https://github.com/tier4/caret?tab=readme-ov-file), documentation [here](https://tier4.github.io/caret_doc/main/), paper [here](https://ieeexplore.ieee.org/document/10086380)), a library for measuring end-to-end latency in ROS2 systems. The details of the installation can be found [here](https://tier4.github.io/caret_doc/main/installation/installation/), while a script that *should* do this automatically for you is provided [here](https://github.com/RaduLucianR/ros2-latency-analysis/blob/main/scripts/install_caret.bash). 
@@ -20,7 +20,7 @@ CARET uses the [Linux traces](https://lttng.org/) under the hood, which are also
    python3 record_experiments.py /path/to/yaml/file/with/executor/config <name_of_working_ros2_workspace>
    ```
   
-   You may modify the `record_experiments.py` file to run experiments for whatever executor configuration you want. More about how to create an executor configuration below. The `record_experiments.py` script does two things:
+   You may modify the `record_experiments.py` file to run experiments for whatever executor configuration you want. More about how to create an executor configuration below, in the [Defining an executor configuration] section. The `record_experiments.py` script does two things:
    - Store the desired executor configurations in a data structure
    - Calls the `run_experiment()` function for each executor configuration
      
@@ -47,3 +47,45 @@ CARET uses the [Linux traces](https://lttng.org/) under the hood, which are also
    python3 t2-10-all-plots.py
    ```
    One has to modify the `t2-10-all-plots.py` script to use the correct path to the folder containing the trace folders.
+
+### Defining an executor configuration
+The `run_experiment()` from the `record_experiments.py` script launches the ROS2 package that creates the executor configuration. The executor configuration is created at **run-time** from this [`executor_architecture_template.yaml`](https://github.com/RaduLucianR/ros2-latency-analysis/blob/main/simple-chain/config/executor_architecture_template.yaml) file. The `record_experiments.py` uses its array of configurations to overwrite the `executor_architecture_template.yaml` file for each different configuration. Thus, if you want to make your own executor configurations you just need to create `YAML` objects that follow this predefined structure:
+```
+executors:
+- name: executor1
+  type: single_threaded
+  cores: [1, 2, 3, 4]
+  nodes:
+  - name: node1
+    payload: 35.00KB
+    publish: topic1
+    subscribe: NONE
+  - name: node2
+    payload: 77.00KB
+    publish: NONE
+    subscribe: topic1
+- name: executor2
+  type: multi_threaded
+  cores: [1, 2, 3, 4]
+  nodes:
+  - name: node3
+    payload: 128.00KB
+    publish: topic3
+    subscribe: NONE
+  - name: node4
+    payload: 56.00KB
+    publish: NONE
+    subscribe: topic4
+```
+The structure contains a list of objects called `executors`. 
+ - Each executor object has 4 fields: `name`, `type`, `cores`, `nodes`.
+    - The `name` is any string.
+    - The `type` is either `single_threaded` or `multi_threaded`.
+    - The `cores` is either a single integer or a list of integers e.g. `[1, 2, 3, 4]`.
+    - The `nodes` is a list of objects.
+       - Each node object has 4 fields: `name`, `payload`, `publish`, `subscribe`.
+           - The `name` is any string
+           - The `payload` is a string and can be any real value followed by `KB`.
+           - The publish and subscribe are both strings and represent the publish and subscribe topics of the node respectively. If a node doesn't publish/subscribe to a topic then that topic must be the string `"NONE"`.
+
+Examples of `YAML` objects representing executor configurations can be found [here](https://github.com/RaduLucianR/ros2-latency-analysis/blob/main/record/exec_architectures.py).
