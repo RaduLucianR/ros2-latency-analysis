@@ -20,7 +20,7 @@ def extract_avg_latency(file_path):
         return float(match.group(1)), "Avg" if match else None
 
 def filtr(latency, payload):
-    fact = 3
+    fact = 8
 
     # if 4000 * fact > payload or payload > 4000 * (fact + 1):
     #     return False
@@ -40,7 +40,15 @@ def check_config(tasks, execs, etypes, t2e, e2c):
     # if stri in ["t3e2_ms_112_1-2"] or (tasks == 3 and execs == 3):
     # if stri in ["t3e2_ms_112_1-2", "t3e3_sss_123_1-1-1"]:
     # if tasks == 4 and execs == 2 and etypes == "ss" and e2c == "1-1":
-    if tasks == 5:
+    # if tasks == 5:
+    # if stri in ["t5e1_s_11111_1", "t5e2_ss_11112_1-2"]:
+    # if (tasks == 6 and etypes == "ss") or etypes == "s":
+    # if tasks == 6 and etypes == "ss" and t2e != "111112":
+    if tasks == 6 and etypes == "ms":
+    # if tasks == 6 and t2e == "111112":
+    # if e2c in ["1-1", "0123-1"] and etypes in ["ss", "ms"] and t2e == "111112":
+    # if tasks == 6 and execs in [1, 2]:
+    # if stri in ["t6e1_s_111111_1", "t6e2_ss_111122_1-1"]:
     # if tasks == 6 and execs == 2 and e2c == "1-1":
     # if stri in ["t6e2_ms_111122_1-1", "t6e2_sm_111112_1-1", "t6e2_sm_111222_1-1"]:
     # if tasks == 7:
@@ -50,6 +58,8 @@ def check_config(tasks, execs, etypes, t2e, e2c):
     #     "t7e3_ssm_1111123_1-2-3",
     #     "t7e1_s_1111111_1",
     # ]:
+    # if tasks == 7 and execs in [1, 2]:
+    # if stri in ["t7e1_s_1111111_1", "t7e2_ss_1111112_1-1", "t7e2_ss_1111112_1-2"]:
     # if tasks == 8 and all(char == 's' for char in etypes):
     # if tasks == 8 and all(char == 's' for char in etypes) and execs <= 2:
     # if tasks == 8 and (execs == 1 or etypes == "ss"):
@@ -90,7 +100,9 @@ def check_config(tasks, execs, etypes, t2e, e2c):
 def plot_lines(folder_path):
     same = False
 
-    if folder_path == '/home/lucian/simple-chain-ws/graphs/two-ten-nodes-same-payload':
+    if folder_path in ['/home/lucian/simple-chain-ws/graphs/two-ten-nodes-same-payload',
+                       '/home/lucian/simple-chain-ws/graphs/t6-same-payload-multicore-mte'
+                       ]:
         same = True
 
     global which
@@ -154,14 +166,16 @@ def plot_lines(folder_path):
                 best[3] = skewness
                 best[4] = kurtosis
 
-            # payloads_array = np.array(payloads)
-            # latencies_array = np.array(latencies)
-            # slope, intercept = np.polyfit(payloads_array, latencies_array, 1)
-            # trendline = slope * payloads_array + intercept
-            # plt.plot(payloads_array, trendline, color=colors[ct], lw=3)  # Plotting the trend line
+            payloads_array = np.array(payloads)
+            latencies_array = np.array(latencies)
+            slope, intercept = np.polyfit(payloads_array, latencies_array, 1)
+            trendline = slope * payloads_array + intercept
+            plt.plot(payloads_array, trendline, color=colors[ct], lw=3)  # Plotting the trend line
 
             plt.scatter(payloads, latencies, color=colors[ct], label=config)
             plt.plot(payloads, latencies, color=colors[ct])
+            # plt.scatter(payloads, latencies, label=config)
+            # plt.plot(payloads, latencies)
             ct += 1
     
     # with open('top_configs_over_tasks.csv','a') as fd:
@@ -207,7 +221,8 @@ def plot_lines(folder_path):
     plt.subplots_adjust(right=0.75)
     plt.show()
 
-plot_lines('/home/lucian/simple-chain-ws/graphs/two-ten-nodes-same-payload')
+# plot_lines('/home/lucian/simple-chain-ws/graphs/two-ten-nodes-same-payload')
+plot_lines('/home/lucian/simple-chain-ws/graphs/t6-same-payload-multicore-mte')
 # plot_lines('/home/lucian/simple-chain-ws/graphs/two-ten-nodes-large-payload')
 # plot_lines('/home/lucian/simple-chain-ws/graphs/two-ten-nodes-all')
 # plot_lines('/home/lucian/simple-chain-ws/graphs/two-ten-nodes-best-configs')

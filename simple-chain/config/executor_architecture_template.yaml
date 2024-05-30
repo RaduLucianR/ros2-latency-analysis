@@ -7,13 +7,21 @@ executors:
     payload: 4200.00KB
     publish: topic1
     subscribe: NONE
+  - name: node2
+    payload: 4200.00KB
+    publish: topic2
+    subscribe: topic1
   type: single_threaded
 - cores:
   - 2
   name: executor2
   nodes:
-  - name: node2
+  - name: node3
+    payload: 4200.00KB
+    publish: topic3
+    subscribe: topic2
+  - name: node4
     payload: 4200.00KB
     publish: NONE
-    subscribe: topic1
-  type: multi_threaded
+    subscribe: topic3
+  type: single_threaded
