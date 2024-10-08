@@ -1,2 +1,2 @@
+*.py -linguist-detectable
 *.png filter=lfs diff=lfs merge=lfs -text
-*.py linguist-vendored
